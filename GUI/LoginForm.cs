@@ -18,6 +18,7 @@ namespace GUI
     {
         MiddleWare loginProcess = new MiddleWare();
         UserAccount user = new UserAccount();
+        Request loginReq = new Request();
         public void clearValidate()
         {
             useNameError.Text = string.Empty;
@@ -37,8 +38,11 @@ namespace GUI
         private void loginBtn_Click(object sender, EventArgs e)
         {
             user.userName = txtUserName.Text;
-            user.userPassword= txtPassword.Text;
-            Response res = loginProcess.validateForm(user);
+            user.userPassword = txtPassword.Text;
+            loginReq.ClearData();
+            loginReq.AddData("userName", txtUserName.Text);
+            loginReq.AddData("password", txtPassword.Text);
+            Response res = loginProcess.validateForm(loginReq);
             string permissionType = null; 
             if (res.code == "success")
             {
@@ -72,6 +76,9 @@ namespace GUI
         {
             clearValidate();
             this.ActiveControl = txtUserName;
+
         }
+
+
     }
 }

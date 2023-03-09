@@ -1,4 +1,7 @@
-﻿namespace GUI
+﻿using System;
+using System.Management;
+
+namespace GUI
 {
     partial class LoginForm
     {
@@ -95,6 +98,7 @@
             this.txtUserName.SelectedText = "";
             this.txtUserName.Size = new System.Drawing.Size(349, 53);
             this.txtUserName.TabIndex = 1;
+            this.txtUserName.GotFocus += TxtUserName_GotFocus;
             // 
             // txtPassword
             // 
@@ -118,6 +122,7 @@
             this.txtPassword.SelectedText = "";
             this.txtPassword.Size = new System.Drawing.Size(349, 53);
             this.txtPassword.TabIndex = 2;
+            this.txtPassword.GotFocus += TxtPassword_GotFocus;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // loginBtn
@@ -251,17 +256,18 @@
 
         }
 
+        private void TxtUserName_GotFocus(object sender, EventArgs e)
+        {
+            this.txtUserName.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            clearValidate();
+        }
+
         private void TxtPassword_GotFocus(object sender, System.EventArgs e)
         {
             this.txtPassword.BorderColor = System.Drawing.Color.DeepSkyBlue;
             clearValidate();
         }
 
-        private void TxtUserName_GotFocus(object sender, System.EventArgs e)
-        {
-            this.txtUserName.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            clearValidate();
-        }
 
         #endregion
 

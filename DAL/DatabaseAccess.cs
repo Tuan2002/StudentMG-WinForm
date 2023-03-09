@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO;
+using COM;
 
 // DATA ACCESS LAYER
 namespace DAL
@@ -25,10 +26,13 @@ namespace DAL
             return connection;
         }
 
-        public static Response hanndleLogin(UserAccount account)
+        public static Response hanndleLogin(Request loginReq)
         {
         // Connect to database
             Response res = new Response();
+            UserAccount account = new UserAccount();
+            account.userName = loginReq.GetData("userName");
+            account.userPassword = loginReq.GetData("password");
             try
             {
                 SqlConnection section = Connection();

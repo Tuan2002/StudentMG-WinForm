@@ -5,23 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL;
+using COM;
 namespace BLL
 {
 
     public class MiddleWare
     {
         UserAccess currentUser = new UserAccess();
-        public Response validateForm(UserAccount account)
+        public Response validateForm(Request account)
         {
             Response res = new Response();
-            if (account.userName == string.Empty)
+            if (account.GetData("userName") == string.Empty)
                 res.code = "username_null";
-            else if (account.userPassword == string.Empty)
+            else if (account.GetData("password") == string.Empty)
                 res.code = "password_null";
             else
-            res = currentUser.getLoginInfo(account);
+                res = currentUser.getLoginInfo(account);
+  /*          res.code = "null";*/
             return res;
 
         }
+   
     }
 }

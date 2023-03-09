@@ -5,14 +5,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DTO;
+using COM;
 
 namespace DAL
 {
     public class UserAccess:DatabaseAccess
     {
-        public Response getLoginInfo(UserAccount account)
+        public Response getLoginInfo(Request loginReq)
         {
-            Response res = hanndleLogin(account);
+            Response res = hanndleLogin(loginReq);
             return res;
         }
     }
