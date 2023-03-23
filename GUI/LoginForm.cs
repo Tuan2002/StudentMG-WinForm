@@ -38,8 +38,6 @@ namespace GUI
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            user.userName = txtUserName.Text;
-            user.userPassword = txtPassword.Text;
             loginReq.ClearData();
             loginReq.AddData("userName", txtUserName.Text);
             loginReq.AddData("password", txtPassword.Text);

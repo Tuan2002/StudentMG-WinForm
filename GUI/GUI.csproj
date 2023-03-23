@@ -51,6 +51,11 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -77,6 +82,12 @@
     <Compile Include="Feature-Form\AddUser.Designer.cs">
       <DependentUpon>AddUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Feature-Form\EditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature-Form\EditUser.Designer.cs">
+      <DependentUpon>EditUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Feature-Form\UserMG.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Feature-Form\AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feature-Form\EditUser.resx">
+      <DependentUpon>EditUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Feature-Form\UserMG.resx">
       <DependentUpon>UserMG.cs</DependentUpon>

@@ -17,9 +17,12 @@ namespace GUI
 {
     public partial class UserMG : Form
     {
+        AddUser addUserForm = new AddUser();
+
         public UserMG()
         {
             InitializeComponent();
+            addUserForm.UpdateUserListEvent += new AddUser.UpdateUserListView(UpdateUserList);
         }
         private Response getListUser()
         {
@@ -54,6 +57,28 @@ namespace GUI
                 buttonCell.Style.BackColor = Color.LightBlue;
                 buttonCell.Style.ForeColor = Color.LightGreen;
                 buttonCell.Style.Font = new Font("Roboto", 10, FontStyle.Regular);
+            }
+        }
+        private void UpdateUserList(string userName, string userPassword, string userEmail)
+        {
+            userList.Rows.Add(userName, userPassword, userEmail);
+        }
+
+        private void addUserBtn_Click(object sender, EventArgs e)
+        {
+            addUserForm.StartPosition = FormStartPosition.CenterScreen;
+            addUserForm.Show();
+        }
+
+        private void userList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (userList.Columns[e.ColumnIndex].Name == "Actions")
+            {
+                    // Get the data from the cell
+                    DataGridViewRow row = userList.Rows[e.RowIndex];
+                    string cellValue = row.Cells["userName"].Value.ToString(); 
+                    EditForm editForm = new EditForm(cellValue);
+                    editForm.Show();  
             }
         }
     }

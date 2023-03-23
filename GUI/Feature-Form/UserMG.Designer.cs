@@ -38,12 +38,12 @@ namespace GUI
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.searchBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.refeshBtn = new FontAwesome.Sharp.IconButton();
             this.removeUserBtn = new FontAwesome.Sharp.IconButton();
             this.addUserBtn = new FontAwesome.Sharp.IconButton();
             this.userList = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.searchBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passWord = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,6 +86,30 @@ namespace GUI
             this.siticonePanel2.Name = "siticonePanel2";
             this.siticonePanel2.Size = new System.Drawing.Size(310, 62);
             this.siticonePanel2.TabIndex = 3;
+            // 
+            // searchBox
+            // 
+            this.searchBox.BorderColor = System.Drawing.Color.MediumOrchid;
+            this.searchBox.BorderRadius = 10;
+            this.searchBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.searchBox.DefaultText = "";
+            this.searchBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.searchBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.searchBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.searchBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.searchBox.FillColor = System.Drawing.Color.DarkSlateBlue;
+            this.searchBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.searchBox.Font = new System.Drawing.Font("Roboto", 10F);
+            this.searchBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.searchBox.Location = new System.Drawing.Point(13, 11);
+            this.searchBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.PasswordChar = '\0';
+            this.searchBox.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.searchBox.PlaceholderText = "Tìm người dùng";
+            this.searchBox.SelectedText = "";
+            this.searchBox.Size = new System.Drawing.Size(190, 39);
+            this.searchBox.TabIndex = 2;
             // 
             // siticoneButton1
             // 
@@ -168,6 +192,7 @@ namespace GUI
             this.addUserBtn.Text = "Thêm mới";
             this.addUserBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.addUserBtn.UseVisualStyleBackColor = false;
+            this.addUserBtn.Click += new System.EventHandler(this.addUserBtn_Click);
             // 
             // userList
             // 
@@ -217,7 +242,6 @@ namespace GUI
             this.userList.RowTemplate.Height = 40;
             this.userList.Size = new System.Drawing.Size(746, 412);
             this.userList.TabIndex = 1;
-            this.userList.AllowUserToAddRows = false;
             this.userList.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.DeepPurple;
             this.userList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
             this.userList.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -240,31 +264,8 @@ namespace GUI
             this.userList.ThemeStyle.RowsStyle.Height = 40;
             this.userList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
             this.userList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.userList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userList_CellClick);
             this.userList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.userList_CellFormatting);
-            // 
-            // searchBox
-            // 
-            this.searchBox.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.searchBox.BorderRadius = 10;
-            this.searchBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.searchBox.DefaultText = "";
-            this.searchBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.searchBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.searchBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.searchBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.searchBox.FillColor = System.Drawing.Color.DarkSlateBlue;
-            this.searchBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.searchBox.Font = new System.Drawing.Font("Roboto", 10F);
-            this.searchBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.searchBox.Location = new System.Drawing.Point(13, 11);
-            this.searchBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.searchBox.Name = "searchBox";
-            this.searchBox.PasswordChar = '\0';
-            this.searchBox.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.searchBox.PlaceholderText = "Tìm người dùng";
-            this.searchBox.SelectedText = "";
-            this.searchBox.Size = new System.Drawing.Size(190, 39);
-            this.searchBox.TabIndex = 2;
             // 
             // userName
             // 
