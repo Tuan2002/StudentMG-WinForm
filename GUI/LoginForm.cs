@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DAL;
+using System.IO;
+using DAL; //
 using DTO;
 using BLL;
 using COM;
@@ -43,12 +44,17 @@ namespace GUI
             loginReq.AddData("userName", txtUserName.Text);
             loginReq.AddData("password", txtPassword.Text);
             Response res = loginProcess.validateForm(loginReq);
-            string permissionType = null; 
+
             if (res.code == "success")
             {
-                if (res.permission == 1)
-                {permissionType = "admin";}    
-                MessageBox.Show("Đăng nhập thành công với quyền "+permissionType+"!");
+                byte[] imageBytes = Convert.FromBase64String(res.userImage);
+                MemoryStream memoryStream= new MemoryStream(imageBytes);
+                Image avatar = Image.FromStream(memoryStream);
+                // Open dashboard form
+                this.Hide();
+                Dashboard_Admin dashboard = new Dashboard_Admin(res.userFullName, res.permissionType, avatar);
+                dashboard.Show();
+
             }    
             else
             {
