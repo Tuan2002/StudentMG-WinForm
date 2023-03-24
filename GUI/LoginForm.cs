@@ -8,17 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using DAL; //
-using DTO;
+using DAL;
 using BLL;
-using COM;
-
 namespace GUI
 {
     public partial class LoginForm : Form
     {
         MiddleWare loginProcess = new MiddleWare();
-        UserAccount user = new UserAccount();
         Request loginReq = new Request();
         public void clearValidate()
         {

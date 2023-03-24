@@ -44,15 +44,5 @@
     <Compile Include="DatabaseAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\COM\COM.csproj">
-      <Project>{bfb6e736-0240-409b-aca1-0fd03d341d66}</Project>
-      <Name>COM</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DTO\DTO.csproj">
-      <Project>{366e14fd-c63f-40d1-bf3a-e5a5f3f27c89}</Project>
-      <Name>DTO</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

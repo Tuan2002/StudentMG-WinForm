@@ -8,9 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
-using DTO;
 using BLL;
-using COM;
 using System.Drawing.Imaging;
 using System.IO;
 
@@ -89,8 +87,7 @@ namespace GUI
 
         private void siticoneButton1_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
-            //this.Close();
+            this.Close();
         }
 
         private void AddUser_Load(object sender, EventArgs e)
@@ -118,11 +115,11 @@ namespace GUI
         {
             Request addUser = new Request();
             Response res = new Response();
-            addUser.AddData("userName", userNameBox.Text);
-            addUser.AddData("fullName", userFullNameBox.Text);
-            addUser.AddData("email", userEmailBox.Text);
-            addUser.AddData("password", userPassword.Text);
-            addUser.AddData("confirmPassword", userPasswordConfirm.Text);
+            addUser.AddData("userName", userNameBox.Text.Trim());
+            addUser.AddData("fullName", userFullNameBox.Text.Trim());
+            addUser.AddData("email", userEmailBox.Text.Trim());
+            addUser.AddData("password", userPassword.Text.Trim());
+            addUser.AddData("confirmPassword", userPasswordConfirm.Text.Trim());
             addUser.AddData("permissionType", permissionId.ToString());
             if (imageData == string.Empty && useDefaultImage.Checked == false) {
                 imageRequied.Text = "Vui lòng chọn ảnh";
@@ -142,9 +139,7 @@ namespace GUI
                 imageData = string.Empty;
             }
             res = handleAddUser.validateAddUserForm(addUser);
-            if (res.code == "success")
-            {
-            }
+ 
             switch (res.code)
             {
                 case "success": 

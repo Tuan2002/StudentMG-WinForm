@@ -1,6 +1,4 @@
-﻿using BLL;
-using COM;
-using DAL;
+﻿using DevExpress.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,22 +9,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DevExpress.Data.Helpers.ExpressiveSortInfo;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Drawing.Imaging;
+using BLL;
+using DAL;
 
 namespace GUI
 {
     public partial class EditForm : Form
     {
-        private string currentUserName; 
+        private string currentUserName;
+        MiddleWare handleEditUser = new MiddleWare();
+        string imageData = string.Empty;
+        int permissionId = 0;
+        int rowindex;
+
+        public delegate void UpdateUserData(int rowIndex, string userName, string userPassword, string userEmail);
+        public event UpdateUserData UpdateUserDataEvent;
         public EditForm()
         {
             InitializeComponent();
         }
-        public EditForm(string userName)
+        public EditForm(int rowindex, string userName)
         {
             InitializeComponent();
             this.currentUserName = userName;
+            this.rowindex = rowindex;
         }
         public void clearValidateForm()
         {
@@ -65,6 +72,15 @@ namespace GUI
                 permissionSelect.Items.Add(row["permissionType"].ToString());
             }
         }
+        private byte[] imagetobytearray(Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
+
         private Image stringToImage(string base64String)
         {
             byte[] imageBytes = Convert.FromBase64String(base64String);
@@ -84,13 +100,77 @@ namespace GUI
                 userFullNameBox.Text = res.data.Rows[0]["userFullName"].ToString();
                 userEmailBox.Text = res.data.Rows[0]["userEmail"].ToString();
                 userPassword.Text = res.data.Rows[0]["userPassword"].ToString();
-                permissionSelect.SelectedIndex = (int)res.data.Rows[0]["permissionId"];
+                permissionId = (int)res.data.Rows[0]["permissionId"];
                 avatarPreview.Image = stringToImage(res.data.Rows[0]["userAvatar"].ToString());
             }
-
+            permissionSelect.SelectedIndex = permissionId;
         }
-        private void addUserBtn_Click(object sender, EventArgs e)
+        private void EditUserBtn_Click(object sender, EventArgs e)
         {
+            Request editUser = new Request();
+            Response res = new Response();
+            editUser.AddData("currentUserName", currentUserName);
+            editUser.AddData("newUserName", userNameBox.Text.Trim());
+            editUser.AddData("fullName", userFullNameBox.Text.Trim());
+            editUser.AddData("email", userEmailBox.Text.Trim());
+            editUser.AddData("password", userPassword.Text.Trim());
+            editUser.AddData("confirmPassword", userPasswordConfirm.Text.Trim());
+            editUser.AddData("permissionType", permissionId.ToString());
+            if (imageData == string.Empty && useDefaultImage.Checked == false)
+            {
+                imageRequied.Text = "Vui lòng chọn ảnh";
+                return;
+
+            }
+            else if (imageData == string.Empty && useDefaultImage.Checked == true)
+            {
+                byte[] imageBytes = imagetobytearray(avatarPreview.Image);
+                imageData = Convert.ToBase64String(imageBytes);
+                editUser.AddData("avatar", imageData);
+                imageData = string.Empty;
+            }
+            else
+            {
+                editUser.AddData("avatar", imageData);
+                imageData = string.Empty;
+            }
+            res = handleEditUser.validateEditUserForm(editUser);
+
+            switch (res.code)
+            {
+                case "update_successfully":
+                    UpdateUserDataEvent(rowindex, userNameBox.Text, userPassword.Text, userEmailBox.Text);
+                    this.Close();
+                    break;
+                case "user_not_exist":
+                    clearValidateForm();
+                    formError.Text = "Tên người dùng đã tồn tại trong hệ thống";
+                    break;
+                case "userName_null":
+                    userNameBox.BorderColor = Color.Red;
+                    userNameEmpty.Text = "Têm người dùng không được để trống";
+                    break;
+                case "fullName_null":
+                    userFullNameBox.BorderColor = Color.Red;
+                    fullNameEmpty.Text = "Tên không được để trống";
+                    break;
+                case "email_null":
+                    userEmailBox.BorderColor = Color.Red;
+                    emailEmpty.Text = "Email không được để trống";
+                    break;
+                case "password_null":
+                    userPassword.BorderColor = Color.Red;
+                    passwordEmpty.Text = "Mật khẩu không được để trống";
+                    break;
+                case "confirmPassword_notMatch":
+                    userPasswordConfirm.BorderColor = Color.Red;
+                    passwordNotSame.Text = "Mật khẩu không khớp";
+                    break;
+                case "permissionType_null":
+                    permissionSelect.BorderColor = Color.Red;
+                    permisstionEmpty.Text = "Vui lòng chọn quyền hạn";
+                    break;
+            }
 
         }
 
@@ -99,6 +179,11 @@ namespace GUI
             loadPermissionOptions();
             clearValidateForm();
             getUserData();
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

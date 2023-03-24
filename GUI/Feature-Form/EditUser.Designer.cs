@@ -49,8 +49,8 @@
             this.userFullNameBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.userNameBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.addUserBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.editUserBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.cancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.permissionSelect = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.siticonePanel2.SuspendLayout();
@@ -353,52 +353,53 @@
             // 
             // siticonePanel1
             // 
-            this.siticonePanel1.Controls.Add(this.addUserBtn);
-            this.siticonePanel1.Controls.Add(this.siticoneButton1);
+            this.siticonePanel1.Controls.Add(this.editUserBtn);
+            this.siticonePanel1.Controls.Add(this.cancelBtn);
             this.siticonePanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.siticonePanel1.Location = new System.Drawing.Point(0, 537);
             this.siticonePanel1.Name = "siticonePanel1";
             this.siticonePanel1.Size = new System.Drawing.Size(680, 63);
             this.siticonePanel1.TabIndex = 22;
             // 
-            // addUserBtn
+            // editUserBtn
             // 
-            this.addUserBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addUserBtn.BorderColor = System.Drawing.Color.Transparent;
-            this.addUserBtn.BorderRadius = 10;
-            this.addUserBtn.BorderThickness = 1;
-            this.addUserBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.addUserBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.addUserBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.addUserBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.addUserBtn.FillColor = System.Drawing.Color.ForestGreen;
-            this.addUserBtn.Font = new System.Drawing.Font("Roboto Medium", 9.75F, System.Drawing.FontStyle.Bold);
-            this.addUserBtn.ForeColor = System.Drawing.Color.White;
-            this.addUserBtn.Location = new System.Drawing.Point(490, 12);
-            this.addUserBtn.Name = "addUserBtn";
-            this.addUserBtn.Size = new System.Drawing.Size(140, 39);
-            this.addUserBtn.TabIndex = 1;
-            this.addUserBtn.Text = "Chỉnh sửa";
-            this.addUserBtn.Click += new System.EventHandler(this.addUserBtn_Click);
+            this.editUserBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.editUserBtn.BorderColor = System.Drawing.Color.Transparent;
+            this.editUserBtn.BorderRadius = 10;
+            this.editUserBtn.BorderThickness = 1;
+            this.editUserBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.editUserBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.editUserBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.editUserBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.editUserBtn.FillColor = System.Drawing.Color.ForestGreen;
+            this.editUserBtn.Font = new System.Drawing.Font("Roboto Medium", 9.75F, System.Drawing.FontStyle.Bold);
+            this.editUserBtn.ForeColor = System.Drawing.Color.White;
+            this.editUserBtn.Location = new System.Drawing.Point(490, 12);
+            this.editUserBtn.Name = "editUserBtn";
+            this.editUserBtn.Size = new System.Drawing.Size(140, 39);
+            this.editUserBtn.TabIndex = 1;
+            this.editUserBtn.Text = "Chỉnh sửa";
+            this.editUserBtn.Click += new System.EventHandler(this.EditUserBtn_Click);
             // 
-            // siticoneButton1
+            // cancelBtn
             // 
-            this.siticoneButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.siticoneButton1.BorderColor = System.Drawing.Color.Transparent;
-            this.siticoneButton1.BorderRadius = 10;
-            this.siticoneButton1.BorderThickness = 1;
-            this.siticoneButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.siticoneButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton1.FillColor = System.Drawing.Color.OrangeRed;
-            this.siticoneButton1.Font = new System.Drawing.Font("Roboto Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.siticoneButton1.ForeColor = System.Drawing.Color.White;
-            this.siticoneButton1.Location = new System.Drawing.Point(340, 12);
-            this.siticoneButton1.Name = "siticoneButton1";
-            this.siticoneButton1.Size = new System.Drawing.Size(140, 39);
-            this.siticoneButton1.TabIndex = 0;
-            this.siticoneButton1.Text = "Huỷ bỏ";
+            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelBtn.BorderColor = System.Drawing.Color.Transparent;
+            this.cancelBtn.BorderRadius = 10;
+            this.cancelBtn.BorderThickness = 1;
+            this.cancelBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cancelBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cancelBtn.FillColor = System.Drawing.Color.OrangeRed;
+            this.cancelBtn.Font = new System.Drawing.Font("Roboto Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelBtn.ForeColor = System.Drawing.Color.White;
+            this.cancelBtn.Location = new System.Drawing.Point(340, 12);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(140, 39);
+            this.cancelBtn.TabIndex = 0;
+            this.cancelBtn.Text = "Huỷ bỏ";
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // permissionSelect
             // 
@@ -409,11 +410,13 @@
             this.permissionSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.permissionSelect.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.permissionSelect.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.permissionSelect.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.permissionSelect.Font = new System.Drawing.Font("Roboto", 9.75F);
             this.permissionSelect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.permissionSelect.ItemHeight = 30;
             this.permissionSelect.Items.AddRange(new object[] {
             "-- Chọn quyền người dùng --"});
+            this.permissionSelect.ItemsAppearance.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.permissionSelect.ItemsAppearance.SelectedFont = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.permissionSelect.Location = new System.Drawing.Point(364, 84);
             this.permissionSelect.Name = "permissionSelect";
             this.permissionSelect.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -489,8 +492,8 @@
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox userFullNameBox;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox userNameBox;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton addUserBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton editUserBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton cancelBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox permissionSelect;
         private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm siticoneBorderlessForm1;
     }

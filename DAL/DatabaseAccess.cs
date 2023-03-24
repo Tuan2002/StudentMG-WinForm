@@ -4,10 +4,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DTO;
-using COM;
 using System.Data;
 using System.Security.AccessControl;
+using System.Collections.Specialized;
+using System.ComponentModel;
 
 // DATA ACCESS LAYER
 namespace DAL
@@ -19,6 +19,42 @@ namespace DAL
         public string userFullName;
         public string userImage;
         public DataTable data = new DataTable();
+
+    }
+    public class Request
+    {
+        ListDictionary data = new ListDictionary();
+        public void AddData(string key, string value)
+        {
+            data.Add(key, value);
+        }
+        public void ClearData()
+        {
+            data.Clear();
+        }
+        public void addObjectData(Object obj)
+        {
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(obj);
+            foreach (PropertyDescriptor prop in properties)
+            {
+                data.Add(prop.Name, prop.GetValue(obj));
+            }
+
+        }
+        public Object getObjectData(Object obj)
+        {
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(obj);
+            foreach (PropertyDescriptor prop in properties)
+            {
+                prop.SetValue(obj, data[prop.Name]);
+            }
+            return obj;
+        }
+        public string GetData(string key)
+        {
+            string value = (string)data[key];
+            return value;
+        }
 
     }
     // Handle data access
@@ -35,18 +71,14 @@ namespace DAL
         {
         // Connect to database
             Response res = new Response();
-            UserAccount account = new UserAccount();
-            account.userName = loginReq.GetData("userName");
-            account.userPassword = loginReq.GetData("password");
             try
             {
                 SqlConnection section = Connection();
                 section.Open();
                 SqlCommand command = new SqlCommand("handleLoginProduce", section);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@username", account.userName);
-                command.Parameters.AddWithValue("@password", account.userPassword);
-
+                command.Parameters.AddWithValue("@username", loginReq.GetData("userName"));
+                command.Parameters.AddWithValue("@password", loginReq.GetData("password"));
                 command.Connection = section;
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows) {
@@ -175,6 +207,76 @@ namespace DAL
                res.code = "server_error";
             }
             return res; 
+        }
+        public Response UpdateUserData(Request req)
+        {
+            Response res = new Response();
+            try
+            {
+                SqlConnection section = Connection();
+                SqlCommand command = new SqlCommand("UpdateUserData", section);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@currentusername", req.GetData("currentUserName"));
+                command.Parameters.AddWithValue("@newusername", req.GetData("newUserName"));
+                command.Parameters.AddWithValue("@password", req.GetData("password"));
+                command.Parameters.AddWithValue("@fullname", req.GetData("fullName"));
+                command.Parameters.AddWithValue("@email", req.GetData("email"));
+                command.Parameters.AddWithValue("@permissiontype", Int32.Parse(req.GetData("permissionType")));
+                command.Parameters.AddWithValue("@avatar", req.GetData("avatar"));
+                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
+                returnValue.Direction = ParameterDirection.ReturnValue;
+                command.Connection = section;
+                section.Open();
+                command.ExecuteNonQuery();
+                section.Close();
+                int result = (int)returnValue.Value;
+                if (result == 0)
+                {
+                    res.code = "user_not_exist";
+                }
+                else
+                {
+                    res.code = "update_successfully";
+                }
+            }
+
+            catch
+            {
+                res.code = "server_error";
+            }
+            return res;
+        }
+        public Response DeleteUser(Request req)
+        {
+            Response res = new Response();
+            try
+            {
+            SqlConnection section = Connection();
+            SqlCommand command = new SqlCommand("DeleteUser", section);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@username", req.GetData("userName"));
+            var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
+                returnValue.Direction = ParameterDirection.ReturnValue;
+                command.Connection = section;
+                section.Open();
+                command.ExecuteNonQuery();
+                section.Close();
+                int result = (int)returnValue.Value;
+                if (result == 0)
+                {
+                    res.code = "user_not_exist";
+                }
+                else
+                {
+                    res.code = "delele_successfully";
+                }
+            }
+            catch
+            {
+                res.code = "server_error";
+            }
+            return res;
+
         }
     }
 }

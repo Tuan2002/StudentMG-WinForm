@@ -33,27 +33,32 @@ namespace GUI
             this.components = new System.ComponentModel.Container();
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.logoutBtn = new FontAwesome.Sharp.IconButton();
             this.sidebarMenu = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.studentListBtn = new FontAwesome.Sharp.IconButton();
-            this.maijorManagerBtn = new FontAwesome.Sharp.IconButton();
-            this.classManagerBtn = new FontAwesome.Sharp.IconButton();
-            this.userMangerBtn = new FontAwesome.Sharp.IconButton();
             this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.userNameLabel = new System.Windows.Forms.Label();
             this.userPermisstionLabel = new System.Windows.Forms.Label();
-            this.avatarBox = new Siticone.Desktop.UI.WinForms.SiticoneCirclePictureBox();
             this.TopPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.siticoneControlBox3 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.siticoneControlBox2 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.siticoneControlBox1 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.panelDesktop = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.siticoneDragControl1 = new Siticone.Desktop.UI.WinForms.SiticoneDragControl(this.components);
+            this.siticoneHtmlLabel1 = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            this.siticoneHtmlLabel2 = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            this.siticoneCirclePictureBox1 = new Siticone.Desktop.UI.WinForms.SiticoneCirclePictureBox();
+            this.logoutBtn = new FontAwesome.Sharp.IconButton();
+            this.studentListBtn = new FontAwesome.Sharp.IconButton();
+            this.maijorManagerBtn = new FontAwesome.Sharp.IconButton();
+            this.classManagerBtn = new FontAwesome.Sharp.IconButton();
+            this.userMangerBtn = new FontAwesome.Sharp.IconButton();
+            this.avatarBox = new Siticone.Desktop.UI.WinForms.SiticoneCirclePictureBox();
             this.siticonePanel1.SuspendLayout();
             this.sidebarMenu.SuspendLayout();
             this.siticonePanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.avatarBox)).BeginInit();
             this.TopPanel.SuspendLayout();
+            this.panelDesktop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.siticoneCirclePictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.avatarBox)).BeginInit();
             this.SuspendLayout();
             // 
             // siticoneBorderlessForm1
@@ -74,6 +79,159 @@ namespace GUI
             this.siticonePanel1.Name = "siticonePanel1";
             this.siticonePanel1.Size = new System.Drawing.Size(253, 788);
             this.siticonePanel1.TabIndex = 0;
+            // 
+            // sidebarMenu
+            // 
+            this.sidebarMenu.Controls.Add(this.studentListBtn);
+            this.sidebarMenu.Controls.Add(this.maijorManagerBtn);
+            this.sidebarMenu.Controls.Add(this.classManagerBtn);
+            this.sidebarMenu.Controls.Add(this.userMangerBtn);
+            this.sidebarMenu.Location = new System.Drawing.Point(0, 197);
+            this.sidebarMenu.Name = "sidebarMenu";
+            this.sidebarMenu.Size = new System.Drawing.Size(253, 453);
+            this.sidebarMenu.TabIndex = 4;
+            // 
+            // siticonePanel3
+            // 
+            this.siticonePanel3.Controls.Add(this.userNameLabel);
+            this.siticonePanel3.Controls.Add(this.userPermisstionLabel);
+            this.siticonePanel3.Controls.Add(this.avatarBox);
+            this.siticonePanel3.Location = new System.Drawing.Point(0, 0);
+            this.siticonePanel3.Name = "siticonePanel3";
+            this.siticonePanel3.Size = new System.Drawing.Size(253, 191);
+            this.siticonePanel3.TabIndex = 3;
+            // 
+            // userNameLabel
+            // 
+            this.userNameLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.userNameLabel.Font = new System.Drawing.Font("Roboto Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userNameLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.userNameLabel.Location = new System.Drawing.Point(0, 126);
+            this.userNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.userNameLabel.Name = "userNameLabel";
+            this.userNameLabel.Size = new System.Drawing.Size(253, 20);
+            this.userNameLabel.TabIndex = 4;
+            this.userNameLabel.Text = "Nguyễn Anh Tuấn";
+            this.userNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // userPermisstionLabel
+            // 
+            this.userPermisstionLabel.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userPermisstionLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.userPermisstionLabel.Location = new System.Drawing.Point(4, 152);
+            this.userPermisstionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.userPermisstionLabel.Name = "userPermisstionLabel";
+            this.userPermisstionLabel.Size = new System.Drawing.Size(249, 20);
+            this.userPermisstionLabel.TabIndex = 5;
+            this.userPermisstionLabel.Text = "Admin";
+            this.userPermisstionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TopPanel
+            // 
+            this.TopPanel.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.TopPanel.Controls.Add(this.siticoneControlBox3);
+            this.TopPanel.Controls.Add(this.siticoneControlBox2);
+            this.TopPanel.Controls.Add(this.siticoneControlBox1);
+            this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopPanel.Location = new System.Drawing.Point(253, 0);
+            this.TopPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TopPanel.Name = "TopPanel";
+            this.TopPanel.Size = new System.Drawing.Size(899, 48);
+            this.TopPanel.TabIndex = 1;
+            // 
+            // siticoneControlBox3
+            // 
+            this.siticoneControlBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticoneControlBox3.BackColor = System.Drawing.Color.Transparent;
+            this.siticoneControlBox3.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MinimizeBox;
+            this.siticoneControlBox3.FillColor = System.Drawing.Color.Transparent;
+            this.siticoneControlBox3.IconColor = System.Drawing.Color.White;
+            this.siticoneControlBox3.Location = new System.Drawing.Point(744, 3);
+            this.siticoneControlBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.siticoneControlBox3.Name = "siticoneControlBox3";
+            this.siticoneControlBox3.Size = new System.Drawing.Size(44, 33);
+            this.siticoneControlBox3.TabIndex = 4;
+            // 
+            // siticoneControlBox2
+            // 
+            this.siticoneControlBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticoneControlBox2.BackColor = System.Drawing.Color.Transparent;
+            this.siticoneControlBox2.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MaximizeBox;
+            this.siticoneControlBox2.FillColor = System.Drawing.Color.Transparent;
+            this.siticoneControlBox2.IconColor = System.Drawing.Color.White;
+            this.siticoneControlBox2.Location = new System.Drawing.Point(796, 3);
+            this.siticoneControlBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.siticoneControlBox2.Name = "siticoneControlBox2";
+            this.siticoneControlBox2.Size = new System.Drawing.Size(44, 33);
+            this.siticoneControlBox2.TabIndex = 3;
+            // 
+            // siticoneControlBox1
+            // 
+            this.siticoneControlBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticoneControlBox1.BackColor = System.Drawing.Color.Transparent;
+            this.siticoneControlBox1.FillColor = System.Drawing.Color.Transparent;
+            this.siticoneControlBox1.IconColor = System.Drawing.Color.White;
+            this.siticoneControlBox1.Location = new System.Drawing.Point(844, 3);
+            this.siticoneControlBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.siticoneControlBox1.Name = "siticoneControlBox1";
+            this.siticoneControlBox1.Size = new System.Drawing.Size(52, 33);
+            this.siticoneControlBox1.TabIndex = 2;
+            this.siticoneControlBox1.Click += new System.EventHandler(this.siticoneControlBox1_Click);
+            // 
+            // panelDesktop
+            // 
+            this.panelDesktop.Controls.Add(this.siticoneCirclePictureBox1);
+            this.panelDesktop.Controls.Add(this.siticoneHtmlLabel2);
+            this.panelDesktop.Controls.Add(this.siticoneHtmlLabel1);
+            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDesktop.Location = new System.Drawing.Point(253, 48);
+            this.panelDesktop.Name = "panelDesktop";
+            this.panelDesktop.Size = new System.Drawing.Size(899, 740);
+            this.panelDesktop.TabIndex = 2;
+            // 
+            // siticoneDragControl1
+            // 
+            this.siticoneDragControl1.DockIndicatorTransparencyValue = 0.6D;
+            this.siticoneDragControl1.TargetControl = this.TopPanel;
+            this.siticoneDragControl1.TransparentWhileDrag = false;
+            // 
+            // siticoneHtmlLabel1
+            // 
+            this.siticoneHtmlLabel1.AutoSize = false;
+            this.siticoneHtmlLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.siticoneHtmlLabel1.Font = new System.Drawing.Font("Roboto Medium", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siticoneHtmlLabel1.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.siticoneHtmlLabel1.Location = new System.Drawing.Point(3, 248);
+            this.siticoneHtmlLabel1.Name = "siticoneHtmlLabel1";
+            this.siticoneHtmlLabel1.Size = new System.Drawing.Size(896, 40);
+            this.siticoneHtmlLabel1.TabIndex = 0;
+            this.siticoneHtmlLabel1.Text = "CHÀO MỪNG BẠN ĐẾN VỚI HỆ THỐNG";
+            this.siticoneHtmlLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // siticoneHtmlLabel2
+            // 
+            this.siticoneHtmlLabel2.AutoSize = false;
+            this.siticoneHtmlLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.siticoneHtmlLabel2.Font = new System.Drawing.Font("Roboto Medium", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siticoneHtmlLabel2.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.siticoneHtmlLabel2.Location = new System.Drawing.Point(1, 300);
+            this.siticoneHtmlLabel2.Name = "siticoneHtmlLabel2";
+            this.siticoneHtmlLabel2.Size = new System.Drawing.Size(896, 40);
+            this.siticoneHtmlLabel2.TabIndex = 1;
+            this.siticoneHtmlLabel2.Text = "QUẢN LÝ SINH VIÊN";
+            this.siticoneHtmlLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // siticoneCirclePictureBox1
+            // 
+            this.siticoneCirclePictureBox1.Image = global::GUI.Properties.Resources.worker;
+            this.siticoneCirclePictureBox1.ImageRotate = 0F;
+            this.siticoneCirclePictureBox1.Location = new System.Drawing.Point(414, 134);
+            this.siticoneCirclePictureBox1.Name = "siticoneCirclePictureBox1";
+            this.siticoneCirclePictureBox1.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.siticoneCirclePictureBox1.Size = new System.Drawing.Size(101, 93);
+            this.siticoneCirclePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.siticoneCirclePictureBox1.TabIndex = 2;
+            this.siticoneCirclePictureBox1.TabStop = false;
             // 
             // logoutBtn
             // 
@@ -96,17 +254,6 @@ namespace GUI
             this.logoutBtn.Text = "Đăng xuất";
             this.logoutBtn.UseVisualStyleBackColor = false;
             this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
-            // 
-            // sidebarMenu
-            // 
-            this.sidebarMenu.Controls.Add(this.studentListBtn);
-            this.sidebarMenu.Controls.Add(this.maijorManagerBtn);
-            this.sidebarMenu.Controls.Add(this.classManagerBtn);
-            this.sidebarMenu.Controls.Add(this.userMangerBtn);
-            this.sidebarMenu.Location = new System.Drawing.Point(0, 197);
-            this.sidebarMenu.Name = "sidebarMenu";
-            this.sidebarMenu.Size = new System.Drawing.Size(253, 453);
-            this.sidebarMenu.TabIndex = 4;
             // 
             // studentListBtn
             // 
@@ -200,41 +347,6 @@ namespace GUI
             this.userMangerBtn.UseVisualStyleBackColor = false;
             this.userMangerBtn.Click += new System.EventHandler(this.userMangerBtn_Click);
             // 
-            // siticonePanel3
-            // 
-            this.siticonePanel3.Controls.Add(this.userNameLabel);
-            this.siticonePanel3.Controls.Add(this.userPermisstionLabel);
-            this.siticonePanel3.Controls.Add(this.avatarBox);
-            this.siticonePanel3.Location = new System.Drawing.Point(0, 0);
-            this.siticonePanel3.Name = "siticonePanel3";
-            this.siticonePanel3.Size = new System.Drawing.Size(253, 191);
-            this.siticonePanel3.TabIndex = 3;
-            // 
-            // userNameLabel
-            // 
-            this.userNameLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.userNameLabel.Font = new System.Drawing.Font("Roboto Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userNameLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.userNameLabel.Location = new System.Drawing.Point(0, 126);
-            this.userNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.userNameLabel.Name = "userNameLabel";
-            this.userNameLabel.Size = new System.Drawing.Size(253, 20);
-            this.userNameLabel.TabIndex = 4;
-            this.userNameLabel.Text = "Nguyễn Anh Tuấn";
-            this.userNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // userPermisstionLabel
-            // 
-            this.userPermisstionLabel.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userPermisstionLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.userPermisstionLabel.Location = new System.Drawing.Point(4, 152);
-            this.userPermisstionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.userPermisstionLabel.Name = "userPermisstionLabel";
-            this.userPermisstionLabel.Size = new System.Drawing.Size(249, 20);
-            this.userPermisstionLabel.TabIndex = 5;
-            this.userPermisstionLabel.Text = "Admin";
-            this.userPermisstionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // avatarBox
             // 
             this.avatarBox.Image = global::GUI.Properties.Resources.Meo;
@@ -247,72 +359,6 @@ namespace GUI
             this.avatarBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.avatarBox.TabIndex = 3;
             this.avatarBox.TabStop = false;
-            // 
-            // TopPanel
-            // 
-            this.TopPanel.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.TopPanel.Controls.Add(this.siticoneControlBox3);
-            this.TopPanel.Controls.Add(this.siticoneControlBox2);
-            this.TopPanel.Controls.Add(this.siticoneControlBox1);
-            this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopPanel.Location = new System.Drawing.Point(253, 0);
-            this.TopPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(899, 48);
-            this.TopPanel.TabIndex = 1;
-            // 
-            // siticoneControlBox3
-            // 
-            this.siticoneControlBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.siticoneControlBox3.BackColor = System.Drawing.Color.Transparent;
-            this.siticoneControlBox3.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MinimizeBox;
-            this.siticoneControlBox3.FillColor = System.Drawing.Color.Transparent;
-            this.siticoneControlBox3.IconColor = System.Drawing.Color.White;
-            this.siticoneControlBox3.Location = new System.Drawing.Point(744, 3);
-            this.siticoneControlBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.siticoneControlBox3.Name = "siticoneControlBox3";
-            this.siticoneControlBox3.Size = new System.Drawing.Size(44, 33);
-            this.siticoneControlBox3.TabIndex = 4;
-            // 
-            // siticoneControlBox2
-            // 
-            this.siticoneControlBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.siticoneControlBox2.BackColor = System.Drawing.Color.Transparent;
-            this.siticoneControlBox2.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MaximizeBox;
-            this.siticoneControlBox2.FillColor = System.Drawing.Color.Transparent;
-            this.siticoneControlBox2.IconColor = System.Drawing.Color.White;
-            this.siticoneControlBox2.Location = new System.Drawing.Point(796, 3);
-            this.siticoneControlBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.siticoneControlBox2.Name = "siticoneControlBox2";
-            this.siticoneControlBox2.Size = new System.Drawing.Size(44, 33);
-            this.siticoneControlBox2.TabIndex = 3;
-            // 
-            // siticoneControlBox1
-            // 
-            this.siticoneControlBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.siticoneControlBox1.BackColor = System.Drawing.Color.Transparent;
-            this.siticoneControlBox1.FillColor = System.Drawing.Color.Transparent;
-            this.siticoneControlBox1.IconColor = System.Drawing.Color.White;
-            this.siticoneControlBox1.Location = new System.Drawing.Point(844, 3);
-            this.siticoneControlBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.siticoneControlBox1.Name = "siticoneControlBox1";
-            this.siticoneControlBox1.Size = new System.Drawing.Size(52, 33);
-            this.siticoneControlBox1.TabIndex = 2;
-            this.siticoneControlBox1.Click += new System.EventHandler(this.siticoneControlBox1_Click);
-            // 
-            // panelDesktop
-            // 
-            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDesktop.Location = new System.Drawing.Point(253, 48);
-            this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(899, 740);
-            this.panelDesktop.TabIndex = 2;
-            // 
-            // siticoneDragControl1
-            // 
-            this.siticoneDragControl1.DockIndicatorTransparencyValue = 0.6D;
-            this.siticoneDragControl1.TargetControl = this.TopPanel;
-            this.siticoneDragControl1.TransparentWhileDrag = false;
             // 
             // Dashboard_Admin
             // 
@@ -331,8 +377,10 @@ namespace GUI
             this.siticonePanel1.ResumeLayout(false);
             this.sidebarMenu.ResumeLayout(false);
             this.siticonePanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.avatarBox)).EndInit();
             this.TopPanel.ResumeLayout(false);
+            this.panelDesktop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.siticoneCirclePictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.avatarBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -357,5 +405,8 @@ namespace GUI
         private System.Windows.Forms.Label userPermisstionLabel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel panelDesktop;
         private Siticone.Desktop.UI.WinForms.SiticoneDragControl siticoneDragControl1;
+        private Siticone.Desktop.UI.WinForms.SiticoneCirclePictureBox siticoneCirclePictureBox1;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel siticoneHtmlLabel2;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel siticoneHtmlLabel1;
     }
 }

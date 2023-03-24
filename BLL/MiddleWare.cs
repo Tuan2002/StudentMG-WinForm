@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DTO;
 using DAL;
-using COM;
 using System.Runtime.Remoting.Messaging;
 
 namespace BLL
@@ -27,6 +25,7 @@ namespace BLL
             return res;
 
         }
+        // Add new user
         public Response validateAddUserForm(Request form)
         {
             Response res = new Response();
@@ -47,10 +46,32 @@ namespace BLL
                 res = HandleAddUser.addUserToDB(form);
              return res;     
         }
+        // Get user data
         public Response handleGetUserData(Request currentUser) {
             Response res = new Response();
             DatabaseAccess HandleGetUserData = new DatabaseAccess();
             res = HandleGetUserData.getUserData(currentUser.GetData("userName"));
+            return res;
+        }
+        // Update user data
+        public Response validateEditUserForm(Request form)
+        {
+            Response res = new Response();
+            DatabaseAccess HandleUpdate = new DatabaseAccess();
+            if (form.GetData("newUserName") == string.Empty)
+                res.code = "userName_null";
+            else if (form.GetData("fullName") == string.Empty)
+                res.code = "fullName_null";
+            else if (form.GetData("email") == string.Empty)
+                res.code = "email_null";
+            else if (form.GetData("password") == string.Empty)
+                res.code = "password_null";
+            else if (form.GetData("confirmPassword") != form.GetData("password"))
+                res.code = "confirmPassword_notMatch";
+            else if (form.GetData("permissionType") == "0")
+                res.code = "permissionType_null";
+            else
+                res = HandleUpdate.UpdateUserData(form);
             return res;
         }
 
