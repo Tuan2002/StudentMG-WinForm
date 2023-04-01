@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 using DAL;
 using BLL;
+using System.Threading;
+
 namespace GUI
 {
     public partial class LoginForm : Form
@@ -47,6 +49,7 @@ namespace GUI
                 // Open dashboard form
                 this.Hide();
                 Dashboard_Admin dashboard = new Dashboard_Admin(res.userFullName, res.permissionType, avatar);
+                dashboard.LoginFormInstance = this;
                 dashboard.Show();
 
             }    

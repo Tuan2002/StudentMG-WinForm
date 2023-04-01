@@ -20,6 +20,7 @@ namespace GUI
         private string permissionType;
         private Image userAvatar;
         private Form currentChildForm;
+        private bool isLogout = false;
         // Structs
         private struct RGBColors
         {
@@ -40,7 +41,10 @@ namespace GUI
             this.userFullName = userFullName;
             this.permissionType = permissionType;
             this.userAvatar = userAvatar;
+             
         }
+        public LoginForm LoginFormInstance { get; set; }
+
         private void ActivateButton (object senderBtn, Color color)
         {
             if (senderBtn != null)
@@ -119,9 +123,8 @@ namespace GUI
 
         private void logoutBtn_Click(object sender, EventArgs e)
         {
+            isLogout = true;
             this.Close();
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
         }
 
         private void Dashboard_Admin_Load(object sender, EventArgs e)
@@ -129,6 +132,24 @@ namespace GUI
             userNameLabel.Text = userFullName;
             userPermisstionLabel.Text = permissionType;
             avatarBox.Image = userAvatar;
+            if (permissionType == "Teacher")
+            {
+                userMangerBtn.Visible = false;
+                maijorManagerBtn.Visible = false;
+            }
+        }
+
+        private void Dashboard_Admin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isLogout)
+            {
+                LoginFormInstance.Show();
+            }
+            else
+            {
+                Application.Exit();
+            }
+
         }
     }
 }

@@ -69,10 +69,10 @@ namespace GUI
             closeFormBtn.HoverState.FillColor = System.Drawing.Color.Transparent;
             closeFormBtn.HoverState.IconColor = System.Drawing.Color.DimGray;
             closeFormBtn.IconColor = System.Drawing.Color.DimGray;
-            closeFormBtn.Location = new System.Drawing.Point(370, 12);
+            closeFormBtn.Location = new System.Drawing.Point(386, 5);
             closeFormBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             closeFormBtn.Name = "closeFormBtn";
-            closeFormBtn.Size = new System.Drawing.Size(44, 41);
+            closeFormBtn.Size = new System.Drawing.Size(33, 31);
             closeFormBtn.TabIndex = 0;
             closeFormBtn.Click += new System.EventHandler(this.closeFormBtn_Click);
             // 
@@ -98,7 +98,6 @@ namespace GUI
             this.txtUserName.SelectedText = "";
             this.txtUserName.Size = new System.Drawing.Size(349, 53);
             this.txtUserName.TabIndex = 1;
-            this.txtUserName.GotFocus += TxtUserName_GotFocus;
             // 
             // txtPassword
             // 
@@ -122,7 +121,6 @@ namespace GUI
             this.txtPassword.SelectedText = "";
             this.txtPassword.Size = new System.Drawing.Size(349, 53);
             this.txtPassword.TabIndex = 2;
-            this.txtPassword.GotFocus += TxtPassword_GotFocus;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // loginBtn
@@ -143,6 +141,7 @@ namespace GUI
             this.loginBtn.TabIndex = 3;
             this.loginBtn.Text = "Đăng nhập";
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
+            this.loginBtn.Enter += new System.EventHandler(this.loginBtn_Click);
             // 
             // forgetBtn
             // 
@@ -175,23 +174,24 @@ namespace GUI
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Roboto Medium", 16F);
-            this.label1.Location = new System.Drawing.Point(155, 35);
+            this.label1.Location = new System.Drawing.Point(1, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 27);
+            this.label1.Size = new System.Drawing.Size(425, 27);
             this.label1.TabIndex = 7;
             this.label1.Text = "Đăng nhập";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(120, 73);
+            this.label2.Location = new System.Drawing.Point(1, 73);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(180, 17);
+            this.label2.Size = new System.Drawing.Size(425, 17);
             this.label2.TabIndex = 8;
             this.label2.Text = "Chào mừng bạn quay trở lại";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // passwordError
             // 
@@ -217,18 +217,20 @@ namespace GUI
             // 
             // loginError
             // 
+            this.loginError.AutoSize = false;
             this.loginError.BackColor = System.Drawing.Color.Transparent;
             this.loginError.Font = new System.Drawing.Font("Roboto", 10F);
             this.loginError.ForeColor = System.Drawing.Color.Red;
-            this.loginError.Location = new System.Drawing.Point(90, 232);
+            this.loginError.Location = new System.Drawing.Point(1, 232);
             this.loginError.Name = "loginError";
-            this.loginError.Size = new System.Drawing.Size(244, 17);
+            this.loginError.Size = new System.Drawing.Size(425, 17);
             this.loginError.TabIndex = 11;
             this.loginError.Text = "Tài khoản hoặc mật khẩu không chính xác!";
             this.loginError.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LoginForm
             // 
+            this.AcceptButton = this.loginBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -253,7 +255,8 @@ namespace GUI
             ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.txtUserName.GotFocus += TxtUserName_GotFocus;
+            this.txtPassword.GotFocus += TxtPassword_GotFocus;
         }
 
         private void TxtUserName_GotFocus(object sender, EventArgs e)

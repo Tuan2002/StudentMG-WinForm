@@ -51,8 +51,8 @@
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.editUserBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.permissionSelect = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
+            this.permissionSelect = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.siticonePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarPreview)).BeginInit();
             this.siticonePanel1.SuspendLayout();
@@ -401,6 +401,13 @@
             this.cancelBtn.Text = "Huỷ bỏ";
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
+            // siticoneBorderlessForm1
+            // 
+            this.siticoneBorderlessForm1.ContainerControl = this;
+            this.siticoneBorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
+            this.siticoneBorderlessForm1.ResizeForm = false;
+            this.siticoneBorderlessForm1.TransparentWhileDrag = true;
+            // 
             // permissionSelect
             // 
             this.permissionSelect.BackColor = System.Drawing.Color.Transparent;
@@ -422,13 +429,7 @@
             this.permissionSelect.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.permissionSelect.Size = new System.Drawing.Size(266, 36);
             this.permissionSelect.TabIndex = 28;
-            // 
-            // siticoneBorderlessForm1
-            // 
-            this.siticoneBorderlessForm1.ContainerControl = this;
-            this.siticoneBorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
-            this.siticoneBorderlessForm1.ResizeForm = false;
-            this.siticoneBorderlessForm1.TransparentWhileDrag = true;
+            this.permissionSelect.SelectedIndexChanged += new System.EventHandler(this.permissionSelect_SelectedIndexChanged);
             // 
             // EditForm
             // 
@@ -494,7 +495,7 @@
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
         private Siticone.Desktop.UI.WinForms.SiticoneButton editUserBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton cancelBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox permissionSelect;
         private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm siticoneBorderlessForm1;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox permissionSelect;
     }
 }

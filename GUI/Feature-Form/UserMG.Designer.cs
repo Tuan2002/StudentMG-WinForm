@@ -199,6 +199,7 @@ namespace GUI
             // userList
             // 
             this.userList.AllowUserToAddRows = false;
+            this.userList.AllowUserToResizeRows = false;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
             this.userList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
@@ -322,6 +323,7 @@ namespace GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.ClientSize = new System.Drawing.Size(746, 474);
             this.Controls.Add(this.siticonePanel3);

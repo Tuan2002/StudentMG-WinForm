@@ -105,6 +105,12 @@ namespace GUI
             }
             permissionSelect.SelectedIndex = permissionId;
         }
+        private void permissionSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            permissionId = permissionSelect.SelectedIndex;
+            permissionSelect.BorderColor = System.Drawing.Color.Plum;
+            permisstionEmpty.Text = string.Empty;
+        }
         private void EditUserBtn_Click(object sender, EventArgs e)
         {
             Request editUser = new Request();
@@ -185,5 +191,7 @@ namespace GUI
         {
             this.Close();
         }
+
+    
     }
 }
