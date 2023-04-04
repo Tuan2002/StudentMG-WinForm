@@ -11,6 +11,7 @@ using System.IO;
 using DAL;
 using BLL;
 using System.Threading;
+using DevExpress.Utils;
 
 namespace GUI
 {
@@ -48,10 +49,23 @@ namespace GUI
                 Image avatar = Image.FromStream(memoryStream);
                 // Open dashboard form
                 this.Hide();
-                Dashboard_Admin dashboard = new Dashboard_Admin(res.userFullName, res.permissionType, avatar);
-                dashboard.LoginFormInstance = this;
-                dashboard.Show();
-
+                Console.WriteLine(res.permissionType);
+                switch(res.permissionType)
+                {
+                    case "Admin":
+                        Dashboard_Admin adminDashboard = new Dashboard_Admin(res.userFullName, res.permissionType, avatar);
+                        adminDashboard.LoginFormInstance = this;
+                        adminDashboard.Show();
+                        return;
+                    case "Teacher":
+                        Dashboard_Teacher teacherDashboard = new Dashboard_Teacher(res.userFullName, res.permissionType, avatar);
+                        teacherDashboard.LoginFormInstance = this;
+                        teacherDashboard.Show();
+                        return;
+                    default:
+                        return;
+                        
+                }
             }    
             else
             {
