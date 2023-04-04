@@ -11,7 +11,6 @@ using System.IO;
 using DAL;
 using BLL;
 using System.Threading;
-using DevExpress.Utils;
 
 namespace GUI
 {
