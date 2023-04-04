@@ -232,9 +232,10 @@ namespace GUI
             // 
             this.AcceptButton = this.loginBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(427, 523);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Controls.Add(this.loginError);
             this.Controls.Add(this.passwordError);
             this.Controls.Add(this.useNameError);
