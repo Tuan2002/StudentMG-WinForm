@@ -465,6 +465,11 @@
             this.siticonePanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.userNameBox.Click += new System.EventHandler(this.TextBox_GotFocus);
+            this.userFullNameBox.Click += new System.EventHandler(this.TextBox_GotFocus);
+            this.userEmailBox.Click += new System.EventHandler(this.TextBox_GotFocus);
+            this.userPassword.Click += new System.EventHandler(this.TextBox_GotFocus);
+            this.userPasswordConfirm.Click += new System.EventHandler(this.TextBox_GotFocus);
 
         }
         private void TextBox_GotFocus(object sender, System.EventArgs e)

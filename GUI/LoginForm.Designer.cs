@@ -230,12 +230,9 @@ namespace GUI
             // 
             // LoginForm
             // 
-            this.AcceptButton = this.loginBtn;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(427, 523);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Controls.Add(this.loginError);
             this.Controls.Add(this.passwordError);
             this.Controls.Add(this.useNameError);
@@ -251,13 +248,14 @@ namespace GUI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.txtUserName.GotFocus += TxtUserName_GotFocus;
-            this.txtPassword.GotFocus += TxtPassword_GotFocus;
+            this.txtUserName.Click += new System.EventHandler(this.TxtUserName_GotFocus);
+            this.txtPassword.Click += new System.EventHandler(this.TxtUserName_GotFocus);
         }
 
         private void TxtUserName_GotFocus(object sender, EventArgs e)

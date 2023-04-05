@@ -48,8 +48,7 @@ namespace GUI
                 Image avatar = Image.FromStream(memoryStream);
                 // Open dashboard form
                 this.Hide();
-                Console.WriteLine(res.permissionType);
-                switch(res.permissionType)
+                switch (res.permissionType)
                 {
                     case "Admin":
                         Dashboard_Admin adminDashboard = new Dashboard_Admin(res.userFullName, res.permissionType, avatar);
@@ -63,7 +62,7 @@ namespace GUI
                         return;
                     default:
                         return;
-                        
+
                 }
             }    
             else
@@ -92,7 +91,7 @@ namespace GUI
         {
             clearValidate();
             this.ActiveControl = txtUserName;
-
+            
         }
 
 

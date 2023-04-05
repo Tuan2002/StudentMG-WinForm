@@ -467,11 +467,11 @@ namespace GUI
             this.ResumeLayout(false);
             this.PerformLayout();
 
-            this.userNameBox.GotFocus += TextBox_GotFocus;
-            this.userFullNameBox.GotFocus += TextBox_GotFocus;
-            this.userEmailBox.GotFocus += TextBox_GotFocus;
-            this.userPassword.GotFocus += TextBox_GotFocus;
-            this.userPasswordConfirm.GotFocus += TextBox_GotFocus;
+            this.userNameBox.Click += new System.EventHandler(this.TextBox_GotFocus);
+            this.userFullNameBox.Click += new System.EventHandler(this.TextBox_GotFocus);
+            this.userEmailBox.Click += new System.EventHandler(this.TextBox_GotFocus);
+            this.userPassword.Click += new System.EventHandler(this.TextBox_GotFocus);
+            this.userPasswordConfirm.Click += new System.EventHandler(this.TextBox_GotFocus);
         }
 
         private void TextBox_GotFocus(object sender, System.EventArgs e)
