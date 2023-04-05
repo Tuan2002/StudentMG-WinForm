@@ -107,7 +107,7 @@ namespace GUI
         private void maijorManagerBtn_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-
+            openChildForm(new MajorMG());
         }
 
         private void studentListBtn_Click(object sender, EventArgs e)
@@ -143,6 +143,7 @@ namespace GUI
         {
             if (isLogout)
             {
+                LoginFormInstance.Refresh();
                 LoginFormInstance.Show();
             }
             else

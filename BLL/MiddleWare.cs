@@ -75,6 +75,18 @@ namespace BLL
             return res;
         }
 
+        public Response validateAddMajor (Request form)
+        {
+            Response res = new Response();
+            DatabaseAccess HandleAddMajor = new DatabaseAccess();
+            if (form.GetData("MajorID") == string.Empty)
+                res.code = "majorid_null";
+            else if (form.GetData("MajorName") == string.Empty)
+                res.code = "majorname_null";
+            else
+                res = HandleAddMajor.addMajorToDB(form);
+            return res;
+        }
 
     }
 }

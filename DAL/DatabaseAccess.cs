@@ -62,7 +62,7 @@ namespace DAL
     {
         // Create connection string
         public static SqlConnection Connection() {
-            string connectString = @"Data Source=188.166.205.125;Database=StudentMG;Integrated Security=false;User ID=sa;Password=Tuandev2002@;TrustServerCertificate=true;";
+            string connectString = @"Data Source=188.166.205.125;Database=StudentMG;Integrated Security=false;User ID=sa;Password=Tuandev2002@;TrustServerCertificate=true;Connection Timeout=10";
             SqlConnection connection = new SqlConnection(connectString);
             return connection;
         }
@@ -277,6 +277,60 @@ namespace DAL
             }
             return res;
 
+        }
+        public Response getListMajor()
+        {
+            Response res = new Response();
+            try
+            {
+                SqlConnection section = Connection();
+                section.Open();
+                SqlCommand command = new SqlCommand("getListMajor", section);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Connection = section;
+                SqlDataReader reader = command.ExecuteReader();
+                res.code = "success";
+                res.data.Load(reader);
+                reader.Close();
+                section.Close();
+            }
+            catch (Exception ex)
+            {
+                res.code = "server_error";
+            }
+            return res;
+        }
+        public Response addMajorToDB(Request req) {
+            Response res = new Response();
+            try
+            {
+                SqlConnection section = Connection();
+                SqlCommand command = new SqlCommand("addMajorToDB", section);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@majorid", req.GetData("MajorID"));
+                command.Parameters.AddWithValue("@majorname", req.GetData("MajorName"));
+                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
+                returnValue.Direction = ParameterDirection.ReturnValue;
+                command.Connection = section;
+                section.Open();
+                command.ExecuteNonQuery();
+                section.Close();
+                int result = (int)returnValue.Value;
+                if (result == 0)
+                {
+                    res.code = "major_exist";
+                }
+                else
+                {
+                    res.code = "success";
+                }
+            }
+
+            catch
+            {
+                res.code = "server_error";
+            }
+            return res;
         }
     }
 }

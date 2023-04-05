@@ -82,6 +82,12 @@
     <Compile Include="Dashboard_Admin.Designer.cs">
       <DependentUpon>Dashboard_Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Feature-Form\AddMajor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature-Form\AddMajor.Designer.cs">
+      <DependentUpon>AddMajor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Feature-Form\AddUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,12 @@
     </Compile>
     <Compile Include="Feature-Form\EditUser.Designer.cs">
       <DependentUpon>EditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feature-Form\MajorMG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature-Form\MajorMG.Designer.cs">
+      <DependentUpon>MajorMG.cs</DependentUpon>
     </Compile>
     <Compile Include="Feature-Form\UserMG.cs">
       <SubType>Form</SubType>
@@ -114,11 +126,17 @@
     <EmbeddedResource Include="Dashboard_Admin.resx">
       <DependentUpon>Dashboard_Admin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Feature-Form\AddMajor.resx">
+      <DependentUpon>AddMajor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Feature-Form\AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Feature-Form\EditUser.resx">
       <DependentUpon>EditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feature-Form\MajorMG.resx">
+      <DependentUpon>MajorMG.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Feature-Form\UserMG.resx">
       <DependentUpon>UserMG.cs</DependentUpon>
