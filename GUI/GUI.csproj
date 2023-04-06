@@ -134,6 +134,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Feature-Form\EditUser.resx">
       <DependentUpon>EditUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Feature-Form\MajorMG.resx">
       <DependentUpon>MajorMG.cs</DependentUpon>
@@ -144,7 +145,6 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

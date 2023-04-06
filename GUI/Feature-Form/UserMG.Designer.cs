@@ -38,17 +38,17 @@ namespace GUI
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.searchBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.refeshBtn = new FontAwesome.Sharp.IconButton();
+            this.removeUserBtn = new FontAwesome.Sharp.IconButton();
+            this.addUserBtn = new FontAwesome.Sharp.IconButton();
             this.userList = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passWord = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Actions = new System.Windows.Forms.DataGridViewButtonColumn();
             this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.refeshBtn = new FontAwesome.Sharp.IconButton();
-            this.removeUserBtn = new FontAwesome.Sharp.IconButton();
-            this.addUserBtn = new FontAwesome.Sharp.IconButton();
+            this.searchBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userList)).BeginInit();
@@ -87,30 +87,6 @@ namespace GUI
             this.siticonePanel2.Size = new System.Drawing.Size(310, 62);
             this.siticonePanel2.TabIndex = 3;
             // 
-            // searchBox
-            // 
-            this.searchBox.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.searchBox.BorderRadius = 10;
-            this.searchBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.searchBox.DefaultText = "";
-            this.searchBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.searchBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.searchBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.searchBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.searchBox.FillColor = System.Drawing.Color.DarkSlateBlue;
-            this.searchBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.searchBox.Font = new System.Drawing.Font("Roboto", 10F);
-            this.searchBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.searchBox.Location = new System.Drawing.Point(13, 11);
-            this.searchBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.searchBox.Name = "searchBox";
-            this.searchBox.PasswordChar = '\0';
-            this.searchBox.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.searchBox.PlaceholderText = "Tìm người dùng";
-            this.searchBox.SelectedText = "";
-            this.searchBox.Size = new System.Drawing.Size(190, 39);
-            this.searchBox.TabIndex = 2;
-            // 
             // siticoneButton1
             // 
             this.siticoneButton1.BorderRadius = 8;
@@ -126,6 +102,75 @@ namespace GUI
             this.siticoneButton1.Size = new System.Drawing.Size(91, 40);
             this.siticoneButton1.TabIndex = 1;
             this.siticoneButton1.Text = "Tìm kiếm";
+            // 
+            // refeshBtn
+            // 
+            this.refeshBtn.BackColor = System.Drawing.Color.DodgerBlue;
+            this.refeshBtn.FlatAppearance.BorderSize = 0;
+            this.refeshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refeshBtn.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refeshBtn.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.refeshBtn.IconChar = FontAwesome.Sharp.IconChar.Rotate;
+            this.refeshBtn.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.refeshBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.refeshBtn.IconSize = 20;
+            this.refeshBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.refeshBtn.Location = new System.Drawing.Point(252, 10);
+            this.refeshBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.refeshBtn.Name = "refeshBtn";
+            this.refeshBtn.Padding = new System.Windows.Forms.Padding(4, 0, 6, 0);
+            this.refeshBtn.Size = new System.Drawing.Size(102, 40);
+            this.refeshBtn.TabIndex = 2;
+            this.refeshBtn.Text = "Làm mới";
+            this.refeshBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.refeshBtn.UseVisualStyleBackColor = false;
+            this.refeshBtn.Click += new System.EventHandler(this.refeshBtn_Click);
+            // 
+            // removeUserBtn
+            // 
+            this.removeUserBtn.BackColor = System.Drawing.Color.OrangeRed;
+            this.removeUserBtn.FlatAppearance.BorderSize = 0;
+            this.removeUserBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeUserBtn.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.removeUserBtn.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.removeUserBtn.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.removeUserBtn.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.removeUserBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.removeUserBtn.IconSize = 20;
+            this.removeUserBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.removeUserBtn.Location = new System.Drawing.Point(138, 10);
+            this.removeUserBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.removeUserBtn.Name = "removeUserBtn";
+            this.removeUserBtn.Padding = new System.Windows.Forms.Padding(4, 0, 15, 0);
+            this.removeUserBtn.Size = new System.Drawing.Size(102, 40);
+            this.removeUserBtn.TabIndex = 1;
+            this.removeUserBtn.Text = "Xoá bỏ";
+            this.removeUserBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.removeUserBtn.UseVisualStyleBackColor = false;
+            this.removeUserBtn.Click += new System.EventHandler(this.removeUserBtn_Click);
+            // 
+            // addUserBtn
+            // 
+            this.addUserBtn.BackColor = System.Drawing.Color.ForestGreen;
+            this.addUserBtn.FlatAppearance.BorderSize = 0;
+            this.addUserBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addUserBtn.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addUserBtn.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.addUserBtn.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            this.addUserBtn.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.addUserBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.addUserBtn.IconSize = 20;
+            this.addUserBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addUserBtn.Location = new System.Drawing.Point(11, 10);
+            this.addUserBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.addUserBtn.Name = "addUserBtn";
+            this.addUserBtn.Padding = new System.Windows.Forms.Padding(4, 0, 6, 0);
+            this.addUserBtn.Size = new System.Drawing.Size(114, 40);
+            this.addUserBtn.TabIndex = 0;
+            this.addUserBtn.Text = "Thêm mới";
+            this.addUserBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.addUserBtn.UseVisualStyleBackColor = false;
+            this.addUserBtn.Click += new System.EventHandler(this.addUserBtn_Click);
             // 
             // userList
             // 
@@ -250,74 +295,29 @@ namespace GUI
             this.siticonePanel3.Size = new System.Drawing.Size(746, 412);
             this.siticonePanel3.TabIndex = 2;
             // 
-            // refeshBtn
+            // searchBox
             // 
-            this.refeshBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.refeshBtn.FlatAppearance.BorderSize = 0;
-            this.refeshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refeshBtn.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.refeshBtn.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.refeshBtn.IconChar = FontAwesome.Sharp.IconChar.Rotate;
-            this.refeshBtn.IconColor = System.Drawing.Color.WhiteSmoke;
-            this.refeshBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.refeshBtn.IconSize = 20;
-            this.refeshBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.refeshBtn.Location = new System.Drawing.Point(252, 10);
-            this.refeshBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.refeshBtn.Name = "refeshBtn";
-            this.refeshBtn.Padding = new System.Windows.Forms.Padding(4, 0, 6, 0);
-            this.refeshBtn.Size = new System.Drawing.Size(102, 40);
-            this.refeshBtn.TabIndex = 2;
-            this.refeshBtn.Text = "Làm mới";
-            this.refeshBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.refeshBtn.UseVisualStyleBackColor = false;
-            this.refeshBtn.Click += new System.EventHandler(this.refeshBtn_Click);
-            // 
-            // removeUserBtn
-            // 
-            this.removeUserBtn.BackColor = System.Drawing.Color.OrangeRed;
-            this.removeUserBtn.FlatAppearance.BorderSize = 0;
-            this.removeUserBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.removeUserBtn.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.removeUserBtn.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.removeUserBtn.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            this.removeUserBtn.IconColor = System.Drawing.Color.WhiteSmoke;
-            this.removeUserBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.removeUserBtn.IconSize = 20;
-            this.removeUserBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.removeUserBtn.Location = new System.Drawing.Point(138, 10);
-            this.removeUserBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.removeUserBtn.Name = "removeUserBtn";
-            this.removeUserBtn.Padding = new System.Windows.Forms.Padding(4, 0, 15, 0);
-            this.removeUserBtn.Size = new System.Drawing.Size(102, 40);
-            this.removeUserBtn.TabIndex = 1;
-            this.removeUserBtn.Text = "Xoá bỏ";
-            this.removeUserBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.removeUserBtn.UseVisualStyleBackColor = false;
-            this.removeUserBtn.Click += new System.EventHandler(this.removeUserBtn_Click);
-            // 
-            // addUserBtn
-            // 
-            this.addUserBtn.BackColor = System.Drawing.Color.ForestGreen;
-            this.addUserBtn.FlatAppearance.BorderSize = 0;
-            this.addUserBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addUserBtn.Font = new System.Drawing.Font("Roboto", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addUserBtn.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.addUserBtn.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
-            this.addUserBtn.IconColor = System.Drawing.Color.WhiteSmoke;
-            this.addUserBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.addUserBtn.IconSize = 20;
-            this.addUserBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.addUserBtn.Location = new System.Drawing.Point(11, 10);
-            this.addUserBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.addUserBtn.Name = "addUserBtn";
-            this.addUserBtn.Padding = new System.Windows.Forms.Padding(4, 0, 6, 0);
-            this.addUserBtn.Size = new System.Drawing.Size(114, 40);
-            this.addUserBtn.TabIndex = 0;
-            this.addUserBtn.Text = "Thêm mới";
-            this.addUserBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addUserBtn.UseVisualStyleBackColor = false;
-            this.addUserBtn.Click += new System.EventHandler(this.addUserBtn_Click);
+            this.searchBox.BorderColor = System.Drawing.Color.MediumOrchid;
+            this.searchBox.BorderRadius = 10;
+            this.searchBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.searchBox.DefaultText = "";
+            this.searchBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.searchBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.searchBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.searchBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.searchBox.FillColor = System.Drawing.Color.DarkSlateBlue;
+            this.searchBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.searchBox.Font = new System.Drawing.Font("Roboto", 10F);
+            this.searchBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.searchBox.Location = new System.Drawing.Point(13, 11);
+            this.searchBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.PasswordChar = '\0';
+            this.searchBox.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.searchBox.PlaceholderText = "Tìm người dùng";
+            this.searchBox.SelectedText = "";
+            this.searchBox.Size = new System.Drawing.Size(190, 39);
+            this.searchBox.TabIndex = 2;
             // 
             // UserMG
             // 
@@ -354,11 +354,11 @@ namespace GUI
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView userList;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox searchBox;
         private DataGridViewTextBoxColumn userName;
         private DataGridViewTextBoxColumn passWord;
         private DataGridViewTextBoxColumn userEmail;
         private DataGridViewButtonColumn Actions;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel3;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox searchBox;
     }
 }

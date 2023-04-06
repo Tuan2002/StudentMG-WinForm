@@ -1,6 +1,4 @@
-﻿using BLL;
-using DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
+using DAL;
 
 namespace GUI
 {
@@ -28,6 +28,12 @@ namespace GUI
             MajorIDBox.BorderColor = System.Drawing.Color.Plum;
             MajorIDEmpty.Text = string.Empty;
             formError.Text = string.Empty;
+        }
+        public void clearForm()
+        {
+            MajorIDBox.Text= string.Empty;  
+            MajorNameBox.Text = string.Empty;
+            clearValidate();
         }
 
         private void AddMajor_Load(object sender, EventArgs e)
@@ -52,6 +58,7 @@ namespace GUI
             {
                 case "success":
                     UpdateNajorListEvent(MajorIDBox.Text.Trim().ToUpper(), MajorNameBox.Text.Trim());
+                    this.clearForm();
                     break;
                 case "majorid_null":
                     MajorIDBox.BorderColor = System.Drawing.Color.Red;

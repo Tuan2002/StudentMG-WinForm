@@ -55,6 +55,8 @@ namespace GUI
             // 
             // MajorIDBox
             // 
+            this.MajorIDBox.Animated = true;
+            this.MajorIDBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.MajorIDBox.BorderColor = System.Drawing.Color.Plum;
             this.MajorIDBox.BorderRadius = 8;
             this.MajorIDBox.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -65,9 +67,9 @@ namespace GUI
             this.MajorIDBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.MajorIDBox.FillColor = System.Drawing.Color.WhiteSmoke;
             this.MajorIDBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.MajorIDBox.Font = new System.Drawing.Font("Roboto", 10F);
+            this.MajorIDBox.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.MajorIDBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.MajorIDBox.Location = new System.Drawing.Point(48, 113);
+            this.MajorIDBox.Location = new System.Drawing.Point(48, 127);
             this.MajorIDBox.Name = "MajorIDBox";
             this.MajorIDBox.PasswordChar = '\0';
             this.MajorIDBox.PlaceholderForeColor = System.Drawing.Color.DarkGray;
@@ -79,6 +81,7 @@ namespace GUI
             // 
             // MajorNameBox
             // 
+            this.MajorNameBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.MajorNameBox.BorderColor = System.Drawing.Color.Plum;
             this.MajorNameBox.BorderRadius = 8;
             this.MajorNameBox.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -89,9 +92,9 @@ namespace GUI
             this.MajorNameBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.MajorNameBox.FillColor = System.Drawing.Color.WhiteSmoke;
             this.MajorNameBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.MajorNameBox.Font = new System.Drawing.Font("Roboto", 10F);
+            this.MajorNameBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MajorNameBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.MajorNameBox.Location = new System.Drawing.Point(48, 207);
+            this.MajorNameBox.Location = new System.Drawing.Point(48, 221);
             this.MajorNameBox.Name = "MajorNameBox";
             this.MajorNameBox.PasswordChar = '\0';
             this.MajorNameBox.PlaceholderForeColor = System.Drawing.Color.DarkGray;
@@ -111,7 +114,7 @@ namespace GUI
             this.CancelBtn.FillColor = System.Drawing.Color.OrangeRed;
             this.CancelBtn.Font = new System.Drawing.Font("Roboto Medium", 9.75F);
             this.CancelBtn.ForeColor = System.Drawing.Color.White;
-            this.CancelBtn.Location = new System.Drawing.Point(48, 354);
+            this.CancelBtn.Location = new System.Drawing.Point(48, 368);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(154, 48);
             this.CancelBtn.TabIndex = 2;
@@ -128,7 +131,7 @@ namespace GUI
             this.AddBtn.FillColor = System.Drawing.Color.ForestGreen;
             this.AddBtn.Font = new System.Drawing.Font("Roboto Medium", 9.75F);
             this.AddBtn.ForeColor = System.Drawing.Color.White;
-            this.AddBtn.Location = new System.Drawing.Point(250, 354);
+            this.AddBtn.Location = new System.Drawing.Point(250, 368);
             this.AddBtn.Name = "AddBtn";
             this.AddBtn.Size = new System.Drawing.Size(154, 48);
             this.AddBtn.TabIndex = 3;
@@ -169,7 +172,7 @@ namespace GUI
             this.MajorIDEmpty.BackColor = System.Drawing.Color.Transparent;
             this.MajorIDEmpty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.MajorIDEmpty.ForeColor = System.Drawing.Color.Red;
-            this.MajorIDEmpty.Location = new System.Drawing.Point(51, 169);
+            this.MajorIDEmpty.Location = new System.Drawing.Point(51, 183);
             this.MajorIDEmpty.Name = "MajorIDEmpty";
             this.MajorIDEmpty.Size = new System.Drawing.Size(212, 18);
             this.MajorIDEmpty.TabIndex = 5;
@@ -180,7 +183,7 @@ namespace GUI
             this.MajorNameEmpty.BackColor = System.Drawing.Color.Transparent;
             this.MajorNameEmpty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.MajorNameEmpty.ForeColor = System.Drawing.Color.Red;
-            this.MajorNameEmpty.Location = new System.Drawing.Point(51, 263);
+            this.MajorNameEmpty.Location = new System.Drawing.Point(51, 277);
             this.MajorNameEmpty.Name = "MajorNameEmpty";
             this.MajorNameEmpty.Size = new System.Drawing.Size(217, 18);
             this.MajorNameEmpty.TabIndex = 6;
@@ -191,7 +194,7 @@ namespace GUI
             this.MajorInfo.AutoSize = false;
             this.MajorInfo.BackColor = System.Drawing.Color.Transparent;
             this.MajorInfo.Font = new System.Drawing.Font("Roboto", 11F);
-            this.MajorInfo.Location = new System.Drawing.Point(0, 65);
+            this.MajorInfo.Location = new System.Drawing.Point(0, 69);
             this.MajorInfo.Name = "MajorInfo";
             this.MajorInfo.Size = new System.Drawing.Size(450, 20);
             this.MajorInfo.TabIndex = 7;
@@ -204,7 +207,7 @@ namespace GUI
             this.formError.BackColor = System.Drawing.Color.Transparent;
             this.formError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.formError.ForeColor = System.Drawing.Color.Red;
-            this.formError.Location = new System.Drawing.Point(0, 316);
+            this.formError.Location = new System.Drawing.Point(0, 330);
             this.formError.Name = "formError";
             this.formError.Size = new System.Drawing.Size(450, 20);
             this.formError.TabIndex = 8;
@@ -214,7 +217,7 @@ namespace GUI
             // AddMajor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(450, 446);
+            this.ClientSize = new System.Drawing.Size(450, 450);
             this.Controls.Add(this.formError);
             this.Controls.Add(this.MajorInfo);
             this.Controls.Add(this.MajorNameEmpty);
