@@ -368,6 +368,37 @@ namespace DAL
             return res;
         }
 
+        public Response DeleteMajor(Request req)
+        {
+            Response res = new Response();
+            try
+            {
+                SqlConnection section = Connection();
+                SqlCommand command = new SqlCommand("DeleteMajor", section);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@majorid", req.GetData("MajorID"));
+                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
+                returnValue.Direction = ParameterDirection.ReturnValue;
+                command.Connection = section;
+                section.Open();
+                command.ExecuteNonQuery();
+                section.Close();
+                int result = (int)returnValue.Value;
+                if (result == 0)
+                {
+                    res.code = "major_not_exist";
+                }
+                else
+                {
+                    res.code = "delele_successfully";
+                }
+            }
+            catch
+            {
+                res.code = "server_error";
+            }
+            return res; 
+        }
         // Class MG Logic
 
         public Response getListClass(string majorID)
