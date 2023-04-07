@@ -82,6 +82,12 @@
     <Compile Include="Dashboard_Admin.Designer.cs">
       <DependentUpon>Dashboard_Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Feature-Form\EditMajor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature-Form\EditMajor.Designer.cs">
+      <DependentUpon>EditMajor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Feature-Form\AddMajor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard_Admin.resx">
       <DependentUpon>Dashboard_Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feature-Form\EditMajor.resx">
+      <DependentUpon>EditMajor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Feature-Form\AddMajor.resx">
       <DependentUpon>AddMajor.cs</DependentUpon>

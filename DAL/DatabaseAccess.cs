@@ -232,7 +232,7 @@ namespace DAL
                 int result = (int)returnValue.Value;
                 if (result == 0)
                 {
-                    res.code = "user_not_exist";
+                    res.code = "user_already_exist";
                 }
                 else
                 {
@@ -278,6 +278,7 @@ namespace DAL
             return res;
 
         }
+        // Major MG
         public Response getListMajor()
         {
             Response res = new Response();
@@ -332,7 +333,40 @@ namespace DAL
             }
             return res;
         }
+        public Response UpdateMajorData(Request req)
+        {
+            Response res = new Response();
+            try
+            {
+                SqlConnection section = Connection();
+                SqlCommand command = new SqlCommand("UpdateMajorData", section);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@currentmajorid", req.GetData("CurrentMajorID"));
+                command.Parameters.AddWithValue("@newmajorid", req.GetData("NewMajorID"));
+                command.Parameters.AddWithValue("@majorname", req.GetData("MajorName"));
+                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
+                returnValue.Direction = ParameterDirection.ReturnValue;
+                command.Connection = section;
+                section.Open();
+                command.ExecuteNonQuery();
+                section.Close();
+                int result = (int)returnValue.Value;
+                if (result == 0)
+                {
+                    res.code = "major_already_exist";
+                }
+                else
+                {
+                    res.code = "update_successfully";
+                }
+            }
 
+            catch
+            {
+                res.code = "server_error";
+            }
+            return res;
+        }
 
         // Class MG Logic
 

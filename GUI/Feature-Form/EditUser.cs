@@ -147,7 +147,7 @@ namespace GUI
                     UpdateUserDataEvent(rowindex, userNameBox.Text, userPassword.Text, userEmailBox.Text);
                     this.Close();
                     break;
-                case "user_not_exist":
+                case "user_already_exist":
                     clearValidateForm();
                     formError.Text = "Tên người dùng đã tồn tại trong hệ thống";
                     break;

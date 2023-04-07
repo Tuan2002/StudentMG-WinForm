@@ -63,18 +63,17 @@ namespace GUI
         {
             MajorList.Rows.Add(majorID, majorName);
         }
+        private void UpdateMajorData(int rowIndex, string majorID, string majorName)
+        {
+            MajorList.Rows[rowIndex].Cells["MajorID"].Value = majorID;
+            MajorList.Rows[rowIndex].Cells["MajorName"].Value = majorName;
+        }
 
         private void addMajorBtn_Click(object sender, EventArgs e)
         {
             AddMajor addMajorForm = new AddMajor();
             addMajorForm.UpdateNajorListEvent += new AddMajor.UpdateMajorListView(UpdateMajorList);
             addMajorForm.Show();
-        }
-        private void UpdateUserData(int rowIndex, string userName, string userPassword, string userEmail)
-        {
-            MajorList.Rows[rowIndex].Cells["userName"].Value = userName;
-            MajorList.Rows[rowIndex].Cells["passWord"].Value = userPassword;
-            MajorList.Rows[rowIndex].Cells["userEmail"].Value = userEmail;
         }
         private void MajorList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -83,9 +82,10 @@ namespace GUI
             {
                 // Get the data from the cell
                 DataGridViewRow row = MajorList.Rows[e.RowIndex];
-                string cellValue = row.Cells["userName"].Value.ToString();
-                EditForm editForm = new EditForm(rowIndex, cellValue);
-                editForm.UpdateUserDataEvent += new EditForm.UpdateUserData(UpdateUserData);
+                string majorID = row.Cells["MajorID"].Value.ToString();
+                string majorName = row.Cells["MajorName"].Value.ToString();
+                EditMajor editForm = new EditMajor(rowIndex, majorID, majorName);
+                editForm.UpdateMajorDataEvent += new EditMajor.UpdateMajorData(UpdateMajorData);
                 editForm.Show();
             }
         }
@@ -93,31 +93,7 @@ namespace GUI
         private void removeMajorBtn_Click(object sender, EventArgs e)
         {
 
-            if (rowIndex < 0)
-            {
-                return;
-            }
-            else
-            {
-                DatabaseAccess deleteAccess = new DatabaseAccess();
-                Response res = new Response();
-                Request deleteUserRq = new Request();
-                DataGridViewRow row = MajorList.Rows[rowIndex];
-                string cellValue = row.Cells["userName"].Value.ToString();
-                deleteUserRq.AddData("userName", cellValue);
-                res = deleteAccess.DeleteUser(deleteUserRq);
-                if (res.code == "delele_successfully")
-                {
-                    MajorList.Rows.RemoveAt(rowIndex);
-                    rowIndex = -1;
-                    MajorList.Refresh();
-                }
-                else
-                {
-                    MessageBox.Show(res.code);
-                }
-
-            }
+        
         }
 
             private void refeshBtn_Click(object sender, EventArgs e)
