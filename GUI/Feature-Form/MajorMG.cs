@@ -14,13 +14,11 @@ namespace GUI
 {
     public partial class MajorMG : Form
     {
-        AddMajor addMajorForm = new AddMajor();
         private int rowIndex;
 
         public MajorMG()
         {
             InitializeComponent();
-            addMajorForm.UpdateNajorListEvent += new AddMajor.UpdateMajorListView(UpdateMajorList);
 
         }
         private Response getListMajor()
@@ -68,7 +66,8 @@ namespace GUI
 
         private void addMajorBtn_Click(object sender, EventArgs e)
         {
-            addMajorForm.Refresh();
+            AddMajor addMajorForm = new AddMajor();
+            addMajorForm.UpdateNajorListEvent += new AddMajor.UpdateMajorListView(UpdateMajorList);
             addMajorForm.Show();
         }
         private void UpdateUserData(int rowIndex, string userName, string userPassword, string userEmail)

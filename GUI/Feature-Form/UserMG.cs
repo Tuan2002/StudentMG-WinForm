@@ -14,14 +14,13 @@ namespace GUI
 {
     public partial class UserMG : Form
     {
-        AddUser addUserForm = new AddUser();
+        
         private int rowIndex;
 
 
         public UserMG()
         {
             InitializeComponent();
-            addUserForm.UpdateUserListEvent += new AddUser.UpdateUserListView(UpdateUserList);
 
         }
         private Response getListUser()
@@ -69,7 +68,8 @@ namespace GUI
 
         private void addUserBtn_Click(object sender, EventArgs e)
         {
-            addUserForm.StartPosition = FormStartPosition.CenterScreen;
+            AddUser addUserForm = new AddUser();
+            addUserForm.UpdateUserListEvent += new AddUser.UpdateUserListView(UpdateUserList);
             addUserForm.Show();
         }
         private void UpdateUserData(int rowIndex, string userName, string userPassword, string userEmail)

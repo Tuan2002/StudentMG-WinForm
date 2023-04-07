@@ -19,6 +19,7 @@ namespace GUI
         MiddleWare handleAddUser = new MiddleWare();
         string imageData = string.Empty;
         int permissionId = 0;
+        Image defautImage;
         public delegate void UpdateUserListView(string userName, string userPassword, string userEmail);
         public event UpdateUserListView UpdateUserListEvent;
 
@@ -50,6 +51,7 @@ namespace GUI
             userPassword.Text= string.Empty;
             userPasswordConfirm.Text= string.Empty;
             permissionSelect.SelectedIndex = 0;
+            avatarPreview.Image = defautImage;
         }
      
         public AddUser()
@@ -67,10 +69,7 @@ namespace GUI
                 permissionSelect.SelectedIndex = 0;
             }
         }
-        private void siticoneButton1_Click(object sender, EventArgs e)
-        {
-
-        }
+   
 
         private void selectImageBtn_Click(object sender, EventArgs e)
         {
@@ -85,7 +84,7 @@ namespace GUI
             }
         }
 
-        private void siticoneButton1_Click_1(object sender, EventArgs e)
+        private void CancleBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -93,6 +92,7 @@ namespace GUI
         private void AddUser_Load(object sender, EventArgs e)
         {
             loadPermissionOptions();
+            defautImage = avatarPreview.Image;
 
         }
 

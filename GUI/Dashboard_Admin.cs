@@ -101,6 +101,7 @@ namespace GUI
         private void classManagerBtn_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
+            openChildForm(new ClassMG());
 
         }
 

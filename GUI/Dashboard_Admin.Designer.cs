@@ -77,7 +77,7 @@ namespace GUI
             this.siticonePanel1.Location = new System.Drawing.Point(0, 0);
             this.siticonePanel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.siticonePanel1.Name = "siticonePanel1";
-            this.siticonePanel1.Size = new System.Drawing.Size(253, 788);
+            this.siticonePanel1.Size = new System.Drawing.Size(253, 838);
             this.siticonePanel1.TabIndex = 0;
             // 
             // logoutBtn
@@ -93,7 +93,7 @@ namespace GUI
             this.logoutBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.logoutBtn.IconSize = 20;
             this.logoutBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.logoutBtn.Location = new System.Drawing.Point(0, 730);
+            this.logoutBtn.Location = new System.Drawing.Point(0, 780);
             this.logoutBtn.Name = "logoutBtn";
             this.logoutBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.logoutBtn.Size = new System.Drawing.Size(253, 58);
@@ -110,7 +110,7 @@ namespace GUI
             this.sidebarMenu.Controls.Add(this.userMangerBtn);
             this.sidebarMenu.Location = new System.Drawing.Point(0, 197);
             this.sidebarMenu.Name = "sidebarMenu";
-            this.sidebarMenu.Size = new System.Drawing.Size(253, 453);
+            this.sidebarMenu.Size = new System.Drawing.Size(253, 566);
             this.sidebarMenu.TabIndex = 4;
             // 
             // studentListBtn
@@ -263,7 +263,7 @@ namespace GUI
             this.TopPanel.Location = new System.Drawing.Point(253, 0);
             this.TopPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(899, 48);
+            this.TopPanel.Size = new System.Drawing.Size(1103, 48);
             this.TopPanel.TabIndex = 1;
             // 
             // siticoneControlBox3
@@ -273,7 +273,7 @@ namespace GUI
             this.siticoneControlBox3.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MinimizeBox;
             this.siticoneControlBox3.FillColor = System.Drawing.Color.Transparent;
             this.siticoneControlBox3.IconColor = System.Drawing.Color.White;
-            this.siticoneControlBox3.Location = new System.Drawing.Point(744, 3);
+            this.siticoneControlBox3.Location = new System.Drawing.Point(948, 3);
             this.siticoneControlBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.siticoneControlBox3.Name = "siticoneControlBox3";
             this.siticoneControlBox3.Size = new System.Drawing.Size(44, 33);
@@ -286,7 +286,7 @@ namespace GUI
             this.siticoneControlBox2.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MaximizeBox;
             this.siticoneControlBox2.FillColor = System.Drawing.Color.Transparent;
             this.siticoneControlBox2.IconColor = System.Drawing.Color.White;
-            this.siticoneControlBox2.Location = new System.Drawing.Point(796, 3);
+            this.siticoneControlBox2.Location = new System.Drawing.Point(1000, 3);
             this.siticoneControlBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.siticoneControlBox2.Name = "siticoneControlBox2";
             this.siticoneControlBox2.Size = new System.Drawing.Size(44, 33);
@@ -298,7 +298,7 @@ namespace GUI
             this.siticoneControlBox1.BackColor = System.Drawing.Color.Transparent;
             this.siticoneControlBox1.FillColor = System.Drawing.Color.Transparent;
             this.siticoneControlBox1.IconColor = System.Drawing.Color.White;
-            this.siticoneControlBox1.Location = new System.Drawing.Point(844, 3);
+            this.siticoneControlBox1.Location = new System.Drawing.Point(1048, 3);
             this.siticoneControlBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.siticoneControlBox1.Name = "siticoneControlBox1";
             this.siticoneControlBox1.Size = new System.Drawing.Size(52, 33);
@@ -313,14 +313,14 @@ namespace GUI
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(253, 48);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(899, 740);
+            this.panelDesktop.Size = new System.Drawing.Size(1103, 790);
             this.panelDesktop.TabIndex = 2;
             // 
             // siticoneCirclePictureBox1
             // 
             this.siticoneCirclePictureBox1.Image = global::GUI.Properties.Resources.worker;
             this.siticoneCirclePictureBox1.ImageRotate = 0F;
-            this.siticoneCirclePictureBox1.Location = new System.Drawing.Point(414, 134);
+            this.siticoneCirclePictureBox1.Location = new System.Drawing.Point(505, 185);
             this.siticoneCirclePictureBox1.Name = "siticoneCirclePictureBox1";
             this.siticoneCirclePictureBox1.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
             this.siticoneCirclePictureBox1.Size = new System.Drawing.Size(101, 93);
@@ -334,9 +334,9 @@ namespace GUI
             this.siticoneHtmlLabel2.BackColor = System.Drawing.Color.Transparent;
             this.siticoneHtmlLabel2.Font = new System.Drawing.Font("Roboto Medium", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siticoneHtmlLabel2.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.siticoneHtmlLabel2.Location = new System.Drawing.Point(1, 300);
+            this.siticoneHtmlLabel2.Location = new System.Drawing.Point(1, 346);
             this.siticoneHtmlLabel2.Name = "siticoneHtmlLabel2";
-            this.siticoneHtmlLabel2.Size = new System.Drawing.Size(896, 40);
+            this.siticoneHtmlLabel2.Size = new System.Drawing.Size(1102, 40);
             this.siticoneHtmlLabel2.TabIndex = 1;
             this.siticoneHtmlLabel2.Text = "QUẢN LÝ SINH VIÊN";
             this.siticoneHtmlLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -347,9 +347,9 @@ namespace GUI
             this.siticoneHtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.siticoneHtmlLabel1.Font = new System.Drawing.Font("Roboto Medium", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siticoneHtmlLabel1.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.siticoneHtmlLabel1.Location = new System.Drawing.Point(3, 248);
+            this.siticoneHtmlLabel1.Location = new System.Drawing.Point(3, 294);
             this.siticoneHtmlLabel1.Name = "siticoneHtmlLabel1";
-            this.siticoneHtmlLabel1.Size = new System.Drawing.Size(896, 40);
+            this.siticoneHtmlLabel1.Size = new System.Drawing.Size(1100, 40);
             this.siticoneHtmlLabel1.TabIndex = 0;
             this.siticoneHtmlLabel1.Text = "CHÀO MỪNG BẠN ĐẾN VỚI HỆ THỐNG";
             this.siticoneHtmlLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -365,7 +365,7 @@ namespace GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1152, 788);
+            this.ClientSize = new System.Drawing.Size(1356, 838);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.siticonePanel1);
