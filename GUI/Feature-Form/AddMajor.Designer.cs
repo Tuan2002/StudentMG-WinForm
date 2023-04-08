@@ -42,7 +42,7 @@ namespace GUI
             this.MajorIDEmpty = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.MajorNameEmpty = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.MajorInfo = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
-            this.formError = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            this.formMessage = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.formtitle.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -201,24 +201,24 @@ namespace GUI
             this.MajorInfo.Text = "Nhập thông tin ngành học";
             this.MajorInfo.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // formError
+            // formMessage
             // 
-            this.formError.AutoSize = false;
-            this.formError.BackColor = System.Drawing.Color.Transparent;
-            this.formError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.formError.ForeColor = System.Drawing.Color.Red;
-            this.formError.Location = new System.Drawing.Point(0, 330);
-            this.formError.Name = "formError";
-            this.formError.Size = new System.Drawing.Size(450, 20);
-            this.formError.TabIndex = 8;
-            this.formError.Text = "Ngành học này đã tồn tại trên hệ thống";
-            this.formError.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.formMessage.AutoSize = false;
+            this.formMessage.BackColor = System.Drawing.Color.Transparent;
+            this.formMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.formMessage.ForeColor = System.Drawing.Color.Red;
+            this.formMessage.Location = new System.Drawing.Point(0, 330);
+            this.formMessage.Name = "formMessage";
+            this.formMessage.Size = new System.Drawing.Size(450, 20);
+            this.formMessage.TabIndex = 8;
+            this.formMessage.Text = "Ngành học này đã tồn tại trên hệ thống";
+            this.formMessage.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AddMajor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(450, 450);
-            this.Controls.Add(this.formError);
+            this.Controls.Add(this.formMessage);
             this.Controls.Add(this.MajorInfo);
             this.Controls.Add(this.MajorNameEmpty);
             this.Controls.Add(this.MajorIDEmpty);
@@ -255,6 +255,6 @@ namespace GUI
         private Siticone.Desktop.UI.WinForms.SiticoneButton AddBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneDragControl siticoneDragControl1;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel MajorInfo;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel formError;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel formMessage;
     }
 }

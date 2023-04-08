@@ -39,7 +39,8 @@ namespace GUI
             passwordNotSame.Text = string.Empty;
             permisstionEmpty.Text = string.Empty;
             imageRequied.Text = string.Empty;
-            formError.Text = string.Empty;
+            formMessage.Text = string.Empty;
+            formMessage.ForeColor= System.Drawing.Color.Red;
 
         }
         public void clearForm()
@@ -145,10 +146,12 @@ namespace GUI
                 case "success": 
                     UpdateUserListEvent(userNameBox.Text, userPassword.Text, userEmailBox.Text);
                     clearForm();
+                    formMessage.Text = "Thêm người dùng thành công";
+                    formMessage.ForeColor = Color.ForestGreen;
                     break;
                 case "user_exist":
                     clearValidateForm();
-                    formError.Text = "Tên người dùng đã tồn tại trong hệ thống";
+                    formMessage.Text = "Tên người dùng đã tồn tại trong hệ thống";
                     break;
                 case "userName_null":
                     userNameBox.BorderColor = Color.Red;

@@ -27,7 +27,8 @@ namespace GUI
             MajorNameEmpty.Text = string.Empty;
             MajorIDBox.BorderColor = System.Drawing.Color.Plum;
             MajorIDEmpty.Text = string.Empty;
-            formError.Text = string.Empty;
+            formMessage.Text = string.Empty;
+            formMessage.ForeColor= System.Drawing.Color.Red;
         }
         public void clearForm()
         {
@@ -59,6 +60,8 @@ namespace GUI
                 case "success":
                     UpdateNajorListEvent(MajorIDBox.Text.Trim().ToUpper(), MajorNameBox.Text.Trim());
                     this.clearForm();
+                    formMessage.ForeColor = Color.ForestGreen;
+                    formMessage.Text = "Thêm ngành học thành công!";
                     break;
                 case "majorid_null":
                     MajorIDBox.BorderColor = System.Drawing.Color.Red;
@@ -69,10 +72,10 @@ namespace GUI
                     MajorNameEmpty.Text = "Tên ngành học không được để trống";
                     break;
                 case "major_exist":
-                    formError.Text = "Ngành học này đã tồn tại trong hệ thống";
+                    formMessage.Text = "Ngành học này đã tồn tại trong hệ thống";
                     break;
                 default:
-                    formError.Text = "Có lõi xảy ra, Mã lỗi: " + res.code;
+                    formMessage.Text = "Có lõi xảy ra, Mã lỗi: " + res.code;
                     break;
             }
         }

@@ -53,7 +53,7 @@ namespace GUI
             this.imageRequied = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.formLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
-            this.formError = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            this.formMessage = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.avatarPreview = new Siticone.Desktop.UI.WinForms.SiticoneCirclePictureBox();
             this.siticoneDragControl1 = new Siticone.Desktop.UI.WinForms.SiticoneDragControl(this.components);
             this.siticonePanel1.SuspendLayout();
@@ -411,20 +411,20 @@ namespace GUI
             this.formLabel.Text = "Thêm người dùng";
             this.formLabel.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // formError
+            // formMessage
             // 
-            this.formError.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.formMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.formError.AutoSize = false;
-            this.formError.BackColor = System.Drawing.Color.Transparent;
-            this.formError.Font = new System.Drawing.Font("Roboto", 11F);
-            this.formError.ForeColor = System.Drawing.Color.Red;
-            this.formError.Location = new System.Drawing.Point(0, 515);
-            this.formError.Name = "formError";
-            this.formError.Size = new System.Drawing.Size(680, 20);
-            this.formError.TabIndex = 21;
-            this.formError.Text = "Người dùng đã có trong hệ thống ";
-            this.formError.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.formMessage.AutoSize = false;
+            this.formMessage.BackColor = System.Drawing.Color.Transparent;
+            this.formMessage.Font = new System.Drawing.Font("Roboto", 11F);
+            this.formMessage.ForeColor = System.Drawing.Color.Red;
+            this.formMessage.Location = new System.Drawing.Point(0, 515);
+            this.formMessage.Name = "formMessage";
+            this.formMessage.Size = new System.Drawing.Size(680, 20);
+            this.formMessage.TabIndex = 21;
+            this.formMessage.Text = "Người dùng đã có trong hệ thống ";
+            this.formMessage.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // avatarPreview
             // 
@@ -448,7 +448,7 @@ namespace GUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(680, 600);
-            this.Controls.Add(this.formError);
+            this.Controls.Add(this.formMessage);
             this.Controls.Add(this.siticonePanel2);
             this.Controls.Add(this.imageRequied);
             this.Controls.Add(this.siticoneHtmlLabel1);
@@ -511,7 +511,7 @@ namespace GUI
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel imageRequied;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel formLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel formError;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel formMessage;
         private Siticone.Desktop.UI.WinForms.SiticoneDragControl siticoneDragControl1;
     }
 }

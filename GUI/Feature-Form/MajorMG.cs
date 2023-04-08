@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
 using BLL;
-using DevExpress.Data.Filtering;
 
 namespace GUI
 {
