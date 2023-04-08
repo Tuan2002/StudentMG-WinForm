@@ -101,22 +101,27 @@ namespace GUI
             }
             else
             {
+                DataGridViewRow row = userList.Rows[rowIndex];
+                string cellValue = row.Cells["userName"].Value.ToString();
+                string message = "Bạn có chắc chắn muốn xoá người dùng '" + cellValue + "' không? Mọi thay đổi không thể hoàn tác";
                 DatabaseAccess deleteAccess = new DatabaseAccess();
                 Response res = new Response();
                 Request deleteUserRq = new Request();
-                DataGridViewRow row = userList.Rows[rowIndex];
-                string cellValue = row.Cells["userName"].Value.ToString();
-                deleteUserRq.AddData("userName", cellValue);
-                res = deleteAccess.DeleteUser(deleteUserRq);
-                if (res.code == "delele_successfully")
+                var result = RJMessageBox.Show(message, "Chú ý!", MessageBoxButtons.YesNo);
+                if (result.ToString() == "Yes")
                 {
-                    userList.Rows.RemoveAt(rowIndex);
-                    rowIndex = -1;
-                    userList.Refresh();
-                }
-                else
-                {
-                    MessageBox.Show(res.code);
+                    deleteUserRq.AddData("userName", cellValue);
+                    res = deleteAccess.DeleteUser(deleteUserRq);
+                    if (res.code == "delele_successfully")
+                    {
+                        userList.Rows.RemoveAt(rowIndex);
+                        rowIndex = -1;
+                        userList.Refresh();
+                    }
+                    else
+                    {
+                        MessageBox.Show(res.code);
+                    }
                 }
 
             }

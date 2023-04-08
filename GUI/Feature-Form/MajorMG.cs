@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
 using BLL;
+using DevExpress.Data.Filtering;
 
 namespace GUI
 {
@@ -92,38 +93,41 @@ namespace GUI
 
         private void removeMajorBtn_Click(object sender, EventArgs e)
         {
-
             if (rowIndex < 0)
             {
                 return;
             }
             else
             {
-                DatabaseAccess deleteAccess = new DatabaseAccess();
-                Response res = new Response();
-                Request deleteUserRq = new Request();
                 DataGridViewRow row = MajorList.Rows[rowIndex];
                 string majorID = row.Cells["MajorID"].Value.ToString();
-                deleteUserRq.AddData("MajorID", majorID);
-                res = deleteAccess.DeleteMajor(deleteUserRq);
-                if (res.code == "delele_successfully")
+                string message = "Bạn có chắc chắn muốn xoá ngành '" + majorID + "' không? Thao tác này có thể ảnh hưởng đến lớp học và sinh viên.";
+                var result = RJMessageBox.Show(message, "Chú ý!", MessageBoxButtons.YesNo);
+                if (result.ToString() == "Yes")
                 {
-                    MajorList.Rows.RemoveAt(rowIndex);
-                    rowIndex = -1;
-                    MajorList.Refresh();
+                    DatabaseAccess deleteAccess = new DatabaseAccess();
+                    Response res = new Response();
+                    Request deleteUserRq = new Request();
+                    deleteUserRq.AddData("MajorID", majorID);
+                    res = deleteAccess.DeleteMajor(deleteUserRq);
+                    if (res.code == "delele_successfully")
+                    {
+                        MajorList.Rows.RemoveAt(rowIndex);
+                        rowIndex = -1;
+                        MajorList.Refresh();
+                    }
+                    else
+                    {
+                        MessageBox.Show(res.code);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show(res.code);
-                }
-
             }
         }
 
-            private void refeshBtn_Click(object sender, EventArgs e)
-            {
-                loadData();
-            }
+        private void refeshBtn_Click(object sender, EventArgs e)
+        {
+            loadData();
+        }
     }
 }
 
