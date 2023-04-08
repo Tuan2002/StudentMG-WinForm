@@ -31,23 +31,24 @@ namespace GUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.searchBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.SearchBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.MajorList = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.MajorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MajorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Actions = new System.Windows.Forms.DataGridViewButtonColumn();
             this.refeshBtn = new FontAwesome.Sharp.IconButton();
             this.removeMajorBtn = new FontAwesome.Sharp.IconButton();
             this.addMajorBtn = new FontAwesome.Sharp.IconButton();
+            this.MajorList = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.MajorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MajorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Actions = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.SearchInputEvent = new System.Windows.Forms.Timer(this.components);
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MajorList)).BeginInit();
@@ -109,6 +110,7 @@ namespace GUI
             this.searchBox.SelectedText = "";
             this.searchBox.Size = new System.Drawing.Size(190, 39);
             this.searchBox.TabIndex = 2;
+            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
             // 
             // SearchBtn
             // 
@@ -125,121 +127,6 @@ namespace GUI
             this.SearchBtn.Size = new System.Drawing.Size(91, 40);
             this.SearchBtn.TabIndex = 1;
             this.SearchBtn.Text = "Tìm kiếm";
-            // 
-            // MajorList
-            // 
-            this.MajorList.AllowUserToAddRows = false;
-            this.MajorList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
-            this.MajorList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.MajorList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.MajorList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.MajorList.ColumnHeadersHeight = 40;
-            this.MajorList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.MajorList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MajorID,
-            this.MajorName,
-            this.Actions});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(215)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.MajorList.DefaultCellStyle = dataGridViewCellStyle3;
-            this.MajorList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MajorList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(193)))), ((int)(((byte)(232)))));
-            this.MajorList.Location = new System.Drawing.Point(0, 0);
-            this.MajorList.Name = "MajorList";
-            this.MajorList.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.MajorList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.MajorList.RowHeadersVisible = false;
-            this.MajorList.RowHeadersWidth = 40;
-            this.MajorList.RowTemplate.Height = 40;
-            this.MajorList.RowTemplate.ReadOnly = true;
-            this.MajorList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.MajorList.Size = new System.Drawing.Size(746, 412);
-            this.MajorList.TabIndex = 1;
-            this.MajorList.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.DeepPurple;
-            this.MajorList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
-            this.MajorList.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.MajorList.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.MajorList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.MajorList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.MajorList.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.MajorList.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(193)))), ((int)(((byte)(232)))));
-            this.MajorList.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
-            this.MajorList.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.MajorList.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MajorList.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.MajorList.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.MajorList.ThemeStyle.HeaderStyle.Height = 40;
-            this.MajorList.ThemeStyle.ReadOnly = true;
-            this.MajorList.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(215)))), ((int)(((byte)(240)))));
-            this.MajorList.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            this.MajorList.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MajorList.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.MajorList.ThemeStyle.RowsStyle.Height = 40;
-            this.MajorList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
-            this.MajorList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.MajorList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MajorList_CellClick);
-            this.MajorList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.MajorList_CellFormatting);
-            // 
-            // siticonePanel3
-            // 
-            this.siticonePanel3.Controls.Add(this.MajorList);
-            this.siticonePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.siticonePanel3.Location = new System.Drawing.Point(0, 62);
-            this.siticonePanel3.Name = "siticonePanel3";
-            this.siticonePanel3.Size = new System.Drawing.Size(746, 412);
-            this.siticonePanel3.TabIndex = 2;
-            // 
-            // MajorID
-            // 
-            this.MajorID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.MajorID.Frozen = true;
-            this.MajorID.HeaderText = "Mã ngành học";
-            this.MajorID.Name = "MajorID";
-            this.MajorID.ReadOnly = true;
-            this.MajorID.Width = 200;
-            // 
-            // MajorName
-            // 
-            this.MajorName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.MajorName.FillWeight = 150F;
-            this.MajorName.Frozen = true;
-            this.MajorName.HeaderText = "Tên ngành học";
-            this.MajorName.Name = "MajorName";
-            this.MajorName.ReadOnly = true;
-            this.MajorName.Width = 300;
-            // 
-            // Actions
-            // 
-            this.Actions.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Actions.FillWeight = 50F;
-            this.Actions.HeaderText = "Thao tác";
-            this.Actions.MinimumWidth = 50;
-            this.Actions.Name = "Actions";
-            this.Actions.ReadOnly = true;
-            this.Actions.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Actions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Actions.Width = 150;
             // 
             // refeshBtn
             // 
@@ -310,6 +197,126 @@ namespace GUI
             this.addMajorBtn.UseVisualStyleBackColor = false;
             this.addMajorBtn.Click += new System.EventHandler(this.addMajorBtn_Click);
             // 
+            // MajorList
+            // 
+            this.MajorList.AllowUserToAddRows = false;
+            this.MajorList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
+            this.MajorList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.MajorList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.MajorList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.MajorList.ColumnHeadersHeight = 40;
+            this.MajorList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.MajorList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MajorID,
+            this.MajorName,
+            this.Actions});
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(215)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.MajorList.DefaultCellStyle = dataGridViewCellStyle11;
+            this.MajorList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MajorList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(193)))), ((int)(((byte)(232)))));
+            this.MajorList.Location = new System.Drawing.Point(0, 0);
+            this.MajorList.Name = "MajorList";
+            this.MajorList.ReadOnly = true;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.MajorList.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.MajorList.RowHeadersVisible = false;
+            this.MajorList.RowHeadersWidth = 40;
+            this.MajorList.RowTemplate.Height = 40;
+            this.MajorList.RowTemplate.ReadOnly = true;
+            this.MajorList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.MajorList.Size = new System.Drawing.Size(746, 412);
+            this.MajorList.TabIndex = 1;
+            this.MajorList.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.DeepPurple;
+            this.MajorList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
+            this.MajorList.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.MajorList.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.MajorList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.MajorList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.MajorList.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.MajorList.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(193)))), ((int)(((byte)(232)))));
+            this.MajorList.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
+            this.MajorList.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.MajorList.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MajorList.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.MajorList.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.MajorList.ThemeStyle.HeaderStyle.Height = 40;
+            this.MajorList.ThemeStyle.ReadOnly = true;
+            this.MajorList.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(215)))), ((int)(((byte)(240)))));
+            this.MajorList.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            this.MajorList.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MajorList.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.MajorList.ThemeStyle.RowsStyle.Height = 40;
+            this.MajorList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
+            this.MajorList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.MajorList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MajorList_CellClick);
+            this.MajorList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.MajorList_CellFormatting);
+            // 
+            // MajorID
+            // 
+            this.MajorID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.MajorID.Frozen = true;
+            this.MajorID.HeaderText = "Mã ngành học";
+            this.MajorID.Name = "MajorID";
+            this.MajorID.ReadOnly = true;
+            this.MajorID.Width = 200;
+            // 
+            // MajorName
+            // 
+            this.MajorName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.MajorName.FillWeight = 150F;
+            this.MajorName.Frozen = true;
+            this.MajorName.HeaderText = "Tên ngành học";
+            this.MajorName.Name = "MajorName";
+            this.MajorName.ReadOnly = true;
+            this.MajorName.Width = 300;
+            // 
+            // Actions
+            // 
+            this.Actions.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Actions.FillWeight = 50F;
+            this.Actions.HeaderText = "Thao tác";
+            this.Actions.MinimumWidth = 50;
+            this.Actions.Name = "Actions";
+            this.Actions.ReadOnly = true;
+            this.Actions.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Actions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Actions.Width = 150;
+            // 
+            // siticonePanel3
+            // 
+            this.siticonePanel3.Controls.Add(this.MajorList);
+            this.siticonePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.siticonePanel3.Location = new System.Drawing.Point(0, 62);
+            this.siticonePanel3.Name = "siticonePanel3";
+            this.siticonePanel3.Size = new System.Drawing.Size(746, 412);
+            this.siticonePanel3.TabIndex = 2;
+            // 
+            // SearchInputEvent
+            // 
+            this.SearchInputEvent.Interval = 1000;
+            this.SearchInputEvent.Tick += new System.EventHandler(this.SearchInputEventEnd);
+            // 
             // MajorMG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -350,5 +357,6 @@ namespace GUI
         private DataGridViewTextBoxColumn MajorID;
         private DataGridViewTextBoxColumn MajorName;
         private DataGridViewButtonColumn Actions;
+        private Timer SearchInputEvent;
     }
 }

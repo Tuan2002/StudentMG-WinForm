@@ -22,16 +22,11 @@ namespace GUI
             InitializeComponent();
 
         }
-        private Response getListMajor()
-        {
-            DatabaseAccess access = new DatabaseAccess();
-            return access.getListMajor();
-        }
 
         public void loadData()
         {
-            Response res = new Response();
-            res = getListMajor();
+            DatabaseAccess access = new DatabaseAccess();
+            Response res = access.getListMajor();
             if (res.code == "success")
             {
                 MajorList.Rows.Clear();
@@ -42,6 +37,20 @@ namespace GUI
             }
             else
                 MessageBox.Show("Lỗi");
+        }
+
+        public void loadSearchData(string keyword)
+        {
+            DatabaseAccess access = new DatabaseAccess();
+            Response res = access.getSearchMajorData(keyword);
+            if (res.code == "success")
+            {
+                MajorList.Rows.Clear();
+                foreach (DataRow row in res.data.Rows)
+                {
+                    MajorList.Rows.Add(row["MajorID"].ToString(), row["MajorName"].ToString());
+                }
+            }
         }
         private void MajorMG_Load(object sender, EventArgs e)
         {
@@ -127,6 +136,25 @@ namespace GUI
         private void refeshBtn_Click(object sender, EventArgs e)
         {
             loadData();
+        }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            SearchInputEvent.Stop();
+            SearchInputEvent.Start();
+        }
+        private void SearchInputEventEnd(object sender, EventArgs e)
+        {
+            SearchInputEvent.Stop();
+            string keyword = searchBox.Text.Trim();
+            if (keyword == string.Empty)
+            {
+                loadData();
+            }
+            else
+            {
+               loadSearchData(keyword);
+            }
         }
     }
 }

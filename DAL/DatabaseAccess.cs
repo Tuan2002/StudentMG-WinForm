@@ -423,6 +423,29 @@ namespace DAL
             }
             return res; 
         }
+        public Response getSearchMajorData(string keyword)
+        {
+            Response res = new Response();
+            try
+            {
+                SqlConnection section = Connection();
+                section.Open();
+                SqlCommand command = new SqlCommand("LoadSearchMajorData", section);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@keyword", keyword);
+                command.Connection = section;
+                SqlDataReader reader = command.ExecuteReader();
+                res.code = "success";
+                res.data.Load(reader);
+                reader.Close();
+                section.Close();
+            }
+            catch (Exception ex)
+            {
+                res.code = "server_error";
+            }
+            return res;
+        }
         // Class MG Logic
 
         public Response getListClass(string majorID)
