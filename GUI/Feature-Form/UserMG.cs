@@ -23,16 +23,16 @@ namespace GUI
             InitializeComponent();
 
         }
-        private Response getListUser()
-        {
-            DatabaseAccess access = new DatabaseAccess();
-            return access.getListUser();
-        }
+        //private Response getListUser()
+        //{
+        //    DatabaseAccess access = new DatabaseAccess();
+        //    return access.getListUser();
+        //}
 
         public void loadData()
         {
-            Response res = new Response();
-            res = getListUser();
+            DatabaseAccess access = new DatabaseAccess();
+            Response res =  access.getListUser();
             if (res.code == "success")
             {
                 userList.Rows.Clear();
@@ -43,6 +43,19 @@ namespace GUI
             }
             else
                 MessageBox.Show("Lỗi");
+        }  
+        public void loadSearchData(string keyword)
+        {
+            DatabaseAccess access = new DatabaseAccess();
+            Response res = access.getSearchUserData(keyword);
+            if (res.code == "success")
+            {
+                userList.Rows.Clear();
+                foreach (DataRow row in res.data.Rows)
+                {
+                    userList.Rows.Add(row["userName"].ToString(), row["userPassword"].ToString(), row["userEmail"].ToString());
+                }
+            }
         }
         private void UserMG_Load(object sender, EventArgs e)
         {
@@ -127,10 +140,28 @@ namespace GUI
             }
         }
 
-            private void refeshBtn_Click(object sender, EventArgs e)
+        private void refeshBtn_Click(object sender, EventArgs e)
+        {
+            loadData();
+        }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            SearchInputEvent.Stop();
+            SearchInputEvent.Start();
+        }
+
+        private void SearchInputEventEnd(object sender, EventArgs e)
+        {
+            SearchInputEvent.Stop();
+            if (searchBox.Text == string.Empty)
             {
                 loadData();
             }
+            else
+            {
+                loadSearchData(searchBox.Text);
+            }
+        }
     }
 }
-
