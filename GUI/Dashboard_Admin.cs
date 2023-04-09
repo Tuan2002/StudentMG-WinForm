@@ -144,7 +144,6 @@ namespace GUI
         {
             if (isLogout)
             {
-                LoginFormInstance.Refresh();
                 LoginFormInstance.Show();
             }
             else

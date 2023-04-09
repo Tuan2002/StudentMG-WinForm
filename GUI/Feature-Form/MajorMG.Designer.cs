@@ -31,15 +31,15 @@ namespace GUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.searchBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.SearchBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.searchBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.refeshBtn = new FontAwesome.Sharp.IconButton();
             this.removeMajorBtn = new FontAwesome.Sharp.IconButton();
             this.addMajorBtn = new FontAwesome.Sharp.IconButton();
@@ -49,6 +49,8 @@ namespace GUI
             this.Actions = new System.Windows.Forms.DataGridViewButtonColumn();
             this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.SearchInputEvent = new System.Windows.Forms.Timer(this.components);
+            this.dataLoading = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
+            this.waitProgess = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MajorList)).BeginInit();
@@ -65,6 +67,7 @@ namespace GUI
             // 
             // siticonePanel1
             // 
+            this.siticonePanel1.Controls.Add(this.dataLoading);
             this.siticonePanel1.Controls.Add(this.siticonePanel2);
             this.siticonePanel1.Controls.Add(this.refeshBtn);
             this.siticonePanel1.Controls.Add(this.removeMajorBtn);
@@ -78,8 +81,9 @@ namespace GUI
             // 
             // siticonePanel2
             // 
+            this.siticonePanel2.Controls.Add(this.waitProgess);
             this.siticonePanel2.Controls.Add(this.searchBox);
-            this.siticonePanel2.Controls.Add(this.SearchBtn);
+            this.siticonePanel2.Controls.Add(this.searchBtn);
             this.siticonePanel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.siticonePanel2.Location = new System.Drawing.Point(436, 0);
             this.siticonePanel2.Margin = new System.Windows.Forms.Padding(2);
@@ -112,21 +116,21 @@ namespace GUI
             this.searchBox.TabIndex = 2;
             this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
             // 
-            // SearchBtn
+            // searchBtn
             // 
-            this.SearchBtn.BorderRadius = 8;
-            this.SearchBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.SearchBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.SearchBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.SearchBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.SearchBtn.Font = new System.Drawing.Font("Roboto", 9F);
-            this.SearchBtn.ForeColor = System.Drawing.Color.White;
-            this.SearchBtn.Location = new System.Drawing.Point(208, 10);
-            this.SearchBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.SearchBtn.Name = "SearchBtn";
-            this.SearchBtn.Size = new System.Drawing.Size(91, 40);
-            this.SearchBtn.TabIndex = 1;
-            this.SearchBtn.Text = "Tìm kiếm";
+            this.searchBtn.BorderRadius = 8;
+            this.searchBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.searchBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.searchBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.searchBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.searchBtn.Font = new System.Drawing.Font("Roboto", 9F);
+            this.searchBtn.ForeColor = System.Drawing.Color.White;
+            this.searchBtn.Location = new System.Drawing.Point(208, 10);
+            this.searchBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(91, 40);
+            this.searchBtn.TabIndex = 1;
+            this.searchBtn.Text = "Tìm kiếm";
             // 
             // refeshBtn
             // 
@@ -201,45 +205,45 @@ namespace GUI
             // 
             this.MajorList.AllowUserToAddRows = false;
             this.MajorList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
-            this.MajorList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
+            this.MajorList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.MajorList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.MajorList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.MajorList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.MajorList.ColumnHeadersHeight = 40;
             this.MajorList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.MajorList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MajorID,
             this.MajorName,
             this.Actions});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(215)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.MajorList.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(215)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.MajorList.DefaultCellStyle = dataGridViewCellStyle3;
             this.MajorList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MajorList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(193)))), ((int)(((byte)(232)))));
             this.MajorList.Location = new System.Drawing.Point(0, 0);
             this.MajorList.Name = "MajorList";
             this.MajorList.ReadOnly = true;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.MajorList.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.MajorList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.MajorList.RowHeadersVisible = false;
             this.MajorList.RowHeadersWidth = 40;
             this.MajorList.RowTemplate.Height = 40;
@@ -317,6 +321,55 @@ namespace GUI
             this.SearchInputEvent.Interval = 1000;
             this.SearchInputEvent.Tick += new System.EventHandler(this.SearchInputEventEnd);
             // 
+            // dataLoading
+            // 
+            this.dataLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataLoading.Animated = true;
+            this.dataLoading.AnimationSpeed = 1.5F;
+            this.dataLoading.BackColor = System.Drawing.Color.Transparent;
+            this.dataLoading.FillColor = System.Drawing.Color.Transparent;
+            this.dataLoading.FillThickness = 3;
+            this.dataLoading.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dataLoading.ForeColor = System.Drawing.Color.Transparent;
+            this.dataLoading.Location = new System.Drawing.Point(369, 15);
+            this.dataLoading.Minimum = 0;
+            this.dataLoading.Name = "dataLoading";
+            this.dataLoading.ProgressColor = System.Drawing.Color.DarkSlateBlue;
+            this.dataLoading.ProgressColor2 = System.Drawing.Color.WhiteSmoke;
+            this.dataLoading.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
+            this.dataLoading.ProgressThickness = 3;
+            this.dataLoading.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.dataLoading.Size = new System.Drawing.Size(31, 31);
+            this.dataLoading.TabIndex = 15;
+            this.dataLoading.Text = "siticoneCircleProgressBar1";
+            this.dataLoading.UseTransparentBackground = true;
+            this.dataLoading.Value = 60;
+            this.dataLoading.Visible = false;
+            // 
+            // waitProgess
+            // 
+            this.waitProgess.Animated = true;
+            this.waitProgess.AnimationSpeed = 1F;
+            this.waitProgess.BackColor = System.Drawing.Color.Transparent;
+            this.waitProgess.FillColor = System.Drawing.Color.Transparent;
+            this.waitProgess.FillThickness = 4;
+            this.waitProgess.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.waitProgess.ForeColor = System.Drawing.Color.Transparent;
+            this.waitProgess.Location = new System.Drawing.Point(242, 17);
+            this.waitProgess.Minimum = 0;
+            this.waitProgess.Name = "waitProgess";
+            this.waitProgess.ProgressColor = System.Drawing.Color.White;
+            this.waitProgess.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.waitProgess.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
+            this.waitProgess.ProgressThickness = 4;
+            this.waitProgess.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.waitProgess.Size = new System.Drawing.Size(25, 25);
+            this.waitProgess.TabIndex = 14;
+            this.waitProgess.Text = "siticoneCircleProgressBar1";
+            this.waitProgess.UseTransparentBackground = true;
+            this.waitProgess.Value = 30;
+            this.waitProgess.Visible = false;
+            // 
             // MajorMG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -350,7 +403,7 @@ namespace GUI
         private FontAwesome.Sharp.IconButton removeMajorBtn;
         private FontAwesome.Sharp.IconButton refeshBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton SearchBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton searchBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView MajorList;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox searchBox;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel3;
@@ -358,5 +411,7 @@ namespace GUI
         private DataGridViewTextBoxColumn MajorName;
         private DataGridViewButtonColumn Actions;
         private Timer SearchInputEvent;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar dataLoading;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar waitProgess;
     }
 }

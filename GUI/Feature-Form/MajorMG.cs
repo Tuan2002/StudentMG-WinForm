@@ -21,39 +21,44 @@ namespace GUI
             InitializeComponent();
 
         }
+        public async void loadData(Func<Response> getData)
+        {
+            if (searchBox.Text != string.Empty)
+            {
+                waitProgess.Visible = true;
+                searchBtn.Visible = false;
+            }
+            dataLoading.Visible = true;
+            var res = await Task.Run(() => getData());
+            waitProgess.Visible = false;
+            dataLoading.Visible = false;
+            searchBtn.Visible = true;
+            if (res.code == "success")
+            {
+                MajorList.Rows.Clear();
+                foreach (DataRow row in res.data.Rows)
+                {
+                    MajorList.Rows.Add(row["MajorID"].ToString(), row["MajorName"].ToString());
+                }
+            }
+        }
 
-        public void loadData()
+        public Response getData()
         {
             DatabaseAccess access = new DatabaseAccess();
             Response res = access.getListMajor();
-            if (res.code == "success")
-            {
-                MajorList.Rows.Clear();
-                foreach (DataRow row in res.data.Rows)
-                {
-                    MajorList.Rows.Add(row["MajorID"].ToString(), row["MajorName"].ToString());
-                }
-            }
-            else
-                MessageBox.Show("Lỗi");
+                return res;
         }
 
-        public void loadSearchData(string keyword)
+        public Response getSearchData(string keyword)
         {
             DatabaseAccess access = new DatabaseAccess();
             Response res = access.getSearchMajorData(keyword);
-            if (res.code == "success")
-            {
-                MajorList.Rows.Clear();
-                foreach (DataRow row in res.data.Rows)
-                {
-                    MajorList.Rows.Add(row["MajorID"].ToString(), row["MajorName"].ToString());
-                }
-            }
+            return res;
         }
         private void MajorMG_Load(object sender, EventArgs e)
         {
-            loadData();
+            loadData(() => getData());
         }
 
         private void MajorList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -134,7 +139,7 @@ namespace GUI
 
         private void refeshBtn_Click(object sender, EventArgs e)
         {
-            loadData();
+            loadData(() => getData());
         }
 
         private void searchBox_TextChanged(object sender, EventArgs e)
@@ -148,11 +153,11 @@ namespace GUI
             string keyword = searchBox.Text.Trim();
             if (keyword == string.Empty)
             {
-                loadData();
+                loadData(() => getData());
             }
             else
             {
-               loadSearchData(keyword);
+                loadData(() => getSearchData(searchBox.Text));
             }
         }
     }

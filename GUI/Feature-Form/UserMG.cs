@@ -17,49 +17,47 @@ namespace GUI
         
         private int rowIndex;
 
-
         public UserMG()
         {
             InitializeComponent();
 
         }
-        //private Response getListUser()
-        //{
-        //    DatabaseAccess access = new DatabaseAccess();
-        //    return access.getListUser();
-        //}
-
-        public void loadData()
+        public async void loadData(Func<Response> res)
         {
-            DatabaseAccess access = new DatabaseAccess();
-            Response res =  access.getListUser();
-            if (res.code == "success")
+            if (searchBox.Text != string.Empty)
             {
-                userList.Rows.Clear();
-                foreach (DataRow row in res.data.Rows)
-                {
-                    userList.Rows.Add(row["userName"].ToString(), row["userPassword"].ToString(), row["userEmail"].ToString());
-                }
+                waitProgess.Visible = true;
+                searchBtn.Visible = false;
             }
-            else
-                MessageBox.Show("Lỗi");
-        }  
-        public void loadSearchData(string keyword)
-        {
-            DatabaseAccess access = new DatabaseAccess();
-            Response res = access.getSearchUserData(keyword);
-            if (res.code == "success")
+            dataLoading.Visible = true;
+            var data = await Task.Run(() => res());
+            waitProgess.Visible = false;
+            dataLoading.Visible = false;
+            searchBtn.Visible = true;
+            if (data.code == "success")
             {
                 userList.Rows.Clear();
-                foreach (DataRow row in res.data.Rows)
+                foreach (DataRow row in data.data.Rows)
                 {
                     userList.Rows.Add(row["userName"].ToString(), row["userPassword"].ToString(), row["userEmail"].ToString());
                 }
             }
         }
+        public Response getData()
+        {
+            DatabaseAccess access = new DatabaseAccess();
+            Response res =  access.getListUser();
+            return res;
+        }  
+        public Response getSearchData(string keyword)
+        {
+            DatabaseAccess access = new DatabaseAccess();
+            Response res = access.getSearchUserData(keyword);
+            return res;
+        }
         private void UserMG_Load(object sender, EventArgs e)
         {
-            loadData();
+            loadData(() => getData());
         }
 
         private void userList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -142,7 +140,7 @@ namespace GUI
 
         private void refeshBtn_Click(object sender, EventArgs e)
         {
-            loadData();
+            loadData(() => getData());
         }
 
         private void searchBox_TextChanged(object sender, EventArgs e)
@@ -156,11 +154,11 @@ namespace GUI
             SearchInputEvent.Stop();
             if (searchBox.Text == string.Empty)
             {
-                loadData();
+                loadData(() => getData());
             }
             else
             {
-                loadSearchData(searchBox.Text);
+                loadData(() => getSearchData(searchBox.Text));
             }
         }
     }

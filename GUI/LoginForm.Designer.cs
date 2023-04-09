@@ -44,6 +44,7 @@ namespace GUI
             this.passwordError = new System.Windows.Forms.Label();
             this.useNameError = new System.Windows.Forms.Label();
             this.loginError = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            this.waitProgess = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
             siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             closeFormBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox1)).BeginInit();
@@ -98,6 +99,7 @@ namespace GUI
             this.txtUserName.SelectedText = "";
             this.txtUserName.Size = new System.Drawing.Size(349, 53);
             this.txtUserName.TabIndex = 1;
+            this.txtUserName.Click += new System.EventHandler(this.TxtUserName_GotFocus);
             // 
             // txtPassword
             // 
@@ -122,6 +124,7 @@ namespace GUI
             this.txtPassword.Size = new System.Drawing.Size(349, 53);
             this.txtPassword.TabIndex = 2;
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.Click += new System.EventHandler(this.TxtUserName_GotFocus);
             // 
             // loginBtn
             // 
@@ -228,11 +231,35 @@ namespace GUI
             this.loginError.Text = "Tài khoản hoặc mật khẩu không chính xác!";
             this.loginError.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // waitProgess
+            // 
+            this.waitProgess.Animated = true;
+            this.waitProgess.AnimationSpeed = 1F;
+            this.waitProgess.BackColor = System.Drawing.Color.Transparent;
+            this.waitProgess.FillColor = System.Drawing.Color.Transparent;
+            this.waitProgess.FillThickness = 4;
+            this.waitProgess.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.waitProgess.ForeColor = System.Drawing.Color.Transparent;
+            this.waitProgess.Location = new System.Drawing.Point(289, 456);
+            this.waitProgess.Minimum = 0;
+            this.waitProgess.Name = "waitProgess";
+            this.waitProgess.ProgressColor = System.Drawing.Color.White;
+            this.waitProgess.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.waitProgess.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
+            this.waitProgess.ProgressThickness = 4;
+            this.waitProgess.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.waitProgess.Size = new System.Drawing.Size(25, 25);
+            this.waitProgess.TabIndex = 12;
+            this.waitProgess.Text = "siticoneCircleProgressBar1";
+            this.waitProgess.UseTransparentBackground = true;
+            this.waitProgess.Value = 30;
+            // 
             // LoginForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(427, 523);
+            this.Controls.Add(this.waitProgess);
             this.Controls.Add(this.loginError);
             this.Controls.Add(this.passwordError);
             this.Controls.Add(this.useNameError);
@@ -254,8 +281,7 @@ namespace GUI
             ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.txtUserName.Click += new System.EventHandler(this.TxtUserName_GotFocus);
-            this.txtPassword.Click += new System.EventHandler(this.TxtUserName_GotFocus);
+
         }
 
         private void TxtUserName_GotFocus(object sender, EventArgs e)
@@ -283,6 +309,7 @@ namespace GUI
         private System.Windows.Forms.Label passwordError;
         private System.Windows.Forms.Label useNameError;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel loginError;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar waitProgess;
     }
 }
 

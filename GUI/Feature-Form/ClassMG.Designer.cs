@@ -31,16 +31,16 @@ namespace GUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.MajorOptions = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.searchBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.searchBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.refeshBtn = new FontAwesome.Sharp.IconButton();
             this.removeClassBtn = new FontAwesome.Sharp.IconButton();
             this.addClassBtn = new FontAwesome.Sharp.IconButton();
@@ -50,6 +50,8 @@ namespace GUI
             this.MajorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Actions = new System.Windows.Forms.DataGridViewButtonColumn();
             this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.dataLoading = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
+            this.waitProgess = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ClassList)).BeginInit();
@@ -66,6 +68,7 @@ namespace GUI
             // 
             // siticonePanel1
             // 
+            this.siticonePanel1.Controls.Add(this.dataLoading);
             this.siticonePanel1.Controls.Add(this.MajorOptions);
             this.siticonePanel1.Controls.Add(this.siticonePanel2);
             this.siticonePanel1.Controls.Add(this.refeshBtn);
@@ -75,24 +78,31 @@ namespace GUI
             this.siticonePanel1.Location = new System.Drawing.Point(0, 0);
             this.siticonePanel1.Margin = new System.Windows.Forms.Padding(2);
             this.siticonePanel1.Name = "siticonePanel1";
-            this.siticonePanel1.Size = new System.Drawing.Size(952, 62);
+            this.siticonePanel1.Size = new System.Drawing.Size(975, 62);
             this.siticonePanel1.TabIndex = 0;
             // 
             // MajorOptions
             // 
             this.MajorOptions.BackColor = System.Drawing.Color.Transparent;
             this.MajorOptions.BorderRadius = 4;
+            this.MajorOptions.DisabledState.Font = new System.Drawing.Font("Roboto", 10F);
             this.MajorOptions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.MajorOptions.DropDownHeight = 300;
             this.MajorOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MajorOptions.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.MajorOptions.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.MajorOptions.FocusedColor = System.Drawing.Color.Transparent;
+            this.MajorOptions.FocusedState.BorderColor = System.Drawing.Color.Transparent;
+            this.MajorOptions.FocusedState.Font = new System.Drawing.Font("Roboto", 10F);
             this.MajorOptions.Font = new System.Drawing.Font("Roboto", 10F);
-            this.MajorOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.MajorOptions.ForeColor = System.Drawing.Color.DimGray;
             this.MajorOptions.HoverState.Font = new System.Drawing.Font("Roboto", 10F);
+            this.MajorOptions.IntegralHeight = false;
             this.MajorOptions.ItemHeight = 40;
             this.MajorOptions.Items.AddRange(new object[] {
             "Tất cả các ngành"});
+            this.MajorOptions.ItemsAppearance.Font = new System.Drawing.Font("Roboto", 10F);
+            this.MajorOptions.ItemsAppearance.SelectedFont = new System.Drawing.Font("Roboto", 10F);
             this.MajorOptions.Location = new System.Drawing.Point(370, 10);
+            this.MajorOptions.MaxDropDownItems = 5;
             this.MajorOptions.MinimumSize = new System.Drawing.Size(200, 0);
             this.MajorOptions.Name = "MajorOptions";
             this.MajorOptions.Size = new System.Drawing.Size(206, 46);
@@ -101,10 +111,11 @@ namespace GUI
             // 
             // siticonePanel2
             // 
+            this.siticonePanel2.Controls.Add(this.waitProgess);
             this.siticonePanel2.Controls.Add(this.searchBox);
-            this.siticonePanel2.Controls.Add(this.siticoneButton1);
+            this.siticonePanel2.Controls.Add(this.searchBtn);
             this.siticonePanel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.siticonePanel2.Location = new System.Drawing.Point(642, 0);
+            this.siticonePanel2.Location = new System.Drawing.Point(665, 0);
             this.siticonePanel2.Margin = new System.Windows.Forms.Padding(2);
             this.siticonePanel2.Name = "siticonePanel2";
             this.siticonePanel2.Size = new System.Drawing.Size(310, 62);
@@ -134,21 +145,21 @@ namespace GUI
             this.searchBox.Size = new System.Drawing.Size(190, 39);
             this.searchBox.TabIndex = 2;
             // 
-            // siticoneButton1
+            // searchBtn
             // 
-            this.siticoneButton1.BorderRadius = 8;
-            this.siticoneButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.siticoneButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton1.Font = new System.Drawing.Font("Roboto", 9F);
-            this.siticoneButton1.ForeColor = System.Drawing.Color.White;
-            this.siticoneButton1.Location = new System.Drawing.Point(208, 10);
-            this.siticoneButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.siticoneButton1.Name = "siticoneButton1";
-            this.siticoneButton1.Size = new System.Drawing.Size(91, 40);
-            this.siticoneButton1.TabIndex = 1;
-            this.siticoneButton1.Text = "Tìm kiếm";
+            this.searchBtn.BorderRadius = 8;
+            this.searchBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.searchBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.searchBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.searchBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.searchBtn.Font = new System.Drawing.Font("Roboto", 9F);
+            this.searchBtn.ForeColor = System.Drawing.Color.White;
+            this.searchBtn.Location = new System.Drawing.Point(208, 10);
+            this.searchBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(91, 40);
+            this.searchBtn.TabIndex = 1;
+            this.searchBtn.Text = "Tìm kiếm";
             // 
             // refeshBtn
             // 
@@ -217,24 +228,24 @@ namespace GUI
             this.addClassBtn.Text = "Thêm mới";
             this.addClassBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.addClassBtn.UseVisualStyleBackColor = false;
-            this.addClassBtn.Click += new System.EventHandler(this.addUserBtn_Click);
+            this.addClassBtn.Click += new System.EventHandler(this.addClassBtn_Click);
             // 
             // ClassList
             // 
             this.ClassList.AllowUserToAddRows = false;
             this.ClassList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
-            this.ClassList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
+            this.ClassList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.ClassList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ClassList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ClassList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.ClassList.ColumnHeadersHeight = 40;
             this.ClassList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.ClassList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -242,33 +253,33 @@ namespace GUI
             this.ClassName,
             this.MajorName,
             this.Actions});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(215)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ClassList.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(215)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ClassList.DefaultCellStyle = dataGridViewCellStyle3;
             this.ClassList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ClassList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(193)))), ((int)(((byte)(232)))));
             this.ClassList.Location = new System.Drawing.Point(0, 0);
             this.ClassList.Name = "ClassList";
             this.ClassList.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ClassList.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ClassList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.ClassList.RowHeadersVisible = false;
             this.ClassList.RowHeadersWidth = 40;
             this.ClassList.RowTemplate.Height = 40;
             this.ClassList.RowTemplate.ReadOnly = true;
             this.ClassList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ClassList.Size = new System.Drawing.Size(952, 474);
+            this.ClassList.Size = new System.Drawing.Size(975, 474);
             this.ClassList.TabIndex = 1;
             this.ClassList.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.DeepPurple;
             this.ClassList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
@@ -340,8 +351,57 @@ namespace GUI
             this.siticonePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.siticonePanel3.Location = new System.Drawing.Point(0, 62);
             this.siticonePanel3.Name = "siticonePanel3";
-            this.siticonePanel3.Size = new System.Drawing.Size(952, 474);
+            this.siticonePanel3.Size = new System.Drawing.Size(975, 474);
             this.siticonePanel3.TabIndex = 2;
+            // 
+            // dataLoading
+            // 
+            this.dataLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataLoading.Animated = true;
+            this.dataLoading.AnimationSpeed = 1.5F;
+            this.dataLoading.BackColor = System.Drawing.Color.Transparent;
+            this.dataLoading.FillColor = System.Drawing.Color.Transparent;
+            this.dataLoading.FillThickness = 3;
+            this.dataLoading.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dataLoading.ForeColor = System.Drawing.Color.Transparent;
+            this.dataLoading.Location = new System.Drawing.Point(596, 15);
+            this.dataLoading.Minimum = 0;
+            this.dataLoading.Name = "dataLoading";
+            this.dataLoading.ProgressColor = System.Drawing.Color.DarkSlateBlue;
+            this.dataLoading.ProgressColor2 = System.Drawing.Color.WhiteSmoke;
+            this.dataLoading.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
+            this.dataLoading.ProgressThickness = 3;
+            this.dataLoading.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.dataLoading.Size = new System.Drawing.Size(31, 31);
+            this.dataLoading.TabIndex = 16;
+            this.dataLoading.Text = "siticoneCircleProgressBar1";
+            this.dataLoading.UseTransparentBackground = true;
+            this.dataLoading.Value = 60;
+            this.dataLoading.Visible = false;
+            // 
+            // waitProgess
+            // 
+            this.waitProgess.Animated = true;
+            this.waitProgess.AnimationSpeed = 1F;
+            this.waitProgess.BackColor = System.Drawing.Color.Transparent;
+            this.waitProgess.FillColor = System.Drawing.Color.Transparent;
+            this.waitProgess.FillThickness = 4;
+            this.waitProgess.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.waitProgess.ForeColor = System.Drawing.Color.Transparent;
+            this.waitProgess.Location = new System.Drawing.Point(242, 18);
+            this.waitProgess.Minimum = 0;
+            this.waitProgess.Name = "waitProgess";
+            this.waitProgess.ProgressColor = System.Drawing.Color.White;
+            this.waitProgess.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.waitProgess.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
+            this.waitProgess.ProgressThickness = 4;
+            this.waitProgess.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.waitProgess.Size = new System.Drawing.Size(25, 25);
+            this.waitProgess.TabIndex = 15;
+            this.waitProgess.Text = "siticoneCircleProgressBar1";
+            this.waitProgess.UseTransparentBackground = true;
+            this.waitProgess.Value = 30;
+            this.waitProgess.Visible = false;
             // 
             // ClassMG
             // 
@@ -349,7 +409,7 @@ namespace GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.ClientSize = new System.Drawing.Size(952, 536);
+            this.ClientSize = new System.Drawing.Size(975, 536);
             this.Controls.Add(this.siticonePanel3);
             this.Controls.Add(this.siticonePanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -376,7 +436,7 @@ namespace GUI
         private FontAwesome.Sharp.IconButton removeClassBtn;
         private FontAwesome.Sharp.IconButton refeshBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton searchBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView ClassList;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel3;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox searchBox;
@@ -385,5 +445,7 @@ namespace GUI
         private DataGridViewTextBoxColumn ClassName;
         private DataGridViewTextBoxColumn MajorName;
         private DataGridViewButtonColumn Actions;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar dataLoading;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar waitProgess;
     }
 }

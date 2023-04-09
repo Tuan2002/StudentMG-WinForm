@@ -14,18 +14,20 @@ namespace GUI
 {
     public partial class ClassMG : Form
     {
-        AddUser addUserForm = new AddUser();
+        
         private int rowIndex;
         private DataTable majorList;
+        private string currentMajorID;
         public ClassMG()
         {
             InitializeComponent();
-            addUserForm.UpdateUserListEvent += new AddUser.UpdateUserListView(UpdateUserList);
 
         }
   
         private void loadMajorOptions()
         {
+            MajorOptions.Items.Clear();
+            MajorOptions.Items.Add("Tất cả các ngành");
             DatabaseAccess access = new DatabaseAccess();
             Response res = access.getListMajor();
             majorList = res.data;
@@ -35,25 +37,37 @@ namespace GUI
                 MajorOptions.SelectedIndex = 0;
             }
         }
-        public void loadData(string majorID)
+        public async void loadData(Func<Response> res)
         {
-            DatabaseAccess access = new DatabaseAccess();
-            Response res = access.getListClass(majorID);
-            if (res.code == "success")
+            if (searchBox.Text != string.Empty)
+            {
+                waitProgess.Visible = true;
+                searchBtn.Visible = false;
+            }
+            dataLoading.Visible = true;
+            var data = await Task.Run(() => res());
+            waitProgess.Visible = false;
+            dataLoading.Visible = false;
+            searchBtn.Visible = true;
+            if (data.code == "success")
             {
                 ClassList.Rows.Clear();
-                foreach (DataRow row in res.data.Rows)
+                foreach (DataRow row in data.data.Rows)
                 {
                     ClassList.Rows.Add(row["ClassID"].ToString(), row["ClassName"].ToString(), row["MajorName"].ToString());
                 }
             }
-            else
-                MessageBox.Show("Lỗi");
+        }
+        public Response getData(string majorID)
+        {
+            DatabaseAccess access = new DatabaseAccess();
+            Response res = access.getListClass(majorID);
+            return res;
         }
         private void ClassMG_Load(object sender, EventArgs e)
         {
             loadMajorOptions();
-            loadData("All");
+            loadData(() => getData("All"));
         }
 
         private void userList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -73,11 +87,6 @@ namespace GUI
             ClassList.Rows.Add(userName, userPassword, userEmail);
         }
 
-        private void addUserBtn_Click(object sender, EventArgs e)
-        {
-            addUserForm.StartPosition = FormStartPosition.CenterScreen;
-            addUserForm.Show();
-        }
         private void UpdateUserData(int rowIndex, string userName, string userPassword, string userEmail)
         {
             ClassList.Rows[rowIndex].Cells["userName"].Value = userName;
@@ -129,7 +138,8 @@ namespace GUI
         }
         private void refeshBtn_Click(object sender, EventArgs e)
         {
-            
+            searchBox.Text= string.Empty;
+            loadData(() => getData(currentMajorID));
         }
 
         private void MajorOptions_SelectedIndexChanged(object sender, EventArgs e)
@@ -137,15 +147,21 @@ namespace GUI
             int optionIndex = MajorOptions.SelectedIndex;
             if (optionIndex <= 0)
             {
-                loadData("All");
+                loadData(() => getData("All"));
             }
             else
             {
                 DataRow row = majorList.Rows[optionIndex - 1];
-                string majorID = row["MajorID"].ToString();
-                loadData(majorID);
+                currentMajorID = row["MajorID"].ToString();
+                loadData(() => getData(currentMajorID));
             }
 
+        }
+
+        private void addClassBtn_Click(object sender, EventArgs e)
+        {
+            AddClass addClassForm = new AddClass();
+            addClassForm.ShowDialog();
         }
     }
 }

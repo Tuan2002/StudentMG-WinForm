@@ -16,8 +16,6 @@ namespace GUI
 {
     public partial class LoginForm : Form
     {
-        MiddleWare loginProcess = new MiddleWare();
-        Request loginReq = new Request();
         public void clearValidate()
         {
             useNameError.Text = string.Empty;
@@ -33,18 +31,26 @@ namespace GUI
         {
             Application.Exit();
         }
-
-        private void loginBtn_Click(object sender, EventArgs e)
-        {
-            loginReq.ClearData();
+        public Response loginHandle() {
+            Request loginReq = new Request();
+            MiddleWare loginProcess = new MiddleWare();
             loginReq.AddData("userName", txtUserName.Text);
             loginReq.AddData("password", txtPassword.Text);
             Response res = loginProcess.validateForm(loginReq);
-
+            return res;
+            
+        }
+        private async void loginBtn_Click(object sender, EventArgs e)
+        {
+            waitProgess.Visible= true;
+            loginBtn.Text = string.Empty;
+            Response res = await Task.Run(() => loginHandle());
+            waitProgess.Visible= false;
+            loginBtn.Text = "Đăng nhập";
             if (res.code == "success")
             {
                 byte[] imageBytes = Convert.FromBase64String(res.userImage);
-                MemoryStream memoryStream= new MemoryStream(imageBytes);
+                MemoryStream memoryStream = new MemoryStream(imageBytes);
                 Image avatar = Image.FromStream(memoryStream);
                 // Open dashboard form
                 this.Hide();
@@ -54,35 +60,35 @@ namespace GUI
                         Dashboard_Admin adminDashboard = new Dashboard_Admin(res.userFullName, res.permissionType, avatar);
                         adminDashboard.LoginFormInstance = this;
                         adminDashboard.Show();
-                        return;
+                        break;
                     case "Teacher":
                         Dashboard_Teacher teacherDashboard = new Dashboard_Teacher(res.userFullName, res.permissionType, avatar);
                         teacherDashboard.LoginFormInstance = this;
                         teacherDashboard.Show();
-                        return;
+                        break;
                     default:
-                        return;
+                        break;
 
                 }
-            }    
+            }
             else
             {
                 switch (res.code)
-                {  
+                {
                     case "username_null":
                         useNameError.Text = "Tên người dùng không hợp lệ";
                         txtUserName.BorderColor = Color.Red;
-                        return;
+                        break;
                     case "password_null":
                         passwordError.Text = "Mật khẩu không hợp lệ";
                         txtPassword.BorderColor = Color.Red;
-                        return;
+                        break;
                     case "user_not_exsist":
                         loginError.Text = "Tài khoản hoặc mật khẩu không chính xác!";
-                        return;
+                        break;
                     default:
                         loginError.Text = "Có lỗi xảy ra! Mã lỗi: " + res.code + "";
-                        return;
+                        break;
                 }
             }
         }
@@ -91,7 +97,7 @@ namespace GUI
         {
             clearValidate();
             this.ActiveControl = txtUserName;
-            
+            waitProgess.Visible= false;
         }
 
 

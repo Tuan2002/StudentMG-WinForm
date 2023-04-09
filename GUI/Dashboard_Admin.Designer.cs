@@ -263,7 +263,7 @@ namespace GUI
             this.TopPanel.Location = new System.Drawing.Point(253, 0);
             this.TopPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(1103, 48);
+            this.TopPanel.Size = new System.Drawing.Size(1137, 48);
             this.TopPanel.TabIndex = 1;
             // 
             // siticoneControlBox3
@@ -273,7 +273,7 @@ namespace GUI
             this.siticoneControlBox3.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MinimizeBox;
             this.siticoneControlBox3.FillColor = System.Drawing.Color.Transparent;
             this.siticoneControlBox3.IconColor = System.Drawing.Color.White;
-            this.siticoneControlBox3.Location = new System.Drawing.Point(948, 3);
+            this.siticoneControlBox3.Location = new System.Drawing.Point(982, 3);
             this.siticoneControlBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.siticoneControlBox3.Name = "siticoneControlBox3";
             this.siticoneControlBox3.Size = new System.Drawing.Size(44, 33);
@@ -286,7 +286,7 @@ namespace GUI
             this.siticoneControlBox2.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MaximizeBox;
             this.siticoneControlBox2.FillColor = System.Drawing.Color.Transparent;
             this.siticoneControlBox2.IconColor = System.Drawing.Color.White;
-            this.siticoneControlBox2.Location = new System.Drawing.Point(1000, 3);
+            this.siticoneControlBox2.Location = new System.Drawing.Point(1034, 3);
             this.siticoneControlBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.siticoneControlBox2.Name = "siticoneControlBox2";
             this.siticoneControlBox2.Size = new System.Drawing.Size(44, 33);
@@ -298,7 +298,7 @@ namespace GUI
             this.siticoneControlBox1.BackColor = System.Drawing.Color.Transparent;
             this.siticoneControlBox1.FillColor = System.Drawing.Color.Transparent;
             this.siticoneControlBox1.IconColor = System.Drawing.Color.White;
-            this.siticoneControlBox1.Location = new System.Drawing.Point(1048, 3);
+            this.siticoneControlBox1.Location = new System.Drawing.Point(1082, 3);
             this.siticoneControlBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.siticoneControlBox1.Name = "siticoneControlBox1";
             this.siticoneControlBox1.Size = new System.Drawing.Size(52, 33);
@@ -313,7 +313,7 @@ namespace GUI
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(253, 48);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1103, 790);
+            this.panelDesktop.Size = new System.Drawing.Size(1137, 790);
             this.panelDesktop.TabIndex = 2;
             // 
             // siticoneCirclePictureBox1
@@ -365,7 +365,7 @@ namespace GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1356, 838);
+            this.ClientSize = new System.Drawing.Size(1390, 838);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.siticonePanel1);
