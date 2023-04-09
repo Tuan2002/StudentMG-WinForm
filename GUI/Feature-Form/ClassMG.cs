@@ -14,7 +14,6 @@ namespace GUI
 {
     public partial class ClassMG : Form
     {
-        
         private int rowIndex;
         private DataTable majorList;
         private string currentMajorID;
@@ -28,7 +27,7 @@ namespace GUI
         {
             MajorOptions.Items.Clear();
             MajorOptions.Items.Add("Tất cả các ngành");
-            DatabaseAccess access = new DatabaseAccess();
+            MajorAccess access = new MajorAccess();
             Response res = access.getListMajor();
             majorList = res.data;
             foreach (DataRow row in majorList.Rows)
@@ -60,7 +59,7 @@ namespace GUI
         }
         public Response getData(string majorID)
         {
-            DatabaseAccess access = new DatabaseAccess();
+            ClassAccess access = new ClassAccess();
             Response res = access.getListClass(majorID);
             return res;
         }
@@ -82,17 +81,11 @@ namespace GUI
                 buttonCell.Style.Font = new Font("Roboto", 10, FontStyle.Regular);
             }
         }
-        private void UpdateUserList(string userName, string userPassword, string userEmail)
+        private void UpdateClassList(string classID, string  className, string majorName)
         {
-            ClassList.Rows.Add(userName, userPassword, userEmail);
+            ClassList.Rows.Add(classID, className, majorName);
         }
 
-        private void UpdateUserData(int rowIndex, string userName, string userPassword, string userEmail)
-        {
-            ClassList.Rows[rowIndex].Cells["userName"].Value = userName;
-            ClassList.Rows[rowIndex].Cells["passWord"].Value = userPassword;
-            ClassList.Rows[rowIndex].Cells["userEmail"].Value = userEmail;
-        }
         private void userList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             rowIndex = e.RowIndex;
@@ -101,41 +94,10 @@ namespace GUI
                 // Get the data from the cell
                 DataGridViewRow row = ClassList.Rows[e.RowIndex];
                 string cellValue = row.Cells["userName"].Value.ToString();
-                EditForm editForm = new EditForm(rowIndex, cellValue);
-                editForm.UpdateUserDataEvent += new EditForm.UpdateUserData(UpdateUserData);
-                editForm.Show();
+                // Tiếp
             }
         }
 
-        private void removeUserBtn_Click(object sender, EventArgs e)
-        {
-
-            if (rowIndex < 0)
-            {
-                return;
-            }
-            else
-            {
-                DatabaseAccess deleteAccess = new DatabaseAccess();
-                Response res = new Response();
-                Request deleteUserRq = new Request();
-                DataGridViewRow row = ClassList.Rows[rowIndex];
-                string cellValue = row.Cells["userName"].Value.ToString();
-                deleteUserRq.AddData("userName", cellValue);
-                res = deleteAccess.DeleteUser(deleteUserRq);
-                if (res.code == "delele_successfully")
-                {
-                    ClassList.Rows.RemoveAt(rowIndex);
-                    rowIndex = -1;
-                    ClassList.Refresh();
-                }
-                else
-                {
-                    MessageBox.Show(res.code);
-                }
-
-            }
-        }
         private void refeshBtn_Click(object sender, EventArgs e)
         {
             searchBox.Text= string.Empty;
@@ -146,9 +108,7 @@ namespace GUI
         {
             int optionIndex = MajorOptions.SelectedIndex;
             if (optionIndex <= 0)
-            {
                 loadData(() => getData("All"));
-            }
             else
             {
                 DataRow row = majorList.Rows[optionIndex - 1];
@@ -161,6 +121,7 @@ namespace GUI
         private void addClassBtn_Click(object sender, EventArgs e)
         {
             AddClass addClassForm = new AddClass();
+            addClassForm.UpdateClassListEvent += new AddClass.UpdateClassList(UpdateClassList);
             addClassForm.ShowDialog();
         }
     }

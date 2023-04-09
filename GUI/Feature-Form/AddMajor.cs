@@ -20,7 +20,6 @@ namespace GUI
         {
             InitializeComponent();
         }
-
         public void clearValidate()
         {
             MajorNameBox.BorderColor = System.Drawing.Color.Plum;

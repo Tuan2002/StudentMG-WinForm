@@ -205,7 +205,6 @@ namespace GUI
             this.removeClassBtn.Text = "Xoá bỏ";
             this.removeClassBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.removeClassBtn.UseVisualStyleBackColor = false;
-            this.removeClassBtn.Click += new System.EventHandler(this.removeUserBtn_Click);
             // 
             // addClassBtn
             // 

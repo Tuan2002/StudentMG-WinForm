@@ -99,7 +99,5 @@ namespace GUI
             this.ActiveControl = txtUserName;
             waitProgess.Visible= false;
         }
-
-
     }
 }

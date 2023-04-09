@@ -143,14 +143,9 @@ namespace GUI
         private void Dashboard_Admin_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (isLogout)
-            {
                 LoginFormInstance.Show();
-            }
             else
-            {
                 Application.Exit();
-            }
-
         }
     }
 }

@@ -17,10 +17,9 @@ namespace GUI
     public partial class EditForm : Form
     {
         private string currentUserName;
-        MiddleWare handleEditUser = new MiddleWare();
-        string imageData = string.Empty;
-        int permissionId = 0;
-        int rowindex;
+        private string imageData = string.Empty;
+        private int permissionId = 0;
+        private int rowindex;
 
         public delegate void UpdateUserData(int rowIndex, string userName, string userPassword, string userEmail);
         public event UpdateUserData UpdateUserDataEvent;
@@ -64,7 +63,7 @@ namespace GUI
         }
         private void loadPermissionOptions()
         {
-            DatabaseAccess access = new DatabaseAccess();
+            UserAccess access = new UserAccess();
             Response res = access.getPermissionList();
             foreach (DataRow row in res.data.Rows)
             {
@@ -112,6 +111,7 @@ namespace GUI
         }
         private void EditUserBtn_Click(object sender, EventArgs e)
         {
+            MiddleWare handleEditUser = new MiddleWare();
             Request editUser = new Request();
             Response res = new Response();
             editUser.AddData("currentUserName", currentUserName);
@@ -191,6 +191,5 @@ namespace GUI
             this.Close();
         }
 
-    
     }
 }

@@ -12,6 +12,7 @@ using System.ComponentModel;
 // DATA ACCESS LAYER
 namespace DAL
 {
+    // Create response object
     public class Response
     {
         public string code;
@@ -21,35 +22,23 @@ namespace DAL
         public DataTable data = new DataTable();
 
     }
+    // Create request object
     public class Request
     {
+        // Tạo một dictionary để lưu trữ dữ liệu
         ListDictionary data = new ListDictionary();
+        // Tạo các phương thức để thêm, xóa, lấy dữ liệu
+        // Thêm dữ liệu vào dictionary với key và value
         public void AddData(string key, string value)
         {
             data.Add(key, value);
         }
+        // Xóa dữ liệu trong dictionary
         public void ClearData()
         {
             data.Clear();
         }
-        public void addObjectData(Object obj)
-        {
-            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(obj);
-            foreach (PropertyDescriptor prop in properties)
-            {
-                data.Add(prop.Name, prop.GetValue(obj));
-            }
-
-        }
-        public Object getObjectData(Object obj)
-        {
-            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(obj);
-            foreach (PropertyDescriptor prop in properties)
-            {
-                prop.SetValue(obj, data[prop.Name]);
-            }
-            return obj;
-        }
+        // Lấy dữ liệu từ dictionary qua key
         public string GetData(string key)
         {
             string value = (string)data[key];
@@ -66,7 +55,7 @@ namespace DAL
             SqlConnection connection = new SqlConnection(connectString);
             return connection;
         }
-
+        // Xử lý đăng nhập vào hệ thống
         public Response hanndleLogin(Request loginReq)
         {
         // Connect to database
@@ -93,379 +82,9 @@ namespace DAL
                     section.Close();
                 }
                 else
-                {
                     res.code = "user_not_exsist";
-                }
             }    
-            catch(Exception ex)
-            {
-                res.code = "server_error";
-            }
-            return res;
-        }
-        public Response getListUser()
-        {
-            Response res = new Response();
-            try
-            {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getListUser", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
-                res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
-            }
-            catch (Exception ex)
-            {
-                res.code = "server_error";
-            }
-            return res; 
-        }
-        public Response getPermissionList ()
-        {
-            Response res = new Response();
-            try
-            {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getPermissionList", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
-                res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
-            }
             catch
-            {
-                res.code = "server_error";
-            }
-            return res;
-        }
-        public Response addUserToDB(Request req)
-        {
-            Response res = new Response();
-            try
-            {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("addUserToDB", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@username", req.GetData("userName"));
-                command.Parameters.AddWithValue("@password", req.GetData("password"));
-                command.Parameters.AddWithValue("@fullname", req.GetData("fullName"));
-                command.Parameters.AddWithValue("@email", req.GetData("email"));
-                command.Parameters.AddWithValue("@permissiontype", Int32.Parse(req.GetData("permissionType")));
-                command.Parameters.AddWithValue("@avatar", req.GetData("avatar"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
-                if (result == 0)
-                {
-                    res.code = "user_exist";
-                }
-                else
-                {
-                    res.code = "success";
-                }
-            }
-
-            catch
-            {
-                res.code = "server_error";
-            }
-            return res; 
-        }
-        public Response getUserData(string userName)
-        {
-            Response res = new Response();
-            try
-            {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getUserData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@username", userName);
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
-                res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
-           
-            }
-            catch (Exception ex)
-            {
-               res.code = "server_error";
-            }
-            return res; 
-        }
-        public Response UpdateUserData(Request req)
-        {
-            Response res = new Response();
-            try
-            {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("UpdateUserData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@currentusername", req.GetData("currentUserName"));
-                command.Parameters.AddWithValue("@newusername", req.GetData("newUserName"));
-                command.Parameters.AddWithValue("@password", req.GetData("password"));
-                command.Parameters.AddWithValue("@fullname", req.GetData("fullName"));
-                command.Parameters.AddWithValue("@email", req.GetData("email"));
-                command.Parameters.AddWithValue("@permissiontype", Int32.Parse(req.GetData("permissionType")));
-                command.Parameters.AddWithValue("@avatar", req.GetData("avatar"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
-                if (result == 0)
-                {
-                    res.code = "user_already_exist";
-                }
-                else
-                {
-                    res.code = "update_successfully";
-                }
-            }
-
-            catch
-            {
-                res.code = "server_error";
-            }
-            return res;
-        }
-        public Response DeleteUser(Request req)
-        {
-            Response res = new Response();
-            try
-            {
-            SqlConnection section = Connection();
-            SqlCommand command = new SqlCommand("DeleteUser", section);
-            command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@username", req.GetData("userName"));
-            var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
-                if (result == 0)
-                {
-                    res.code = "user_not_exist";
-                }
-                else
-                {
-                    res.code = "delele_successfully";
-                }
-            }
-            catch
-            {
-                res.code = "server_error";
-            }
-            return res;
-
-        }
-
-        public Response getSearchUserData(string keyword)
-        {
-            Response res = new Response();
-            try
-            {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("LoadSearchUserData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@keyword", keyword);
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
-                res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
-            }
-            catch (Exception ex)
-            {
-                res.code = "server_error";
-            }
-            return res;
-        }
-        // Major MG
-        public Response getListMajor()
-        {
-            Response res = new Response();
-            try
-            {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getListMajor", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
-                res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
-            }
-            catch (Exception ex)
-            {
-                res.code = "server_error";
-            }
-            return res;
-        }
-        public Response addMajorToDB(Request req) {
-            Response res = new Response();
-            try
-            {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("addMajorToDB", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@majorid", req.GetData("MajorID"));
-                command.Parameters.AddWithValue("@majorname", req.GetData("MajorName"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
-                if (result == 0)
-                {
-                    res.code = "major_exist";
-                }
-                else
-                {
-                    res.code = "success";
-                }
-            }
-
-            catch
-            {
-                res.code = "server_error";
-            }
-            return res;
-        }
-        public Response UpdateMajorData(Request req)
-        {
-            Response res = new Response();
-            try
-            {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("UpdateMajorData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@currentmajorid", req.GetData("CurrentMajorID"));
-                command.Parameters.AddWithValue("@newmajorid", req.GetData("NewMajorID"));
-                command.Parameters.AddWithValue("@majorname", req.GetData("MajorName"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
-                if (result == 0)
-                {
-                    res.code = "major_already_exist";
-                }
-                else
-                {
-                    res.code = "update_successfully";
-                }
-            }
-
-            catch
-            {
-                res.code = "server_error";
-            }
-            return res;
-        }
-
-        public Response DeleteMajor(Request req)
-        {
-            Response res = new Response();
-            try
-            {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("DeleteMajor", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@majorid", req.GetData("MajorID"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
-                if (result == 0)
-                {
-                    res.code = "major_not_exist";
-                }
-                else
-                {
-                    res.code = "delele_successfully";
-                }
-            }
-            catch
-            {
-                res.code = "server_error";
-            }
-            return res; 
-        }
-        public Response getSearchMajorData(string keyword)
-        {
-            Response res = new Response();
-            try
-            {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("LoadSearchMajorData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@keyword", keyword);
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
-                res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
-            }
-            catch (Exception ex)
-            {
-                res.code = "server_error";
-            }
-            return res;
-        }
-        // Class MG Logic
-
-        public Response getListClass(string majorID)
-        {
-            Response res = new Response();
-            try
-            {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getListClass", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@majorid", majorID);
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
-                res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
-            }
-            catch (Exception ex)
             {
                 res.code = "server_error";
             }

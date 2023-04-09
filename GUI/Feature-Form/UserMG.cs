@@ -14,9 +14,10 @@ namespace GUI
 {
     public partial class UserMG : Form
     {
-        
+        // Thuộc tính
         private int rowIndex;
 
+        // Constructor
         public UserMG()
         {
             InitializeComponent();
@@ -45,13 +46,13 @@ namespace GUI
         }
         public Response getData()
         {
-            DatabaseAccess access = new DatabaseAccess();
+            UserAccess access = new UserAccess();
             Response res =  access.getListUser();
             return res;
         }  
         public Response getSearchData(string keyword)
         {
-            DatabaseAccess access = new DatabaseAccess();
+            UserAccess access = new UserAccess();
             Response res = access.getSearchUserData(keyword);
             return res;
         }
@@ -105,17 +106,14 @@ namespace GUI
 
         private void removeUserBtn_Click(object sender, EventArgs e)
         {
-
             if (rowIndex < 0)
-            {
                 return;
-            }
             else
             {
                 DataGridViewRow row = userList.Rows[rowIndex];
                 string cellValue = row.Cells["userName"].Value.ToString();
                 string message = "Bạn có chắc chắn muốn xoá người dùng '" + cellValue + "' không? Mọi thay đổi không thể hoàn tác";
-                DatabaseAccess deleteAccess = new DatabaseAccess();
+                UserAccess deleteAccess = new UserAccess();
                 Response res = new Response();
                 Request deleteUserRq = new Request();
                 var result = RJMessageBox.Show(message, "Chú ý!", MessageBoxButtons.YesNo);
@@ -129,12 +127,7 @@ namespace GUI
                         rowIndex = -1;
                         userList.Refresh();
                     }
-                    else
-                    {
-                        MessageBox.Show(res.code);
-                    }
                 }
-
             }
         }
 
@@ -153,13 +146,9 @@ namespace GUI
         {
             SearchInputEvent.Stop();
             if (searchBox.Text == string.Empty)
-            {
                 loadData(() => getData());
-            }
             else
-            {
                 loadData(() => getSearchData(searchBox.Text));
-            }
         }
     }
 }

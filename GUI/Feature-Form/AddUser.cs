@@ -16,13 +16,12 @@ namespace GUI
 {
     public partial class AddUser : Form
     {
-        MiddleWare handleAddUser = new MiddleWare();
-        string imageData = string.Empty;
-        int permissionId = 0;
-        Image defautImage;
+        private string imageData = string.Empty;
+        private int permissionId = 0;
+        private Image defautImage;
+
         public delegate void UpdateUserListView(string userName, string userPassword, string userEmail);
         public event UpdateUserListView UpdateUserListEvent;
-
 
         public void clearValidateForm()
         {
@@ -62,7 +61,7 @@ namespace GUI
             useDefaultImage.Checked = true;
         }
         private void loadPermissionOptions() {
-            DatabaseAccess access= new DatabaseAccess();
+            UserAccess access = new UserAccess();
             Response res = access.getPermissionList();
             foreach (DataRow row in res.data.Rows)
             {
@@ -114,6 +113,7 @@ namespace GUI
         }
         private void addUserBtn_Click(object sender, EventArgs e)
         {
+            MiddleWare handleAddUser = new MiddleWare();
             Request addUser = new Request();
             Response res = new Response();
             addUser.AddData("userName", userNameBox.Text.Trim());
@@ -178,10 +178,6 @@ namespace GUI
                     permisstionEmpty.Text = "Vui lòng chọn quyền hạn";
                     break;
             }
-
-
         }
-
-   
     }
 }

@@ -45,14 +45,14 @@ namespace GUI
 
         public Response getData()
         {
-            DatabaseAccess access = new DatabaseAccess();
+            MajorAccess access = new MajorAccess();
             Response res = access.getListMajor();
-                return res;
+            return res;
         }
 
         public Response getSearchData(string keyword)
         {
-            DatabaseAccess access = new DatabaseAccess();
+            MajorAccess access = new MajorAccess();
             Response res = access.getSearchMajorData(keyword);
             return res;
         }
@@ -107,9 +107,7 @@ namespace GUI
         private void removeMajorBtn_Click(object sender, EventArgs e)
         {
             if (rowIndex < 0)
-            {
                 return;
-            }
             else
             {
                 DataGridViewRow row = MajorList.Rows[rowIndex];
@@ -118,7 +116,7 @@ namespace GUI
                 var result = RJMessageBox.Show(message, "Chú ý!", MessageBoxButtons.YesNo);
                 if (result.ToString() == "Yes")
                 {
-                    DatabaseAccess deleteAccess = new DatabaseAccess();
+                    MajorAccess deleteAccess = new MajorAccess();
                     Response res = new Response();
                     Request deleteUserRq = new Request();
                     deleteUserRq.AddData("MajorID", majorID);
@@ -128,10 +126,6 @@ namespace GUI
                         MajorList.Rows.RemoveAt(rowIndex);
                         rowIndex = -1;
                         MajorList.Refresh();
-                    }
-                    else
-                    {
-                        MessageBox.Show(res.code);
                     }
                 }
             }
@@ -152,13 +146,9 @@ namespace GUI
             SearchInputEvent.Stop();
             string keyword = searchBox.Text.Trim();
             if (keyword == string.Empty)
-            {
                 loadData(() => getData());
-            }
             else
-            {
                 loadData(() => getSearchData(searchBox.Text));
-            }
         }
     }
 }
