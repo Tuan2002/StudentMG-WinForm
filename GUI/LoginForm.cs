@@ -16,43 +16,54 @@ namespace GUI
 {
     public partial class LoginForm : Form
     {
+        // Xóa thông báo lỗi trước khi đăng nhập
         public void clearValidate()
         {
             useNameError.Text = string.Empty;
             passwordError.Text = string.Empty;
             loginError.Text = string.Empty;
         }
+
         public LoginForm()
         {
             InitializeComponent();
         }
-
         private void closeFormBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-        public Response loginHandle() {
+
+        // Xử lý đăng nhập khi click nút đăng nhập
+        public Response loginHandle()
+        {
             Request loginReq = new Request();
             MiddleWare loginProcess = new MiddleWare();
             loginReq.AddData("userName", txtUserName.Text);
             loginReq.AddData("password", txtPassword.Text);
             Response res = loginProcess.validateForm(loginReq);
             return res;
-            
         }
+
         private async void loginBtn_Click(object sender, EventArgs e)
         {
-            waitProgess.Visible= true;
+            // Hiện progress bar khi đang đăng nhập
+            waitProgess.Visible = true;
             loginBtn.Text = string.Empty;
+
+            // Thực hiện đăng nhập
             Response res = await Task.Run(() => loginHandle());
-            waitProgess.Visible= false;
+
+            // Ẩn progress bar sau khi đăng nhập xong
+            waitProgess.Visible = false;
             loginBtn.Text = "Đăng nhập";
+
+            // Kiểm tra kết quả đăng nhập
             if (res.code == "success")
             {
+                // Chuyển đến form dashboard
                 byte[] imageBytes = Convert.FromBase64String(res.userImage);
                 MemoryStream memoryStream = new MemoryStream(imageBytes);
                 Image avatar = Image.FromStream(memoryStream);
-                // Open dashboard form
                 this.Hide();
                 switch (res.permissionType)
                 {
@@ -68,11 +79,11 @@ namespace GUI
                         break;
                     default:
                         break;
-
                 }
             }
             else
             {
+                // Hiển thị thông báo lỗi
                 switch (res.code)
                 {
                     case "username_null":
@@ -95,9 +106,10 @@ namespace GUI
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            // Xóa thông báo lỗi
             clearValidate();
+            // Đặt focus vào textbox tên đăng nhập
             this.ActiveControl = txtUserName;
-            waitProgess.Visible= false;
         }
     }
 }

@@ -253,6 +253,7 @@ namespace GUI
             this.waitProgess.Text = "siticoneCircleProgressBar1";
             this.waitProgess.UseTransparentBackground = true;
             this.waitProgess.Value = 30;
+            this.waitProgess.Visible = false;
             // 
             // LoginForm
             // 

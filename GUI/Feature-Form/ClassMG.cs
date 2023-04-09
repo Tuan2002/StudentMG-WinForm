@@ -17,12 +17,13 @@ namespace GUI
         private int rowIndex;
         private DataTable majorList;
         private string currentMajorID;
+
         public ClassMG()
         {
             InitializeComponent();
-
         }
-  
+
+        // Load danh sách tất cả ngành và hiển thị lên combobox MajorOptions
         private void loadMajorOptions()
         {
             MajorOptions.Items.Clear();
@@ -36,18 +37,27 @@ namespace GUI
                 MajorOptions.SelectedIndex = 0;
             }
         }
+
+        // Load dữ liệu danh sách lớp học
         public async void loadData(Func<Response> res)
         {
+            // Hiển thị loading khi đang load dữ liệu
             if (searchBox.Text != string.Empty)
             {
                 waitProgess.Visible = true;
                 searchBtn.Visible = false;
             }
             dataLoading.Visible = true;
+
+            // Sử dụng Task.Run để load dữ liệu danh sách lớp học mà không ảnh hưởng đến UI
             var data = await Task.Run(() => res());
+
+            // Tắt loading khi load dữ liệu xong
             waitProgess.Visible = false;
             dataLoading.Visible = false;
             searchBtn.Visible = true;
+
+            // Nếu dữ liệu load thành công thì hiển thị danh sách lớp học lên DataGridView ClassList
             if (data.code == "success")
             {
                 ClassList.Rows.Clear();
@@ -57,18 +67,23 @@ namespace GUI
                 }
             }
         }
+
+        // Lấy danh sách lớp học dựa trên majorID
         public Response getData(string majorID)
         {
             ClassAccess access = new ClassAccess();
             Response res = access.getListClass(majorID);
             return res;
         }
+
+        // Load danh sách ngành và danh sách lớp học lên DataGridView ClassList khi Form được load
         private void ClassMG_Load(object sender, EventArgs e)
         {
             loadMajorOptions();
             loadData(() => getData("All"));
         }
 
+        // Format hiển thị cho button "Chỉnh sửa" trong DataGridView ClassList
         private void userList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (ClassList.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
@@ -81,7 +96,9 @@ namespace GUI
                 buttonCell.Style.Font = new Font("Roboto", 10, FontStyle.Regular);
             }
         }
-        private void UpdateClassList(string classID, string  className, string majorName)
+
+        // Thêm 1 lớp học mới vào DataGridView ClassList
+        private void UpdateClassList(string classID, string className, string majorName)
         {
             ClassList.Rows.Add(classID, className, majorName);
         }
@@ -91,19 +108,21 @@ namespace GUI
             rowIndex = e.RowIndex;
             if (ClassList.Columns[e.ColumnIndex].Name == "Actions")
             {
-                // Get the data from the cell
+                // Lấy dữ liệu của dòng được click
                 DataGridViewRow row = ClassList.Rows[e.RowIndex];
                 string cellValue = row.Cells["userName"].Value.ToString();
                 // Tiếp
             }
         }
 
+        // Xử lý sự kiện click cho nút Refresh để load lại danh sách lớp học
         private void refeshBtn_Click(object sender, EventArgs e)
         {
-            searchBox.Text= string.Empty;
+            searchBox.Text = string.Empty;
             loadData(() => getData(currentMajorID));
         }
 
+        // Xử lý sự kiện chọn cho ComboBox ngành học để lọc danh sách lớp học
         private void MajorOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
             int optionIndex = MajorOptions.SelectedIndex;
@@ -115,9 +134,9 @@ namespace GUI
                 currentMajorID = row["MajorID"].ToString();
                 loadData(() => getData(currentMajorID));
             }
-
         }
 
+        // Xử sự kiện click cho nút Thêm lớp học để mở form thêm mới lớp học
         private void addClassBtn_Click(object sender, EventArgs e)
         {
             AddClass addClassForm = new AddClass();

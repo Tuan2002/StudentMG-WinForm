@@ -18,12 +18,16 @@ namespace GUI
         private string currentMajorID;
         private string currentMajorName;
 
+        // Khai báo sự kiện để cập nhật danh sách lớp học
         public delegate void UpdateClassList(string classID, string className, string majorName);
         public event UpdateClassList UpdateClassListEvent;
+
         public AddClass()
         {
             InitializeComponent();
         }
+
+        // Hàm xóa thông báo lỗi
         public void clearValidate()
         {
             classIDError.Text = string.Empty;
@@ -35,6 +39,8 @@ namespace GUI
             classNameBox.BorderColor = Color.Plum;
             MajorOptions.BorderColor = Color.Plum;
         }
+
+        // Hàm xóa form nhập liệu
         public void clearForm()
         {
             clearValidate();
@@ -42,6 +48,8 @@ namespace GUI
             classNameBox.Text = string.Empty;
             MajorOptions.SelectedIndex = 0;
         }
+
+        // Hàm tải danh sách các ngành học vào combobox
         private void loadMajorOptions()
         {
             MajorAccess access = new MajorAccess();
@@ -54,40 +62,40 @@ namespace GUI
             }
         }
 
+        // Sự kiện khi form được load
         private void AddClass_Load(object sender, EventArgs e)
         {
             loadMajorOptions();
             clearForm();
             ActiveControl = this.classIDBox;
         }
-
         private void MajorOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clearValidate();
+            clearValidate(); // Xóa bỏ các thông báo lỗi hiển thị trên form
             int optionIndex = MajorOptions.SelectedIndex;
             if (optionIndex <= 0)
             {
-                currentMajorID = string.Empty;
+                currentMajorID = string.Empty; // Nếu không chọn ngành học thì không có mã ngành học
             }
             else
             {
-                DataRow row = majorList.Rows[optionIndex - 1];
-                currentMajorID = row["MajorID"].ToString();
-                currentMajorName = row["MajorName"].ToString();
+                DataRow row = majorList.Rows[optionIndex - 1]; // Lấy thông tin ngành học tại vị trí được chọn
+                currentMajorID = row["MajorID"].ToString(); // Lưu lại mã ngành học được chọn
+                currentMajorName = row["MajorName"].ToString(); // Lưu lại tên ngành học được chọn
             }
-
         }
 
         private void classIDBox_TextChanged(object sender, EventArgs e)
         {
-            classNameBox.Text = classIDBox.Text.Trim().ToUpper();
+            // Sao chép nội dung của classIDBox sang classNameBox và chuyển thành chữ hoa
+            classNameBox.Text = classIDBox.Text.Trim().ToUpper(); 
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        // Sự kiện khi nhấn nút thêm lớp học
         private void AddBtn_Click(object sender, EventArgs e)
         {
             MiddleWare addClass = new MiddleWare();
