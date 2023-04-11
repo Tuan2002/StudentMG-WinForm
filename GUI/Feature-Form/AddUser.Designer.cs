@@ -470,7 +470,7 @@ namespace GUI
             this.Controls.Add(this.siticonePanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddUser";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddUser";
             this.Load += new System.EventHandler(this.AddUser_Load);
             this.siticonePanel1.ResumeLayout(false);

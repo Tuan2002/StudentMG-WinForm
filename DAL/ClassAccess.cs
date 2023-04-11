@@ -73,5 +73,33 @@ namespace DAL
             return res;
         }
         // Kết thúc thêm lớp mới
+        // Xoá một lớp khỏi CSDL
+        public Response DeleteClass(Request request)
+        {
+            Response res = new Response();
+            try
+            {
+                SqlConnection section = Connection();
+                SqlCommand command = new SqlCommand("DeleteClass", section);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@classid", request.GetData("ClassID"));
+                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
+                returnValue.Direction = ParameterDirection.ReturnValue;
+                command.Connection = section;
+                section.Open();
+                command.ExecuteNonQuery();
+                section.Close();
+                int result = (int)returnValue.Value;
+                if (result == 0)
+                    res.code = "class_not_exist";
+                else
+                    res.code = "delete_successfully";
+            }
+            catch
+            {
+                res.code = "server_error";
+            }
+            return res;
+        }
     }
 }

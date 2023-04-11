@@ -96,7 +96,7 @@ namespace GUI
         {
             AddUser addUserForm = new AddUser();
             addUserForm.UpdateUserListEvent += new AddUser.UpdateUserListView(UpdateUserList);
-            addUserForm.Show();
+            addUserForm.ShowDialog();
         }
 
         // Sự kiện UpdateUserListEvent được gọi khi có người dùng mới được thêm vào
@@ -128,7 +128,7 @@ namespace GUI
                 // Hiển thị Form để chỉnh sửa thông tin người dùng
                 EditForm editForm = new EditForm(rowIndex, cellValue);
                 editForm.UpdateUserDataEvent += new EditForm.UpdateUserData(UpdateUserData);
-                editForm.Show();
+                editForm.ShowDialog();
             }
         }
 

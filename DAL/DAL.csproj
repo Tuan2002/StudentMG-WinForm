@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassesAccess.cs" />
+    <Compile Include="ClassAccess.cs" />
     <Compile Include="DatabaseAccess.cs" />
     <Compile Include="MajorAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

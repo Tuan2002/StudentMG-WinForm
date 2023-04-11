@@ -217,6 +217,7 @@
             this.selectImageBtn.Size = new System.Drawing.Size(141, 37);
             this.selectImageBtn.TabIndex = 30;
             this.selectImageBtn.Text = "Chọn ảnh";
+            this.selectImageBtn.Click += new System.EventHandler(this.selectImageBtn_Click);
             // 
             // avatarPreview
             // 
@@ -470,7 +471,7 @@
             this.Controls.Add(this.permissionSelect);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EditForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EditForm";
             this.Load += new System.EventHandler(this.EditForm_Load);
             this.siticonePanel2.ResumeLayout(false);

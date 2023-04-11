@@ -37,8 +37,10 @@ namespace GUI
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.dataLoading = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
             this.MajorOptions = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.waitProgess = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
             this.searchBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.searchBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.refeshBtn = new FontAwesome.Sharp.IconButton();
@@ -50,8 +52,6 @@ namespace GUI
             this.MajorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Actions = new System.Windows.Forms.DataGridViewButtonColumn();
             this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dataLoading = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
-            this.waitProgess = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ClassList)).BeginInit();
@@ -80,6 +80,31 @@ namespace GUI
             this.siticonePanel1.Name = "siticonePanel1";
             this.siticonePanel1.Size = new System.Drawing.Size(975, 62);
             this.siticonePanel1.TabIndex = 0;
+            // 
+            // dataLoading
+            // 
+            this.dataLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataLoading.Animated = true;
+            this.dataLoading.AnimationSpeed = 1.5F;
+            this.dataLoading.BackColor = System.Drawing.Color.Transparent;
+            this.dataLoading.FillColor = System.Drawing.Color.Transparent;
+            this.dataLoading.FillThickness = 3;
+            this.dataLoading.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dataLoading.ForeColor = System.Drawing.Color.Transparent;
+            this.dataLoading.Location = new System.Drawing.Point(596, 15);
+            this.dataLoading.Minimum = 0;
+            this.dataLoading.Name = "dataLoading";
+            this.dataLoading.ProgressColor = System.Drawing.Color.DarkSlateBlue;
+            this.dataLoading.ProgressColor2 = System.Drawing.Color.WhiteSmoke;
+            this.dataLoading.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
+            this.dataLoading.ProgressThickness = 3;
+            this.dataLoading.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.dataLoading.Size = new System.Drawing.Size(31, 31);
+            this.dataLoading.TabIndex = 16;
+            this.dataLoading.Text = "siticoneCircleProgressBar1";
+            this.dataLoading.UseTransparentBackground = true;
+            this.dataLoading.Value = 60;
+            this.dataLoading.Visible = false;
             // 
             // MajorOptions
             // 
@@ -120,6 +145,30 @@ namespace GUI
             this.siticonePanel2.Name = "siticonePanel2";
             this.siticonePanel2.Size = new System.Drawing.Size(310, 62);
             this.siticonePanel2.TabIndex = 3;
+            // 
+            // waitProgess
+            // 
+            this.waitProgess.Animated = true;
+            this.waitProgess.AnimationSpeed = 1F;
+            this.waitProgess.BackColor = System.Drawing.Color.Transparent;
+            this.waitProgess.FillColor = System.Drawing.Color.Transparent;
+            this.waitProgess.FillThickness = 4;
+            this.waitProgess.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.waitProgess.ForeColor = System.Drawing.Color.Transparent;
+            this.waitProgess.Location = new System.Drawing.Point(242, 18);
+            this.waitProgess.Minimum = 0;
+            this.waitProgess.Name = "waitProgess";
+            this.waitProgess.ProgressColor = System.Drawing.Color.White;
+            this.waitProgess.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.waitProgess.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
+            this.waitProgess.ProgressThickness = 4;
+            this.waitProgess.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.waitProgess.Size = new System.Drawing.Size(25, 25);
+            this.waitProgess.TabIndex = 15;
+            this.waitProgess.Text = "siticoneCircleProgressBar1";
+            this.waitProgess.UseTransparentBackground = true;
+            this.waitProgess.Value = 30;
+            this.waitProgess.Visible = false;
             // 
             // searchBox
             // 
@@ -205,6 +254,7 @@ namespace GUI
             this.removeClassBtn.Text = "Xoá bỏ";
             this.removeClassBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.removeClassBtn.UseVisualStyleBackColor = false;
+            this.removeClassBtn.Click += new System.EventHandler(this.removeClassBtn_Click);
             // 
             // addClassBtn
             // 
@@ -352,55 +402,6 @@ namespace GUI
             this.siticonePanel3.Name = "siticonePanel3";
             this.siticonePanel3.Size = new System.Drawing.Size(975, 474);
             this.siticonePanel3.TabIndex = 2;
-            // 
-            // dataLoading
-            // 
-            this.dataLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataLoading.Animated = true;
-            this.dataLoading.AnimationSpeed = 1.5F;
-            this.dataLoading.BackColor = System.Drawing.Color.Transparent;
-            this.dataLoading.FillColor = System.Drawing.Color.Transparent;
-            this.dataLoading.FillThickness = 3;
-            this.dataLoading.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dataLoading.ForeColor = System.Drawing.Color.Transparent;
-            this.dataLoading.Location = new System.Drawing.Point(596, 15);
-            this.dataLoading.Minimum = 0;
-            this.dataLoading.Name = "dataLoading";
-            this.dataLoading.ProgressColor = System.Drawing.Color.DarkSlateBlue;
-            this.dataLoading.ProgressColor2 = System.Drawing.Color.WhiteSmoke;
-            this.dataLoading.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
-            this.dataLoading.ProgressThickness = 3;
-            this.dataLoading.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
-            this.dataLoading.Size = new System.Drawing.Size(31, 31);
-            this.dataLoading.TabIndex = 16;
-            this.dataLoading.Text = "siticoneCircleProgressBar1";
-            this.dataLoading.UseTransparentBackground = true;
-            this.dataLoading.Value = 60;
-            this.dataLoading.Visible = false;
-            // 
-            // waitProgess
-            // 
-            this.waitProgess.Animated = true;
-            this.waitProgess.AnimationSpeed = 1F;
-            this.waitProgess.BackColor = System.Drawing.Color.Transparent;
-            this.waitProgess.FillColor = System.Drawing.Color.Transparent;
-            this.waitProgess.FillThickness = 4;
-            this.waitProgess.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.waitProgess.ForeColor = System.Drawing.Color.Transparent;
-            this.waitProgess.Location = new System.Drawing.Point(242, 18);
-            this.waitProgess.Minimum = 0;
-            this.waitProgess.Name = "waitProgess";
-            this.waitProgess.ProgressColor = System.Drawing.Color.White;
-            this.waitProgess.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.waitProgess.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
-            this.waitProgess.ProgressThickness = 4;
-            this.waitProgess.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
-            this.waitProgess.Size = new System.Drawing.Size(25, 25);
-            this.waitProgess.TabIndex = 15;
-            this.waitProgess.Text = "siticoneCircleProgressBar1";
-            this.waitProgess.UseTransparentBackground = true;
-            this.waitProgess.Value = 30;
-            this.waitProgess.Visible = false;
             // 
             // ClassMG
             // 

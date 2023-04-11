@@ -17,10 +17,11 @@ namespace GUI
         private int rowIndex;
         private DataTable majorList;
         private string currentMajorID;
-
+        private string currentClassID;
         public ClassMG()
         {
             InitializeComponent();
+            currentMajorID = "All";
         }
 
         // Load danh sách tất cả ngành và hiển thị lên combobox MajorOptions
@@ -80,7 +81,7 @@ namespace GUI
         private void ClassMG_Load(object sender, EventArgs e)
         {
             loadMajorOptions();
-            loadData(() => getData("All"));
+            loadData(() => getData(currentMajorID));
         }
 
         // Format hiển thị cho button "Chỉnh sửa" trong DataGridView ClassList
@@ -110,7 +111,7 @@ namespace GUI
             {
                 // Lấy dữ liệu của dòng được click
                 DataGridViewRow row = ClassList.Rows[e.RowIndex];
-                string cellValue = row.Cells["userName"].Value.ToString();
+                string cellValue = row.Cells["ClassID"].Value.ToString();
                 // Tiếp
             }
         }
@@ -118,8 +119,8 @@ namespace GUI
         // Xử lý sự kiện click cho nút Refresh để load lại danh sách lớp học
         private void refeshBtn_Click(object sender, EventArgs e)
         {
-            searchBox.Text = string.Empty;
-            loadData(() => getData(currentMajorID));
+                searchBox.Text = string.Empty;
+                loadData(() => getData(currentMajorID));
         }
 
         // Xử lý sự kiện chọn cho ComboBox ngành học để lọc danh sách lớp học
@@ -127,7 +128,10 @@ namespace GUI
         {
             int optionIndex = MajorOptions.SelectedIndex;
             if (optionIndex <= 0)
-                loadData(() => getData("All"));
+            {
+                currentMajorID = "All";
+                loadData(() => getData(currentMajorID));
+            }    
             else
             {
                 DataRow row = majorList.Rows[optionIndex - 1];
@@ -142,6 +146,41 @@ namespace GUI
             AddClass addClassForm = new AddClass();
             addClassForm.UpdateClassListEvent += new AddClass.UpdateClassList(UpdateClassList);
             addClassForm.ShowDialog();
+        }
+
+        private void removeClassBtn_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra nếu không có hàng nào được chọn
+            if (rowIndex < 0)
+                return;
+            else
+            {
+                // Lấy thông tin từ hàng được chọn
+                DataGridViewRow row = ClassList.Rows[rowIndex];
+                string classID = row.Cells["ClassID"].Value.ToString();
+                // Hiển thị hộp thoại xác nhận xoá lớp học
+                string message = "Bạn có chắc chắn muốn xoá lớp '" + classID + "' không? Thao tác này có thể ảnh hưởng đến sinh viên.";
+                var result = RJMessageBox.Show(message, "Chú ý!", MessageBoxButtons.YesNo);
+                if (result.ToString() == "Yes")
+                {
+                    // Gọi phương thức xoá lớp học từ lớp truy cập CSDL
+                    ClassAccess deleteAccess = new ClassAccess();
+                    Response res = new Response();
+                    Request deleteUserRq = new Request();
+                    deleteUserRq.AddData("ClassID", classID);
+                    res = deleteAccess.DeleteClass(deleteUserRq);
+                    Console.WriteLine(res.code);
+                    // Kiểm tra kết quả xoá thành công
+                    if (res.code == "delete_successfully")
+                    {
+                        // Xoá hàng khỏi bảng danh sách lớp học và cập nhật lại chỉ số hàng được chọn
+                        ClassList.Rows.RemoveAt(rowIndex);
+                        rowIndex = -1;
+                        ClassList.Refresh();
+                    }
+
+                }
+            }
         }
     }
 }

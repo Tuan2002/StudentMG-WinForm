@@ -106,7 +106,7 @@ namespace GUI
             AddMajor addMajorForm = new AddMajor();
             // Gán sự kiện cập nhật danh sách ngành học sau khi thêm mới
             addMajorForm.UpdateNajorListEvent += new AddMajor.UpdateMajorListView(UpdateMajorList);
-            addMajorForm.Show();
+            addMajorForm.ShowDialog();
         }
 
         private void MajorList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -124,7 +124,7 @@ namespace GUI
                 EditMajor editForm = new EditMajor(rowIndex, majorID, majorName);
                 // Đăng ký sự kiện cập nhật thông tin ngành học sau khi chỉnh sửa
                 editForm.UpdateMajorDataEvent += new EditMajor.UpdateMajorData(UpdateMajorData);
-                editForm.Show();
+                editForm.ShowDialog();
             }
         }
         private void removeMajorBtn_Click(object sender, EventArgs e)

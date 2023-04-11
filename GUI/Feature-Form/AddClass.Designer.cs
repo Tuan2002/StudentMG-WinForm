@@ -44,6 +44,7 @@ namespace GUI
             this.classNameError = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.FormCaption = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.formMessage = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            this.siticoneDragControl1 = new Siticone.Desktop.UI.WinForms.SiticoneDragControl(this.components);
             this.siticonePanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -228,14 +229,22 @@ namespace GUI
             // 
             // formMessage
             // 
+            this.formMessage.AutoSize = false;
             this.formMessage.BackColor = System.Drawing.Color.Transparent;
             this.formMessage.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.formMessage.ForeColor = System.Drawing.Color.Red;
-            this.formMessage.Location = new System.Drawing.Point(193, 335);
+            this.formMessage.Location = new System.Drawing.Point(0, 335);
             this.formMessage.Name = "formMessage";
-            this.formMessage.Size = new System.Drawing.Size(167, 22);
+            this.formMessage.Size = new System.Drawing.Size(549, 22);
             this.formMessage.TabIndex = 10;
             this.formMessage.Text = "Vui lòng chọn ngành học";
+            this.formMessage.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // siticoneDragControl1
+            // 
+            this.siticoneDragControl1.DockIndicatorTransparencyValue = 0.6D;
+            this.siticoneDragControl1.TargetControl = this.Formlabel;
+            this.siticoneDragControl1.TransparentWhileDrag = false;
             // 
             // AddClass
             // 
@@ -255,6 +264,7 @@ namespace GUI
             this.Controls.Add(this.siticonePanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddClass";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddClass";
             this.Load += new System.EventHandler(this.AddClass_Load);
             this.siticonePanel1.ResumeLayout(false);
@@ -284,5 +294,6 @@ namespace GUI
         private Siticone.Desktop.UI.WinForms.SiticoneButton AddBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton CancelBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox MajorOptions;
+        private Siticone.Desktop.UI.WinForms.SiticoneDragControl siticoneDragControl1;
     }
 }

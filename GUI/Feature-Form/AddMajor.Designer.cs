@@ -229,7 +229,7 @@ namespace GUI
             this.Controls.Add(this.MajorIDBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddMajor";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddMajor";
             this.Load += new System.EventHandler(this.AddMajor_Load);
             this.formtitle.ResumeLayout(false);

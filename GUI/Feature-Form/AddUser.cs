@@ -97,7 +97,7 @@ namespace GUI
                 avatarPreview.Image = Image.FromFile(openFileDialog.FileName); // Hiển thị ảnh đại diện
                 byte[] imageBytes = System.IO.File.ReadAllBytes(openFileDialog.FileName); // Chuyển ảnh đại diện sang dạng byte[]
                 imageData = Convert.ToBase64String(imageBytes); // Chuyển dạng byte[] sang dạng string để lưu trữ ở cơ sở dữ liệu
-                Console.WriteLine(imageData);
+                //Console.WriteLine(imageData);
             }
         }
 

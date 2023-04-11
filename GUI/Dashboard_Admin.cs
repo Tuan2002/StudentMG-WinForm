@@ -20,7 +20,7 @@ namespace GUI
         private string permissionType;
         private Image userAvatar;
         private Form currentChildForm;
-        private bool isLogout = false;
+        private bool isLogout;
         // Structs
         private struct RGBColors
         {
@@ -41,7 +41,7 @@ namespace GUI
             this.userFullName = userFullName;
             this.permissionType = permissionType;
             this.userAvatar = userAvatar;
-             
+            this.isLogout = false;
         }
         public LoginForm LoginFormInstance { get; set; }
 
