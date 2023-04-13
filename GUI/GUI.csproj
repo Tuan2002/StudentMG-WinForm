@@ -33,13 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.Desktop.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Data.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Drawing.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraBars.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraNavBar.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.3.0\lib\net48\FontAwesome.Sharp.dll</HintPath>
     </Reference>
@@ -82,6 +75,24 @@
     <Compile Include="Dashboard_Admin.Designer.cs">
       <DependentUpon>Dashboard_Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Feature-Form\AddClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature-Form\AddClass.Designer.cs">
+      <DependentUpon>AddClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feature-Form\EditMajor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature-Form\EditMajor.Designer.cs">
+      <DependentUpon>EditMajor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feature-Form\AddMajor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature-Form\AddMajor.Designer.cs">
+      <DependentUpon>AddMajor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Feature-Form\AddUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +104,18 @@
     </Compile>
     <Compile Include="Feature-Form\EditUser.Designer.cs">
       <DependentUpon>EditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feature-Form\MajorMG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature-Form\MajorMG.Designer.cs">
+      <DependentUpon>MajorMG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feature-Form\ClassMG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature-Form\ClassMG.Designer.cs">
+      <DependentUpon>ClassMG.cs</DependentUpon>
     </Compile>
     <Compile Include="Feature-Form\UserMG.cs">
       <SubType>Form</SubType>
@@ -108,17 +131,38 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility-Form\FormMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utility-Form\FormMessageBox.Designer.cs" />
+    <Compile Include="Utility-Form\RJMessageBox.cs" />
     <EmbeddedResource Include="Dashboard_Teacher.resx">
       <DependentUpon>Dashboard_Teacher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard_Admin.resx">
       <DependentUpon>Dashboard_Admin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Feature-Form\AddClass.resx">
+      <DependentUpon>AddClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feature-Form\EditMajor.resx">
+      <DependentUpon>EditMajor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feature-Form\AddMajor.resx">
+      <DependentUpon>AddMajor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Feature-Form\AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Feature-Form\EditUser.resx">
       <DependentUpon>EditUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feature-Form\MajorMG.resx">
+      <DependentUpon>MajorMG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feature-Form\ClassMG.resx">
+      <DependentUpon>ClassMG.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Feature-Form\UserMG.resx">
       <DependentUpon>UserMG.cs</DependentUpon>
@@ -136,6 +180,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Utility-Form\FormMessageBox.resx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -172,6 +217,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\worker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\chat.png" />
+    <Content Include="Resources\error.png" />
+    <Content Include="Resources\exclamation.png" />
+    <Content Include="Resources\information.png" />
+    <Content Include="Resources\question.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,6 @@ using System.Runtime.Remoting.Messaging;
 
 namespace BLL
 {
-
     public class MiddleWare
     { 
         public Response validateForm(Request account)
@@ -29,7 +28,7 @@ namespace BLL
         public Response validateAddUserForm(Request form)
         {
             Response res = new Response();
-            DatabaseAccess HandleAddUser = new DatabaseAccess();
+            UserAccess HandleAddUser = new UserAccess();
             if (form.GetData("userName") == string.Empty)
                 res.code = "userName_null";
             else if (form.GetData("fullName") == string.Empty)
@@ -49,7 +48,7 @@ namespace BLL
         // Get user data
         public Response handleGetUserData(Request currentUser) {
             Response res = new Response();
-            DatabaseAccess HandleGetUserData = new DatabaseAccess();
+            UserAccess HandleGetUserData = new UserAccess();
             res = HandleGetUserData.getUserData(currentUser.GetData("userName"));
             return res;
         }
@@ -57,7 +56,7 @@ namespace BLL
         public Response validateEditUserForm(Request form)
         {
             Response res = new Response();
-            DatabaseAccess HandleUpdate = new DatabaseAccess();
+            UserAccess HandleUpdate = new UserAccess();
             if (form.GetData("newUserName") == string.Empty)
                 res.code = "userName_null";
             else if (form.GetData("fullName") == string.Empty)
@@ -74,7 +73,47 @@ namespace BLL
                 res = HandleUpdate.UpdateUserData(form);
             return res;
         }
-
+        // Add new major
+        public Response validateAddMajor (Request form)
+        {
+            Response res = new Response();
+            MajorAccess HandleAddMajor = new MajorAccess();
+            if (form.GetData("MajorID") == string.Empty)
+                res.code = "majorid_null";
+            else if (form.GetData("MajorName") == string.Empty)
+                res.code = "majorname_null";
+            else
+                res = HandleAddMajor.addMajorToDB(form);
+            return res;
+        }
+        // Edit major data
+        public Response validateEditMajor (Request form)
+        {
+            Response res = new Response();
+            MajorAccess HandleEditMajor = new MajorAccess();
+            if (form.GetData("NewMajorID") == string.Empty)
+                res.code = "majorid_null";
+            else if (form.GetData("MajorName") == string.Empty)
+                res.code = "majorname_null";
+            else
+                res = HandleEditMajor.UpdateMajorData(form);
+            return res;
+        }
+        // Add new class
+        public Response validateAddClass(Request form)
+        {
+            Response res = new Response();
+            ClassAccess HandleAddClass = new ClassAccess();
+            if (form.GetData("ClassID") == string.Empty)
+                res.code = "classid_null";
+            else if (form.GetData("ClassName") == string.Empty)
+                res.code = "classname_null";
+            else if (form.GetData("MajorID") == string.Empty)
+                res.code = "majorid_null";
+            else
+                res = HandleAddClass.addClassToDB(form);
+            return res;
+        }
 
     }
 }

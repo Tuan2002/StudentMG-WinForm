@@ -53,6 +53,7 @@
             this.cancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.permissionSelect = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.siticoneDragControl1 = new Siticone.Desktop.UI.WinForms.SiticoneDragControl(this.components);
             this.siticonePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarPreview)).BeginInit();
             this.siticonePanel1.SuspendLayout();
@@ -216,6 +217,7 @@
             this.selectImageBtn.Size = new System.Drawing.Size(141, 37);
             this.selectImageBtn.TabIndex = 30;
             this.selectImageBtn.Text = "Chọn ảnh";
+            this.selectImageBtn.Click += new System.EventHandler(this.selectImageBtn_Click);
             // 
             // avatarPreview
             // 
@@ -253,6 +255,7 @@
             this.userPasswordConfirm.Size = new System.Drawing.Size(250, 38);
             this.userPasswordConfirm.TabIndex = 27;
             this.userPasswordConfirm.UseSystemPasswordChar = true;
+            this.userPasswordConfirm.Click += new System.EventHandler(this.TextBox_GotFocus);
             // 
             // userPassword
             // 
@@ -278,6 +281,7 @@
             this.userPassword.Size = new System.Drawing.Size(250, 38);
             this.userPassword.TabIndex = 26;
             this.userPassword.UseSystemPasswordChar = true;
+            this.userPassword.Click += new System.EventHandler(this.TextBox_GotFocus);
             // 
             // userEmailBox
             // 
@@ -302,6 +306,7 @@
             this.userEmailBox.SelectedText = "";
             this.userEmailBox.Size = new System.Drawing.Size(250, 38);
             this.userEmailBox.TabIndex = 25;
+            this.userEmailBox.Click += new System.EventHandler(this.TextBox_GotFocus);
             // 
             // userFullNameBox
             // 
@@ -326,6 +331,7 @@
             this.userFullNameBox.SelectedText = "";
             this.userFullNameBox.Size = new System.Drawing.Size(250, 38);
             this.userFullNameBox.TabIndex = 24;
+            this.userFullNameBox.Click += new System.EventHandler(this.TextBox_GotFocus);
             // 
             // userNameBox
             // 
@@ -350,6 +356,7 @@
             this.userNameBox.SelectedText = "";
             this.userNameBox.Size = new System.Drawing.Size(250, 38);
             this.userNameBox.TabIndex = 23;
+            this.userNameBox.Click += new System.EventHandler(this.TextBox_GotFocus);
             // 
             // siticonePanel1
             // 
@@ -431,6 +438,12 @@
             this.permissionSelect.TabIndex = 28;
             this.permissionSelect.SelectedIndexChanged += new System.EventHandler(this.permissionSelect_SelectedIndexChanged);
             // 
+            // siticoneDragControl1
+            // 
+            this.siticoneDragControl1.DockIndicatorTransparencyValue = 0.6D;
+            this.siticoneDragControl1.TargetControl = this.siticonePanel1;
+            this.siticoneDragControl1.TransparentWhileDrag = false;
+            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -458,6 +471,7 @@
             this.Controls.Add(this.permissionSelect);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EditForm";
             this.Load += new System.EventHandler(this.EditForm_Load);
             this.siticonePanel2.ResumeLayout(false);
@@ -497,5 +511,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton cancelBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm siticoneBorderlessForm1;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox permissionSelect;
+        private Siticone.Desktop.UI.WinForms.SiticoneDragControl siticoneDragControl1;
     }
 }

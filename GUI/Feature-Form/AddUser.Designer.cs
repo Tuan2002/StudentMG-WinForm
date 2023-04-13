@@ -32,7 +32,7 @@ namespace GUI
         {
             this.components = new System.ComponentModel.Container();
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
-            this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.CancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.addUserBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.userNameBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -53,8 +53,9 @@ namespace GUI
             this.imageRequied = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.formLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
-            this.formError = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            this.formMessage = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.avatarPreview = new Siticone.Desktop.UI.WinForms.SiticoneCirclePictureBox();
+            this.siticoneDragControl1 = new Siticone.Desktop.UI.WinForms.SiticoneDragControl(this.components);
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarPreview)).BeginInit();
@@ -67,25 +68,25 @@ namespace GUI
             this.siticoneBorderlessForm1.ResizeForm = false;
             this.siticoneBorderlessForm1.TransparentWhileDrag = true;
             // 
-            // siticoneButton1
+            // CancelBtn
             // 
-            this.siticoneButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.siticoneButton1.BorderColor = System.Drawing.Color.Transparent;
-            this.siticoneButton1.BorderRadius = 10;
-            this.siticoneButton1.BorderThickness = 1;
-            this.siticoneButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.siticoneButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton1.FillColor = System.Drawing.Color.OrangeRed;
-            this.siticoneButton1.Font = new System.Drawing.Font("Roboto Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.siticoneButton1.ForeColor = System.Drawing.Color.White;
-            this.siticoneButton1.Location = new System.Drawing.Point(340, 12);
-            this.siticoneButton1.Name = "siticoneButton1";
-            this.siticoneButton1.Size = new System.Drawing.Size(140, 39);
-            this.siticoneButton1.TabIndex = 0;
-            this.siticoneButton1.Text = "Huỷ bỏ";
-            this.siticoneButton1.Click += new System.EventHandler(this.siticoneButton1_Click_1);
+            this.CancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CancelBtn.BorderColor = System.Drawing.Color.Transparent;
+            this.CancelBtn.BorderRadius = 10;
+            this.CancelBtn.BorderThickness = 1;
+            this.CancelBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.CancelBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.CancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.CancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.CancelBtn.FillColor = System.Drawing.Color.OrangeRed;
+            this.CancelBtn.Font = new System.Drawing.Font("Roboto Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelBtn.ForeColor = System.Drawing.Color.White;
+            this.CancelBtn.Location = new System.Drawing.Point(340, 12);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(140, 39);
+            this.CancelBtn.TabIndex = 0;
+            this.CancelBtn.Text = "Huỷ bỏ";
+            this.CancelBtn.Click += new System.EventHandler(this.CancleBtn_Click);
             // 
             // addUserBtn
             // 
@@ -110,7 +111,7 @@ namespace GUI
             // siticonePanel1
             // 
             this.siticonePanel1.Controls.Add(this.addUserBtn);
-            this.siticonePanel1.Controls.Add(this.siticoneButton1);
+            this.siticonePanel1.Controls.Add(this.CancelBtn);
             this.siticonePanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.siticonePanel1.Location = new System.Drawing.Point(0, 537);
             this.siticonePanel1.Name = "siticonePanel1";
@@ -140,6 +141,7 @@ namespace GUI
             this.userNameBox.SelectedText = "";
             this.userNameBox.Size = new System.Drawing.Size(250, 38);
             this.userNameBox.TabIndex = 3;
+            this.userNameBox.Click += new System.EventHandler(this.TextBox_GotFocus);
             // 
             // userFullNameBox
             // 
@@ -164,6 +166,7 @@ namespace GUI
             this.userFullNameBox.SelectedText = "";
             this.userFullNameBox.Size = new System.Drawing.Size(250, 38);
             this.userFullNameBox.TabIndex = 4;
+            this.userFullNameBox.Click += new System.EventHandler(this.TextBox_GotFocus);
             // 
             // userEmailBox
             // 
@@ -188,6 +191,7 @@ namespace GUI
             this.userEmailBox.SelectedText = "";
             this.userEmailBox.Size = new System.Drawing.Size(250, 38);
             this.userEmailBox.TabIndex = 5;
+            this.userEmailBox.Click += new System.EventHandler(this.TextBox_GotFocus);
             // 
             // userPassword
             // 
@@ -213,6 +217,7 @@ namespace GUI
             this.userPassword.Size = new System.Drawing.Size(250, 38);
             this.userPassword.TabIndex = 6;
             this.userPassword.UseSystemPasswordChar = true;
+            this.userPassword.Click += new System.EventHandler(this.TextBox_GotFocus);
             // 
             // userPasswordConfirm
             // 
@@ -238,6 +243,7 @@ namespace GUI
             this.userPasswordConfirm.Size = new System.Drawing.Size(250, 38);
             this.userPasswordConfirm.TabIndex = 7;
             this.userPasswordConfirm.UseSystemPasswordChar = true;
+            this.userPasswordConfirm.Click += new System.EventHandler(this.TextBox_GotFocus);
             // 
             // permissionSelect
             // 
@@ -405,20 +411,20 @@ namespace GUI
             this.formLabel.Text = "Thêm người dùng";
             this.formLabel.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // formError
+            // formMessage
             // 
-            this.formError.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.formMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.formError.AutoSize = false;
-            this.formError.BackColor = System.Drawing.Color.Transparent;
-            this.formError.Font = new System.Drawing.Font("Roboto", 11F);
-            this.formError.ForeColor = System.Drawing.Color.Red;
-            this.formError.Location = new System.Drawing.Point(0, 515);
-            this.formError.Name = "formError";
-            this.formError.Size = new System.Drawing.Size(680, 20);
-            this.formError.TabIndex = 21;
-            this.formError.Text = "Người dùng đã có trong hệ thống ";
-            this.formError.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.formMessage.AutoSize = false;
+            this.formMessage.BackColor = System.Drawing.Color.Transparent;
+            this.formMessage.Font = new System.Drawing.Font("Roboto", 11F);
+            this.formMessage.ForeColor = System.Drawing.Color.Red;
+            this.formMessage.Location = new System.Drawing.Point(0, 515);
+            this.formMessage.Name = "formMessage";
+            this.formMessage.Size = new System.Drawing.Size(680, 20);
+            this.formMessage.TabIndex = 21;
+            this.formMessage.Text = "Người dùng đã có trong hệ thống ";
+            this.formMessage.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // avatarPreview
             // 
@@ -432,11 +438,17 @@ namespace GUI
             this.avatarPreview.TabIndex = 9;
             this.avatarPreview.TabStop = false;
             // 
+            // siticoneDragControl1
+            // 
+            this.siticoneDragControl1.DockIndicatorTransparencyValue = 0.6D;
+            this.siticoneDragControl1.TargetControl = this.formLabel;
+            this.siticoneDragControl1.TransparentWhileDrag = false;
+            // 
             // AddUser
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(680, 600);
-            this.Controls.Add(this.formError);
+            this.Controls.Add(this.formMessage);
             this.Controls.Add(this.siticonePanel2);
             this.Controls.Add(this.imageRequied);
             this.Controls.Add(this.siticoneHtmlLabel1);
@@ -458,7 +470,7 @@ namespace GUI
             this.Controls.Add(this.siticonePanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddUser";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddUser";
             this.Load += new System.EventHandler(this.AddUser_Load);
             this.siticonePanel1.ResumeLayout(false);
@@ -467,11 +479,6 @@ namespace GUI
             this.ResumeLayout(false);
             this.PerformLayout();
 
-            this.userNameBox.GotFocus += TextBox_GotFocus;
-            this.userFullNameBox.GotFocus += TextBox_GotFocus;
-            this.userEmailBox.GotFocus += TextBox_GotFocus;
-            this.userPassword.GotFocus += TextBox_GotFocus;
-            this.userPasswordConfirm.GotFocus += TextBox_GotFocus;
         }
 
         private void TextBox_GotFocus(object sender, System.EventArgs e)
@@ -483,7 +490,7 @@ namespace GUI
 
         private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm siticoneBorderlessForm1;
         private Siticone.Desktop.UI.WinForms.SiticoneButton addUserBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton CancelBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox userPasswordConfirm;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox userPassword;
@@ -504,6 +511,7 @@ namespace GUI
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel imageRequied;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel formLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel formError;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel formMessage;
+        private Siticone.Desktop.UI.WinForms.SiticoneDragControl siticoneDragControl1;
     }
 }
