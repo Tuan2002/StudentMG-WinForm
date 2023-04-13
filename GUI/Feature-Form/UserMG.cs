@@ -95,18 +95,18 @@ namespace GUI
         private void addUserBtn_Click(object sender, EventArgs e)
         {
             AddUser addUserForm = new AddUser();
-            addUserForm.UpdateUserListEvent += new AddUser.UpdateUserListView(UpdateUserList);
+            addUserForm.parentInstance = this;
             addUserForm.ShowDialog();
         }
 
         // Sự kiện UpdateUserListEvent được gọi khi có người dùng mới được thêm vào
-        private void UpdateUserList(string userName, string userPassword, string userEmail)
+        public void UpdateUserList(string userName, string userPassword, string userEmail)
         {
             userList.Rows.Add(userName, userPassword, userEmail);
         }
 
         // Phương thức cập nhật dữ liệu của một người dùng
-        private void UpdateUserData(int rowIndex, string userName, string userPassword, string userEmail)
+        public void UpdateUserData(int rowIndex, string userName, string userPassword, string userEmail)
         {
             userList.Rows[rowIndex].Cells["userName"].Value = userName;
             userList.Rows[rowIndex].Cells["passWord"].Value = userPassword;
@@ -127,7 +127,7 @@ namespace GUI
 
                 // Hiển thị Form để chỉnh sửa thông tin người dùng
                 EditForm editForm = new EditForm(rowIndex, cellValue);
-                editForm.UpdateUserDataEvent += new EditForm.UpdateUserData(UpdateUserData);
+                editForm.parentInstance = this;
                 editForm.ShowDialog();
             }
         }

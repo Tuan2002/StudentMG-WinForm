@@ -14,10 +14,9 @@ namespace GUI
 {
     public partial class EditMajor : Form
     {
-        // Khai báo delegate để update dữ liệu khi edit
-        public delegate void UpdateMajorData(int rowIndex, string majorID, string majorName);
-        public event UpdateMajorData UpdateMajorDataEvent;
+        // Khai báo biến để truy cập đến form MajorMG
         // Khai báo biến lưu trữ chỉ số hàng và mã ngành học hiện tại
+        public MajorMG parentInstance { get; set; }
         private int rowIndex;
         private string currentMajorID;
         public EditMajor()
@@ -81,8 +80,8 @@ namespace GUI
             switch (res.code)
             {
                 case "update_successfully":
-                    // Nếu sửa thành công, gọi event UpdateMajorDataEvent để cập nhật lại dữ liệu ngành học
-                    UpdateMajorDataEvent(rowIndex, MajorIDBox.Text.Trim().ToUpper(), MajorNameBox.Text.Trim());
+                    // Nếu sửa thành công, gọi phương thức UpdateMajorData để cập nhật lại dữ liệu ngành học
+                    parentInstance.UpdateMajorData(rowIndex, MajorIDBox.Text.Trim().ToUpper(), MajorNameBox.Text.Trim());
                     // Đóng form sửa ngành học
                     this.Close();
                     break;

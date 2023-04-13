@@ -88,13 +88,13 @@ namespace GUI
         }
 
         // Hàm UpdateMajorList() để cập nhật thêm một dòng mới vào DataGridView khi người dùng thêm mới một bản ghi
-        private void UpdateMajorList(string majorID, string majorName)
+        public void UpdateMajorList(string majorID, string majorName)
         {
             MajorList.Rows.Add(majorID, majorName);
         }
 
         // Hàm UpdateMajorData() để cập nhật lại dữ liệu
-        private void UpdateMajorData(int rowIndex, string majorID, string majorName)
+        public void UpdateMajorData(int rowIndex, string majorID, string majorName)
         {
             MajorList.Rows[rowIndex].Cells["MajorID"].Value = majorID;
             MajorList.Rows[rowIndex].Cells["MajorName"].Value = majorName;
@@ -105,7 +105,8 @@ namespace GUI
             // Mở form thêm mới ngành học
             AddMajor addMajorForm = new AddMajor();
             // Gán sự kiện cập nhật danh sách ngành học sau khi thêm mới
-            addMajorForm.UpdateNajorListEvent += new AddMajor.UpdateMajorListView(UpdateMajorList);
+            //addMajorForm.UpdateNajorListEvent += new AddMajor.UpdateMajorListView(UpdateMajorList);
+            addMajorForm.parentInstance = this;
             addMajorForm.ShowDialog();
         }
 
@@ -123,7 +124,7 @@ namespace GUI
                 // Mở form chỉnh sửa thông tin ngành học
                 EditMajor editForm = new EditMajor(rowIndex, majorID, majorName);
                 // Đăng ký sự kiện cập nhật thông tin ngành học sau khi chỉnh sửa
-                editForm.UpdateMajorDataEvent += new EditMajor.UpdateMajorData(UpdateMajorData);
+                editForm.parentInstance = this;
                 editForm.ShowDialog();
             }
         }

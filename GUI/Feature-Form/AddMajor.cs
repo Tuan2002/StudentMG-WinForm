@@ -14,9 +14,8 @@ namespace GUI
 {
     public partial class AddMajor : Form
     {
-        // Khai báo delegate để update danh sách khi thêm mới ngành học
-        public delegate void UpdateMajorListView(string majorID, string majorName);
-        public event UpdateMajorListView UpdateNajorListEvent;
+        // Khai báo biến để truy cập đến form MajorMG
+        public MajorMG parentInstance { get; set; }
         public AddMajor()
         {
             InitializeComponent();
@@ -71,7 +70,7 @@ namespace GUI
             switch (res.code)
             {
                 case "success":
-                    UpdateNajorListEvent(MajorIDBox.Text.Trim().ToUpper(), MajorNameBox.Text.Trim());
+                    parentInstance.UpdateMajorList(MajorIDBox.Text.Trim().ToUpper(), MajorNameBox.Text.Trim());
                     this.clearForm();
                     formMessage.ForeColor = Color.ForestGreen;
                     formMessage.Text = "Thêm ngành học thành công!";

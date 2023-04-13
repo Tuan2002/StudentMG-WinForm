@@ -18,9 +18,8 @@ namespace GUI
         private string currentMajorID;
         private string currentMajorName;
 
-        // Khai báo sự kiện để cập nhật danh sách lớp học
-        public delegate void UpdateClassList(string classID, string className, string majorName);
-        public event UpdateClassList UpdateClassListEvent;
+        // Khai báo biến truy cập vào ClassMG form để cập nhật danh sách lớp học
+        public ClassMG parentInstance {get; set;}
 
         public AddClass()
         {
@@ -108,7 +107,7 @@ namespace GUI
             switch (res.code)
             {
                 case "success":
-                    UpdateClassListEvent(classIDBox.Text.Trim().ToUpper(), classNameBox.Text.Trim(), currentMajorName);
+                    parentInstance.UpdateClassList(classIDBox.Text.Trim().ToUpper(), classNameBox.Text.Trim(), currentMajorName);
                     this.clearForm();
                     formMessage.ForeColor = Color.ForestGreen;
                     formMessage.Text = "Thêm lớp học thành công!";

@@ -20,9 +20,8 @@ namespace GUI
         private string imageData = string.Empty;
         private int permissionId = 0;
         private int rowindex;
-        // Khai báo event để gọi hàm cập nhật thông tin người dùng
-        public delegate void UpdateUserData(int rowIndex, string userName, string userPassword, string userEmail);
-        public event UpdateUserData UpdateUserDataEvent;
+        // Khai báo biến để truy cập vào form UserMG
+        public UserMG parentInstance { get; set; }
         public EditForm()
         {
             InitializeComponent();
@@ -185,7 +184,7 @@ namespace GUI
             switch (res.code)
             {
                 case "update_successfully":
-                    UpdateUserDataEvent(rowindex, userNameBox.Text, userPassword.Text, userEmailBox.Text);
+                    parentInstance.UpdateUserData(rowindex, userNameBox.Text, userPassword.Text, userEmailBox.Text);
                     this.Close();
                     break;
                 case "user_already_exist":

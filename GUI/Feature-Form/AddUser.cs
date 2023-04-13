@@ -22,10 +22,8 @@ namespace GUI
         private int permissionId = 0;
         // Biến lưu trữ ảnh mặc định
         private Image defautImage;
-
-        // Định nghĩa event để cập nhật danh sách người dùng
-        public delegate void UpdateUserListView(string userName, string userPassword, string userEmail);
-        public event UpdateUserListView UpdateUserListEvent;
+        // Khai báo biến để truy cập vào form UserMG
+        public UserMG parentInstance { get; set; }
 
         // Phương thức dùng để xóa các thông báo lỗi trên form đăng ký
         public void clearValidateForm()
@@ -176,11 +174,10 @@ namespace GUI
             res = handleAddUser.validateAddUserForm(addUser);
 
             // Xử lý kết quả trả về từ hàm validateAddUserForm
-
             switch (res.code)
             {
-                case "success": 
-                    UpdateUserListEvent(userNameBox.Text, userPassword.Text, userEmailBox.Text);
+                case "success":
+                    parentInstance.UpdateUserList(userNameBox.Text, userPassword.Text, userEmailBox.Text);
                     clearForm();
                     formMessage.Text = "Thêm người dùng thành công";
                     formMessage.ForeColor = Color.ForestGreen;
