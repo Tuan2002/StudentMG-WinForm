@@ -16,6 +16,7 @@ namespace GUI
 {
     public partial class LoginForm : Form
     {
+        public bool isLogin = false;
         // Xóa thông báo lỗi trước khi đăng nhập
         public void clearValidate()
         {
@@ -58,8 +59,9 @@ namespace GUI
             loginBtn.Text = "Đăng nhập";
 
             // Kiểm tra kết quả đăng nhập
-            if (res.code == "success")
+            if (res.code == "success" && !isLogin)
             {
+                isLogin = true;
                 // Chuyển đến form dashboard
                 byte[] imageBytes = Convert.FromBase64String(res.userImage);
                 MemoryStream memoryStream = new MemoryStream(imageBytes);
@@ -68,6 +70,7 @@ namespace GUI
                 switch (res.permissionType)
                 {
                     case "Admin":
+                        Console.WriteLine("Đăng nhập thành công");
                         Dashboard_Admin adminDashboard = new Dashboard_Admin(res.userFullName, res.permissionType, avatar);
                         adminDashboard.LoginFormInstance = this;
                         adminDashboard.Show();
@@ -81,7 +84,7 @@ namespace GUI
                         break;
                 }
             }
-            else
+            else if (res.code != "success")
             {
                 // Hiển thị thông báo lỗi
                 switch (res.code)
