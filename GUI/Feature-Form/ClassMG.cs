@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
@@ -17,7 +13,6 @@ namespace GUI
         private int rowIndex;
         private DataTable majorList;
         private string currentMajorID;
-        private string currentClassID;
         public ClassMG()
         {
             InitializeComponent();
@@ -99,11 +94,18 @@ namespace GUI
         }
 
         // Thêm 1 lớp học mới vào DataGridView ClassList
-        private void UpdateClassList(string classID, string className, string majorName)
+        public void UpdateClassList(string classID, string className, string majorName)
         {
             ClassList.Rows.Add(classID, className, majorName);
         }
 
+        public void UpdateClassData(int rowIndex, string classID, string className, string majorName)
+        {
+            ClassList.Rows[rowIndex].Cells["ClassID"].Value = classID;
+            ClassList.Rows[rowIndex].Cells["ClassName"].Value = className;
+            ClassList.Rows[rowIndex].Cells["MajorName"].Value = majorName;
+        }
+        // Xử lý sự kiện click vào nút Chỉnh sửa
         private void userList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             rowIndex = e.RowIndex;
@@ -111,7 +113,10 @@ namespace GUI
             {
                 // Lấy dữ liệu của dòng được click
                 DataGridViewRow row = ClassList.Rows[e.RowIndex];
-                string cellValue = row.Cells["ClassID"].Value.ToString();
+                string classID = row.Cells["ClassID"].Value.ToString();
+                EditClass editForm = new EditClass(rowIndex,classID);
+                editForm.parentInstance = this;
+                editForm.ShowDialog();
                 // Tiếp
             }
         }
@@ -144,7 +149,7 @@ namespace GUI
         private void addClassBtn_Click(object sender, EventArgs e)
         {
             AddClass addClassForm = new AddClass();
-            addClassForm.UpdateClassListEvent += new AddClass.UpdateClassList(UpdateClassList);
+            addClassForm.parentInstance= this;
             addClassForm.ShowDialog();
         }
 

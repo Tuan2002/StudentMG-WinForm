@@ -9,7 +9,7 @@ using System.Runtime.Remoting.Messaging;
 namespace BLL
 {
     public class MiddleWare
-    { 
+    {
         public Response validateForm(Request account)
         {
             DatabaseAccess loginAccess = new DatabaseAccess();
@@ -20,7 +20,7 @@ namespace BLL
                 res.code = "password_null";
             else
                 res = loginAccess.hanndleLogin(account);
-  /*          res.code = "null";*/
+            /*          res.code = "null";*/
             return res;
 
         }
@@ -38,12 +38,12 @@ namespace BLL
             else if (form.GetData("password") == string.Empty)
                 res.code = "password_null";
             else if (form.GetData("confirmPassword") != form.GetData("password"))
-                res.code = "confirmPassword_notMatch"; 
+                res.code = "confirmPassword_notMatch";
             else if (form.GetData("permissionType") == "0")
                 res.code = "permissionType_null";
             else
                 res = HandleAddUser.addUserToDB(form);
-             return res;     
+            return res;
         }
         // Get user data
         public Response handleGetUserData(Request currentUser) {
@@ -74,7 +74,7 @@ namespace BLL
             return res;
         }
         // Add new major
-        public Response validateAddMajor (Request form)
+        public Response validateAddMajor(Request form)
         {
             Response res = new Response();
             MajorAccess HandleAddMajor = new MajorAccess();
@@ -87,7 +87,7 @@ namespace BLL
             return res;
         }
         // Edit major data
-        public Response validateEditMajor (Request form)
+        public Response validateEditMajor(Request form)
         {
             Response res = new Response();
             MajorAccess HandleEditMajor = new MajorAccess();
@@ -112,6 +112,21 @@ namespace BLL
                 res.code = "majorid_null";
             else
                 res = HandleAddClass.addClassToDB(form);
+            return res;
+        }
+        // Edit class data
+        public Response validateEditClass(Request form)
+        {
+            Response res = new Response();
+            ClassAccess HandleEditClass = new ClassAccess();
+            if (form.GetData("NewClassID") == string.Empty)
+                res.code = "classid_null";
+            else if (form.GetData("ClassName") == string.Empty)
+                res.code = "classname_null";
+            else if (form.GetData("MajorID") == string.Empty)
+                res.code = "majorid_null";
+            else
+                res = HandleEditClass.UpdateClassData(form);
             return res;
         }
 

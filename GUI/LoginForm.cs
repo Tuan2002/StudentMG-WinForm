@@ -70,7 +70,6 @@ namespace GUI
                 switch (res.permissionType)
                 {
                     case "Admin":
-                        Console.WriteLine("Đăng nhập thành công");
                         Dashboard_Admin adminDashboard = new Dashboard_Admin(res.userFullName, res.permissionType, avatar);
                         adminDashboard.LoginFormInstance = this;
                         adminDashboard.Show();
