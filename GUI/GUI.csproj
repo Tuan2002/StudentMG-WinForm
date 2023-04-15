@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +50,9 @@
   <ItemGroup>
     <Reference Include="FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.3.0\lib\net48\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -74,6 +92,18 @@
     </Compile>
     <Compile Include="Dashboard_Admin.Designer.cs">
       <DependentUpon>Dashboard_Admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feature-Form\AddStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature-Form\AddStudent.Designer.cs">
+      <DependentUpon>AddStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feature-Form\StudentMG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature-Form\StudentMG.Designer.cs">
+      <DependentUpon>StudentMG.cs</DependentUpon>
     </Compile>
     <Compile Include="Feature-Form\EditClass.cs">
       <SubType>Form</SubType>
@@ -147,6 +177,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard_Admin.resx">
       <DependentUpon>Dashboard_Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feature-Form\AddStudent.resx">
+      <DependentUpon>AddStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feature-Form\StudentMG.resx">
+      <DependentUpon>StudentMG.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Feature-Form\EditClass.resx">
       <DependentUpon>EditClass.cs</DependentUpon>
@@ -233,6 +269,18 @@
     <Content Include="Resources\exclamation.png" />
     <Content Include="Resources\information.png" />
     <Content Include="Resources\question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

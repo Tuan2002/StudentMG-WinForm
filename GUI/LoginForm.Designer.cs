@@ -277,7 +277,7 @@ namespace GUI
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "Đăng nhập";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox1)).EndInit();
             this.ResumeLayout(false);

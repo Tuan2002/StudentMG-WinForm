@@ -45,6 +45,7 @@
     <Compile Include="DatabaseAccess.cs" />
     <Compile Include="MajorAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudentAccess.cs" />
     <Compile Include="UserAccess.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -374,6 +374,7 @@ namespace GUI
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Dashboard_Admin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Quản lý Sinh viên";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Dashboard_Admin_FormClosing);
             this.Load += new System.EventHandler(this.Dashboard_Admin_Load);
             this.siticonePanel1.ResumeLayout(false);

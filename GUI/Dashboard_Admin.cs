@@ -114,7 +114,7 @@ namespace GUI
         private void studentListBtn_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color4);
-
+            openChildForm(new StudentMG());
         }
 
         private void siticoneControlBox1_Click(object sender, EventArgs e)
