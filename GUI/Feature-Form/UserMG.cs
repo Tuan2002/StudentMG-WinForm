@@ -117,10 +117,10 @@ namespace GUI
         private void userList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             rowIndex = e.RowIndex;
-
             // Nếu click vào nút "Chỉnh sửa" trong cột "Actions", hiển thị Form để chỉnh sửa thông tin người dùng
             if (userList.Columns[e.ColumnIndex].Name == "Actions")
             {
+                Console.WriteLine("Chỉnh sửa");
                 // Lấy dữ liệu của hàng được click
                 DataGridViewRow row = userList.Rows[e.RowIndex];
                 string cellValue = row.Cells["userName"].Value.ToString();

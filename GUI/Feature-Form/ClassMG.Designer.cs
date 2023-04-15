@@ -47,11 +47,11 @@ namespace GUI
             this.removeClassBtn = new FontAwesome.Sharp.IconButton();
             this.addClassBtn = new FontAwesome.Sharp.IconButton();
             this.ClassList = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.ClassID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MajorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Actions = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ClassList)).BeginInit();
@@ -91,7 +91,7 @@ namespace GUI
             this.dataLoading.FillThickness = 3;
             this.dataLoading.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.dataLoading.ForeColor = System.Drawing.Color.Transparent;
-            this.dataLoading.Location = new System.Drawing.Point(596, 15);
+            this.dataLoading.Location = new System.Drawing.Point(588, 15);
             this.dataLoading.Minimum = 0;
             this.dataLoading.Name = "dataLoading";
             this.dataLoading.ProgressColor = System.Drawing.Color.DarkSlateBlue;
@@ -128,9 +128,9 @@ namespace GUI
             this.MajorOptions.ItemsAppearance.SelectedFont = new System.Drawing.Font("Roboto", 10F);
             this.MajorOptions.Location = new System.Drawing.Point(370, 10);
             this.MajorOptions.MaxDropDownItems = 5;
-            this.MajorOptions.MinimumSize = new System.Drawing.Size(200, 0);
+            this.MajorOptions.MinimumSize = new System.Drawing.Size(150, 0);
             this.MajorOptions.Name = "MajorOptions";
-            this.MajorOptions.Size = new System.Drawing.Size(206, 46);
+            this.MajorOptions.Size = new System.Drawing.Size(200, 46);
             this.MajorOptions.TabIndex = 0;
             this.MajorOptions.SelectedIndexChanged += new System.EventHandler(this.MajorOptions_SelectedIndexChanged);
             // 
@@ -140,10 +140,10 @@ namespace GUI
             this.siticonePanel2.Controls.Add(this.searchBox);
             this.siticonePanel2.Controls.Add(this.searchBtn);
             this.siticonePanel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.siticonePanel2.Location = new System.Drawing.Point(665, 0);
+            this.siticonePanel2.Location = new System.Drawing.Point(695, 0);
             this.siticonePanel2.Margin = new System.Windows.Forms.Padding(2);
             this.siticonePanel2.Name = "siticonePanel2";
-            this.siticonePanel2.Size = new System.Drawing.Size(310, 62);
+            this.siticonePanel2.Size = new System.Drawing.Size(280, 62);
             this.siticonePanel2.TabIndex = 3;
             // 
             // waitProgess
@@ -155,7 +155,7 @@ namespace GUI
             this.waitProgess.FillThickness = 4;
             this.waitProgess.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.waitProgess.ForeColor = System.Drawing.Color.Transparent;
-            this.waitProgess.Location = new System.Drawing.Point(242, 18);
+            this.waitProgess.Location = new System.Drawing.Point(213, 17);
             this.waitProgess.Minimum = 0;
             this.waitProgess.Name = "waitProgess";
             this.waitProgess.ProgressColor = System.Drawing.Color.White;
@@ -184,14 +184,14 @@ namespace GUI
             this.searchBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.searchBox.Font = new System.Drawing.Font("Roboto", 10F);
             this.searchBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.searchBox.Location = new System.Drawing.Point(15, 11);
+            this.searchBox.Location = new System.Drawing.Point(19, 10);
             this.searchBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.searchBox.Name = "searchBox";
             this.searchBox.PasswordChar = '\0';
             this.searchBox.PlaceholderForeColor = System.Drawing.Color.DarkGray;
             this.searchBox.PlaceholderText = "Tìm lớp học";
             this.searchBox.SelectedText = "";
-            this.searchBox.Size = new System.Drawing.Size(190, 39);
+            this.searchBox.Size = new System.Drawing.Size(150, 39);
             this.searchBox.TabIndex = 2;
             // 
             // searchBtn
@@ -203,7 +203,7 @@ namespace GUI
             this.searchBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.searchBtn.Font = new System.Drawing.Font("Roboto", 9F);
             this.searchBtn.ForeColor = System.Drawing.Color.White;
-            this.searchBtn.Location = new System.Drawing.Point(208, 10);
+            this.searchBtn.Location = new System.Drawing.Point(178, 10);
             this.searchBtn.Margin = new System.Windows.Forms.Padding(2);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(91, 40);
@@ -355,6 +355,15 @@ namespace GUI
             this.ClassList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userList_CellClick);
             this.ClassList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.userList_CellFormatting);
             // 
+            // siticonePanel3
+            // 
+            this.siticonePanel3.Controls.Add(this.ClassList);
+            this.siticonePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.siticonePanel3.Location = new System.Drawing.Point(0, 62);
+            this.siticonePanel3.Name = "siticonePanel3";
+            this.siticonePanel3.Size = new System.Drawing.Size(975, 474);
+            this.siticonePanel3.TabIndex = 2;
+            // 
             // ClassID
             // 
             this.ClassID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -366,21 +375,17 @@ namespace GUI
             // 
             // ClassName
             // 
-            this.ClassName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ClassName.Frozen = true;
             this.ClassName.HeaderText = "Tên lớp học";
             this.ClassName.Name = "ClassName";
             this.ClassName.ReadOnly = true;
-            this.ClassName.Width = 150;
             // 
             // MajorName
             // 
             this.MajorName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.MajorName.Frozen = true;
             this.MajorName.HeaderText = "Tên ngành học";
             this.MajorName.Name = "MajorName";
             this.MajorName.ReadOnly = true;
-            this.MajorName.Width = 300;
+            this.MajorName.Width = 350;
             // 
             // Actions
             // 
@@ -393,15 +398,6 @@ namespace GUI
             this.Actions.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Actions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Actions.Width = 150;
-            // 
-            // siticonePanel3
-            // 
-            this.siticonePanel3.Controls.Add(this.ClassList);
-            this.siticonePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.siticonePanel3.Location = new System.Drawing.Point(0, 62);
-            this.siticonePanel3.Name = "siticonePanel3";
-            this.siticonePanel3.Size = new System.Drawing.Size(975, 474);
-            this.siticonePanel3.TabIndex = 2;
             // 
             // ClassMG
             // 
@@ -441,11 +437,11 @@ namespace GUI
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel3;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox searchBox;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox MajorOptions;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar dataLoading;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar waitProgess;
         private DataGridViewTextBoxColumn ClassID;
         private DataGridViewTextBoxColumn ClassName;
         private DataGridViewTextBoxColumn MajorName;
         private DataGridViewButtonColumn Actions;
-        private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar dataLoading;
-        private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar waitProgess;
     }
 }

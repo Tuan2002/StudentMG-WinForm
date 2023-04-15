@@ -101,7 +101,6 @@ namespace GUI
                 currentMajorName = selectedMajor["MajorName"].ToString();
             }
         }
-
         private void classIDBox_TextChanged(object sender, EventArgs e)
         {
             // Sao chép nội dung của classIDBox sang classNameBox và chuyển thành chữ hoa

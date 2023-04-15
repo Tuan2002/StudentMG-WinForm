@@ -45,17 +45,17 @@ namespace GUI
             this.refeshBtn = new FontAwesome.Sharp.IconButton();
             this.removeUserBtn = new FontAwesome.Sharp.IconButton();
             this.addUserBtn = new FontAwesome.Sharp.IconButton();
+            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.SearchInputEvent = new System.Windows.Forms.Timer(this.components);
             this.userList = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passWord = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Actions = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.SearchInputEvent = new System.Windows.Forms.Timer(this.components);
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userList)).BeginInit();
             this.siticonePanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userList)).BeginInit();
             this.SuspendLayout();
             // 
             // siticoneBorderlessForm1
@@ -251,6 +251,20 @@ namespace GUI
             this.addUserBtn.UseVisualStyleBackColor = false;
             this.addUserBtn.Click += new System.EventHandler(this.addUserBtn_Click);
             // 
+            // siticonePanel3
+            // 
+            this.siticonePanel3.Controls.Add(this.userList);
+            this.siticonePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.siticonePanel3.Location = new System.Drawing.Point(0, 62);
+            this.siticonePanel3.Name = "siticonePanel3";
+            this.siticonePanel3.Size = new System.Drawing.Size(746, 412);
+            this.siticonePanel3.TabIndex = 2;
+            // 
+            // SearchInputEvent
+            // 
+            this.SearchInputEvent.Interval = 1000;
+            this.SearchInputEvent.Tick += new System.EventHandler(this.SearchInputEventEnd);
+            // 
             // userList
             // 
             this.userList.AllowUserToAddRows = false;
@@ -258,7 +272,6 @@ namespace GUI
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
             this.userList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.userList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.userList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
@@ -302,7 +315,7 @@ namespace GUI
             this.userList.RowTemplate.ReadOnly = true;
             this.userList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.userList.Size = new System.Drawing.Size(746, 412);
-            this.userList.TabIndex = 1;
+            this.userList.TabIndex = 2;
             this.userList.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.DeepPurple;
             this.userList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
             this.userList.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -340,19 +353,16 @@ namespace GUI
             // passWord
             // 
             this.passWord.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.passWord.Frozen = true;
             this.passWord.HeaderText = "Mật khẩu";
             this.passWord.Name = "passWord";
             this.passWord.ReadOnly = true;
+            this.passWord.Width = 200;
             // 
             // userEmail
             // 
-            this.userEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.userEmail.Frozen = true;
             this.userEmail.HeaderText = "Email";
             this.userEmail.Name = "userEmail";
             this.userEmail.ReadOnly = true;
-            this.userEmail.Width = 300;
             // 
             // Actions
             // 
@@ -364,21 +374,6 @@ namespace GUI
             this.Actions.ReadOnly = true;
             this.Actions.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Actions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Actions.Width = 150;
-            // 
-            // siticonePanel3
-            // 
-            this.siticonePanel3.Controls.Add(this.userList);
-            this.siticonePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.siticonePanel3.Location = new System.Drawing.Point(0, 62);
-            this.siticonePanel3.Name = "siticonePanel3";
-            this.siticonePanel3.Size = new System.Drawing.Size(746, 412);
-            this.siticonePanel3.TabIndex = 2;
-            // 
-            // SearchInputEvent
-            // 
-            this.SearchInputEvent.Interval = 1000;
-            this.SearchInputEvent.Tick += new System.EventHandler(this.SearchInputEventEnd);
             // 
             // UserMG
             // 
@@ -399,8 +394,8 @@ namespace GUI
             this.Load += new System.EventHandler(this.UserMG_Load);
             this.siticonePanel1.ResumeLayout(false);
             this.siticonePanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.userList)).EndInit();
             this.siticonePanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.userList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -414,15 +409,15 @@ namespace GUI
         private FontAwesome.Sharp.IconButton refeshBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
         private Siticone.Desktop.UI.WinForms.SiticoneButton searchBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView userList;
-        private DataGridViewTextBoxColumn userName;
-        private DataGridViewTextBoxColumn passWord;
-        private DataGridViewTextBoxColumn userEmail;
-        private DataGridViewButtonColumn Actions;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel3;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox searchBox;
         private Timer SearchInputEvent;
         private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar waitProgess;
         private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar dataLoading;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView userList;
+        private DataGridViewTextBoxColumn userName;
+        private DataGridViewTextBoxColumn passWord;
+        private DataGridViewTextBoxColumn userEmail;
+        private DataGridViewButtonColumn Actions;
     }
 }

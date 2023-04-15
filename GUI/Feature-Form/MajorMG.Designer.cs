@@ -37,20 +37,20 @@ namespace GUI
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.dataLoading = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.waitProgess = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
             this.searchBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.searchBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.refeshBtn = new FontAwesome.Sharp.IconButton();
             this.removeMajorBtn = new FontAwesome.Sharp.IconButton();
             this.addMajorBtn = new FontAwesome.Sharp.IconButton();
             this.MajorList = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.SearchInputEvent = new System.Windows.Forms.Timer(this.components);
             this.MajorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MajorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Actions = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.SearchInputEvent = new System.Windows.Forms.Timer(this.components);
-            this.dataLoading = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
-            this.waitProgess = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MajorList)).BeginInit();
@@ -79,6 +79,31 @@ namespace GUI
             this.siticonePanel1.Size = new System.Drawing.Size(746, 62);
             this.siticonePanel1.TabIndex = 0;
             // 
+            // dataLoading
+            // 
+            this.dataLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataLoading.Animated = true;
+            this.dataLoading.AnimationSpeed = 1.5F;
+            this.dataLoading.BackColor = System.Drawing.Color.Transparent;
+            this.dataLoading.FillColor = System.Drawing.Color.Transparent;
+            this.dataLoading.FillThickness = 3;
+            this.dataLoading.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dataLoading.ForeColor = System.Drawing.Color.Transparent;
+            this.dataLoading.Location = new System.Drawing.Point(369, 15);
+            this.dataLoading.Minimum = 0;
+            this.dataLoading.Name = "dataLoading";
+            this.dataLoading.ProgressColor = System.Drawing.Color.DarkSlateBlue;
+            this.dataLoading.ProgressColor2 = System.Drawing.Color.WhiteSmoke;
+            this.dataLoading.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
+            this.dataLoading.ProgressThickness = 3;
+            this.dataLoading.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.dataLoading.Size = new System.Drawing.Size(31, 31);
+            this.dataLoading.TabIndex = 15;
+            this.dataLoading.Text = "siticoneCircleProgressBar1";
+            this.dataLoading.UseTransparentBackground = true;
+            this.dataLoading.Value = 60;
+            this.dataLoading.Visible = false;
+            // 
             // siticonePanel2
             // 
             this.siticonePanel2.Controls.Add(this.waitProgess);
@@ -90,6 +115,30 @@ namespace GUI
             this.siticonePanel2.Name = "siticonePanel2";
             this.siticonePanel2.Size = new System.Drawing.Size(310, 62);
             this.siticonePanel2.TabIndex = 3;
+            // 
+            // waitProgess
+            // 
+            this.waitProgess.Animated = true;
+            this.waitProgess.AnimationSpeed = 1F;
+            this.waitProgess.BackColor = System.Drawing.Color.Transparent;
+            this.waitProgess.FillColor = System.Drawing.Color.Transparent;
+            this.waitProgess.FillThickness = 4;
+            this.waitProgess.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.waitProgess.ForeColor = System.Drawing.Color.Transparent;
+            this.waitProgess.Location = new System.Drawing.Point(242, 17);
+            this.waitProgess.Minimum = 0;
+            this.waitProgess.Name = "waitProgess";
+            this.waitProgess.ProgressColor = System.Drawing.Color.White;
+            this.waitProgess.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.waitProgess.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
+            this.waitProgess.ProgressThickness = 4;
+            this.waitProgess.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.waitProgess.Size = new System.Drawing.Size(25, 25);
+            this.waitProgess.TabIndex = 14;
+            this.waitProgess.Text = "siticoneCircleProgressBar1";
+            this.waitProgess.UseTransparentBackground = true;
+            this.waitProgess.Value = 30;
+            this.waitProgess.Visible = false;
             // 
             // searchBox
             // 
@@ -276,37 +325,6 @@ namespace GUI
             this.MajorList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MajorList_CellClick);
             this.MajorList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.MajorList_CellFormatting);
             // 
-            // MajorID
-            // 
-            this.MajorID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.MajorID.Frozen = true;
-            this.MajorID.HeaderText = "Mã ngành học";
-            this.MajorID.Name = "MajorID";
-            this.MajorID.ReadOnly = true;
-            this.MajorID.Width = 200;
-            // 
-            // MajorName
-            // 
-            this.MajorName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.MajorName.FillWeight = 150F;
-            this.MajorName.Frozen = true;
-            this.MajorName.HeaderText = "Tên ngành học";
-            this.MajorName.Name = "MajorName";
-            this.MajorName.ReadOnly = true;
-            this.MajorName.Width = 300;
-            // 
-            // Actions
-            // 
-            this.Actions.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Actions.FillWeight = 50F;
-            this.Actions.HeaderText = "Thao tác";
-            this.Actions.MinimumWidth = 50;
-            this.Actions.Name = "Actions";
-            this.Actions.ReadOnly = true;
-            this.Actions.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Actions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Actions.Width = 150;
-            // 
             // siticonePanel3
             // 
             this.siticonePanel3.Controls.Add(this.MajorList);
@@ -321,54 +339,33 @@ namespace GUI
             this.SearchInputEvent.Interval = 1000;
             this.SearchInputEvent.Tick += new System.EventHandler(this.SearchInputEventEnd);
             // 
-            // dataLoading
+            // MajorID
             // 
-            this.dataLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataLoading.Animated = true;
-            this.dataLoading.AnimationSpeed = 1.5F;
-            this.dataLoading.BackColor = System.Drawing.Color.Transparent;
-            this.dataLoading.FillColor = System.Drawing.Color.Transparent;
-            this.dataLoading.FillThickness = 3;
-            this.dataLoading.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dataLoading.ForeColor = System.Drawing.Color.Transparent;
-            this.dataLoading.Location = new System.Drawing.Point(369, 15);
-            this.dataLoading.Minimum = 0;
-            this.dataLoading.Name = "dataLoading";
-            this.dataLoading.ProgressColor = System.Drawing.Color.DarkSlateBlue;
-            this.dataLoading.ProgressColor2 = System.Drawing.Color.WhiteSmoke;
-            this.dataLoading.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
-            this.dataLoading.ProgressThickness = 3;
-            this.dataLoading.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
-            this.dataLoading.Size = new System.Drawing.Size(31, 31);
-            this.dataLoading.TabIndex = 15;
-            this.dataLoading.Text = "siticoneCircleProgressBar1";
-            this.dataLoading.UseTransparentBackground = true;
-            this.dataLoading.Value = 60;
-            this.dataLoading.Visible = false;
+            this.MajorID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.MajorID.Frozen = true;
+            this.MajorID.HeaderText = "Mã ngành học";
+            this.MajorID.Name = "MajorID";
+            this.MajorID.ReadOnly = true;
+            this.MajorID.Width = 200;
             // 
-            // waitProgess
+            // MajorName
             // 
-            this.waitProgess.Animated = true;
-            this.waitProgess.AnimationSpeed = 1F;
-            this.waitProgess.BackColor = System.Drawing.Color.Transparent;
-            this.waitProgess.FillColor = System.Drawing.Color.Transparent;
-            this.waitProgess.FillThickness = 4;
-            this.waitProgess.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.waitProgess.ForeColor = System.Drawing.Color.Transparent;
-            this.waitProgess.Location = new System.Drawing.Point(242, 17);
-            this.waitProgess.Minimum = 0;
-            this.waitProgess.Name = "waitProgess";
-            this.waitProgess.ProgressColor = System.Drawing.Color.White;
-            this.waitProgess.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.waitProgess.ProgressStartCap = System.Drawing.Drawing2D.LineCap.Round;
-            this.waitProgess.ProgressThickness = 4;
-            this.waitProgess.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
-            this.waitProgess.Size = new System.Drawing.Size(25, 25);
-            this.waitProgess.TabIndex = 14;
-            this.waitProgess.Text = "siticoneCircleProgressBar1";
-            this.waitProgess.UseTransparentBackground = true;
-            this.waitProgess.Value = 30;
-            this.waitProgess.Visible = false;
+            this.MajorName.FillWeight = 150F;
+            this.MajorName.HeaderText = "Tên ngành học";
+            this.MajorName.Name = "MajorName";
+            this.MajorName.ReadOnly = true;
+            // 
+            // Actions
+            // 
+            this.Actions.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Actions.FillWeight = 50F;
+            this.Actions.HeaderText = "Thao tác";
+            this.Actions.MinimumWidth = 50;
+            this.Actions.Name = "Actions";
+            this.Actions.ReadOnly = true;
+            this.Actions.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Actions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Actions.Width = 150;
             // 
             // MajorMG
             // 
@@ -407,11 +404,11 @@ namespace GUI
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView MajorList;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox searchBox;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel3;
-        private DataGridViewTextBoxColumn MajorID;
-        private DataGridViewTextBoxColumn MajorName;
-        private DataGridViewButtonColumn Actions;
         private Timer SearchInputEvent;
         private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar dataLoading;
         private Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar waitProgess;
+        private DataGridViewTextBoxColumn MajorID;
+        private DataGridViewTextBoxColumn MajorName;
+        private DataGridViewButtonColumn Actions;
     }
 }
