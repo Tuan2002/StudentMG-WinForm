@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
-using BLL;
 
 namespace GUI
 {
@@ -99,10 +98,13 @@ namespace GUI
             StudentList.Rows.Add(studentID, studentName, birthday, gender, classID, majorName);
         }
 
-        public void UpdateClassData(int rowIndex, string classID, string className, string majorName)
+        public void UpdateStudentData(int rowIndex, string studentID, string studentName, string biirthday, string gender, string classID, string majorName)
         {
+            StudentList.Rows[rowIndex].Cells["StudentID"].Value = studentID;
+            StudentList.Rows[rowIndex].Cells["StudentName"].Value = studentName;
+            StudentList.Rows[rowIndex].Cells["Birthday"].Value = biirthday;
+            StudentList.Rows[rowIndex].Cells["Gender"].Value = gender;
             StudentList.Rows[rowIndex].Cells["ClassID"].Value = classID;
-            StudentList.Rows[rowIndex].Cells["ClassName"].Value = className;
             StudentList.Rows[rowIndex].Cells["MajorName"].Value = majorName;
         }
         // Xử lý sự kiện click vào nút Chỉnh sửa
@@ -113,9 +115,9 @@ namespace GUI
             {
                 // Lấy dữ liệu của dòng được click
                 DataGridViewRow row = StudentList.Rows[e.RowIndex];
-                string classID = row.Cells["ClassID"].Value.ToString();
-                EditClass editForm = new EditClass(rowIndex,classID);
-                //editForm.parentInstance = this;
+                string StudentID = row.Cells["StudentID"].Value.ToString();
+                EditStudent editForm = new EditStudent(rowIndex, StudentID);
+                editForm.parentInstance = this;
                 editForm.ShowDialog();
                 // Tiếp
             }
