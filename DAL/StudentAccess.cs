@@ -37,7 +37,71 @@ namespace DAL
             return res;
         }
         // Kết thúc lấy danh sách sinh viên
-        // Thêm lớp mới vào CSDL
+        // Thêm sinh viên mới vào CSDL
+        public Response addStudentToDB (Request req) {
+            Response res = new Response();
+            try
+            {
+                SqlConnection section = Connection();
+                section.Open();
+                SqlCommand command = new SqlCommand("addStudentToDB", section);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@personid", req.GetData("PersonID"));
+                command.Parameters.AddWithValue("@studentname", req.GetData("StudentName"));
+                command.Parameters.AddWithValue("@birthday", req.GetData("Birthday"));
+                command.Parameters.AddWithValue("@gender", req.GetData("Gender"));
+                command.Parameters.AddWithValue("@address", req.GetData("Address"));
+                command.Parameters.AddWithValue("@majorid", req.GetData("MajorID"));
+                command.Parameters.AddWithValue("@classid", req.GetData("ClassID"));
+                command.Connection = section;
+                //command.ExecuteNonQuery();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    res.data.Load(reader);
+                    res.code = "success";
+                }
+                else
+                    res.code = "student_exist";
+                reader.Close();
+                section.Close();
+            }
+            catch
+            {
+                res.code = "server_error";
+            }
+            return res;
+        }
+        // Kết thúc thêm sinh viên
+        // Xoá sinh viên khỏi CSDL
+        public Response DeleteStudent(Request req)
+        {
+            Response res = new Response();
+            try
+            {
+                SqlConnection section = Connection();
+                SqlCommand command = new SqlCommand("DeleteStudent", section);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@studentid", Int32.Parse(req.GetData("StudentID")));
+                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
+                returnValue.Direction = ParameterDirection.ReturnValue;
+                command.Connection = section;
+                section.Open();
+                command.ExecuteNonQuery();
+                section.Close();
+                int result = (int)returnValue.Value;
+                if (result == 0)
+                    res.code = "student_not_exist";
+                else
+                    res.code = "delete_successfully";
+            }
+            catch (Exception e)
+            {
+                res.code = "server_error";
+                Console.WriteLine(e.Message);
+            }
+            return res;
+        }
         
     }
 }

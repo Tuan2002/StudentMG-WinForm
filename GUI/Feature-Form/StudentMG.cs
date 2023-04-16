@@ -64,7 +64,7 @@ namespace GUI
             }
         }
 
-        // Lấy danh sách lớp học dựa trên majorID
+        // Lấy danh sách sinh viên dựa trên majorID
         public Response getData(string majorID)
         {
             StudentAccess access = new StudentAccess();
@@ -93,10 +93,10 @@ namespace GUI
             }
         }
 
-        // Thêm 1 lớp học mới vào DataGridView ClassList
-        public void UpdateClassList(string classID, string className, string majorName)
+        // Thêm 1 sinh viên mới vào DataGridView StudentList
+        public void UpdateStudentList(string studentID, string studentName, string birthday, string gender, string classID, string majorName)
         {
-            StudentList.Rows.Add(classID, className, majorName);
+            StudentList.Rows.Add(studentID, studentName, birthday, gender, classID, majorName);
         }
 
         public void UpdateClassData(int rowIndex, string classID, string className, string majorName)
@@ -121,7 +121,7 @@ namespace GUI
             }
         }
 
-        // Xử lý sự kiện click cho nút Refresh để load lại danh sách lớp học
+        // Xử lý sự kiện click cho nút Refresh để load lại danh sách sinh viên
         private void refeshBtn_Click(object sender, EventArgs e)
         {
                 searchBox.Text = string.Empty;
@@ -145,12 +145,12 @@ namespace GUI
             }
         }
 
-        // Xử sự kiện click cho nút Thêm lớp học để mở form thêm mới lớp học
+        // Xử sự kiện click cho nút Thêm sinh viên để mở form thêm sinh viên
         private void addClassBtn_Click(object sender, EventArgs e)
         {
-            AddClass addClassForm = new AddClass();
-            //addClassForm.parentInstance= this;
-            addClassForm.ShowDialog();
+            AddStudent addStudentForm = new AddStudent();
+            addStudentForm.parentInstance = this;
+            addStudentForm.ShowDialog();
         }
 
         private void removeClassBtn_Click(object sender, EventArgs e)
@@ -162,23 +162,22 @@ namespace GUI
             {
                 // Lấy thông tin từ hàng được chọn
                 DataGridViewRow row = StudentList.Rows[rowIndex];
-                string classID = row.Cells["ClassID"].Value.ToString();
-                // Hiển thị hộp thoại xác nhận xoá lớp học
-                string message = "Bạn có chắc chắn muốn xoá lớp '" + classID + "' không? Thao tác này có thể ảnh hưởng đến sinh viên.";
+                string studentID = row.Cells["StudentID"].Value.ToString();
+                // Hiển thị hộp thoại xác nhận xoá sinh viên
+                string message = $"Bạn có chắc chắn muốn xoá sinh viên '{studentID}' không? Thao tác này không thể hoàn tác";
                 var result = RJMessageBox.Show(message, "Chú ý!", MessageBoxButtons.YesNo);
                 if (result.ToString() == "Yes")
                 {
                     // Gọi phương thức xoá lớp học từ lớp truy cập CSDL
-                    ClassAccess deleteAccess = new ClassAccess();
+                    StudentAccess deleteAccess = new StudentAccess();
                     Response res = new Response();
                     Request deleteUserRq = new Request();
-                    deleteUserRq.AddData("ClassID", classID);
-                    res = deleteAccess.DeleteClass(deleteUserRq);
-                    Console.WriteLine(res.code);
+                    deleteUserRq.AddData("StudentID", studentID);
+                    res = deleteAccess.DeleteStudent(deleteUserRq);
                     // Kiểm tra kết quả xoá thành công
                     if (res.code == "delete_successfully")
                     {
-                        // Xoá hàng khỏi bảng danh sách lớp học và cập nhật lại chỉ số hàng được chọn
+                        // Xoá hàng khỏi bảng danh sách sinh viên và cập nhật lại chỉ số hàng được chọn
                         StudentList.Rows.RemoveAt(rowIndex);
                         rowIndex = -1;
                         StudentList.Refresh();

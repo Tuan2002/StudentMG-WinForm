@@ -129,6 +129,28 @@ namespace BLL
                 res = HandleEditClass.UpdateClassData(form);
             return res;
         }
-
+        // Add new student
+        public Response validateAddStudent (Request form)
+        {
+            Response res = new Response();
+            StudentAccess HandleAddStudent = new StudentAccess();
+            if (form.GetData("StudentName") == string.Empty)
+                res.code = "studentname_null";
+            else if (form.GetData("Gender") == string.Empty)
+                res.code = "gender_null";
+            else if (form.GetData("MajorID") == string.Empty)
+                res.code = "majorid_null";
+            else if (form.GetData("ClassID") == string.Empty)
+                res.code = "classid_null";
+            else if (form.GetData("Birthday") == string.Empty)
+                res.code = "birthday_null";
+            else if (form.GetData("PersonID") == string.Empty || form.GetData("PersonID").Length != 6)
+                res.code = "personid_null";
+            else if (form.GetData("Address") == string.Empty)
+                res.code = "address_null";
+            else
+                res = HandleAddStudent.addStudentToDB(form);
+            return res;
+        }
     }
 }

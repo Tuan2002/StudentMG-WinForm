@@ -31,10 +31,10 @@ namespace GUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.dataLoading = new Siticone.Desktop.UI.WinForms.SiticoneCircleProgressBar();
@@ -47,7 +47,6 @@ namespace GUI
             this.removeStudentBtn = new FontAwesome.Sharp.IconButton();
             this.addStudentBtn = new FontAwesome.Sharp.IconButton();
             this.StudentList = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.StudentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +54,7 @@ namespace GUI
             this.ClassID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MajorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Actions = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentList)).BeginInit();
@@ -158,7 +158,7 @@ namespace GUI
             this.waitProgess.FillThickness = 4;
             this.waitProgess.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.waitProgess.ForeColor = System.Drawing.Color.Transparent;
-            this.waitProgess.Location = new System.Drawing.Point(213, 17);
+            this.waitProgess.Location = new System.Drawing.Point(212, 17);
             this.waitProgess.Minimum = 0;
             this.waitProgess.Name = "waitProgess";
             this.waitProgess.ProgressColor = System.Drawing.Color.White;
@@ -286,18 +286,18 @@ namespace GUI
             // 
             this.StudentList.AllowUserToAddRows = false;
             this.StudentList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
-            this.StudentList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
+            this.StudentList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.StudentList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.StudentList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.StudentList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.StudentList.ColumnHeadersHeight = 40;
             this.StudentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.StudentList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -308,27 +308,27 @@ namespace GUI
             this.ClassID,
             this.MajorName,
             this.Actions});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(215)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.StudentList.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(215)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.StudentList.DefaultCellStyle = dataGridViewCellStyle15;
             this.StudentList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.StudentList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(193)))), ((int)(((byte)(232)))));
             this.StudentList.Location = new System.Drawing.Point(0, 0);
             this.StudentList.Name = "StudentList";
             this.StudentList.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.StudentList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.StudentList.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.StudentList.RowHeadersVisible = false;
             this.StudentList.RowHeadersWidth = 40;
             this.StudentList.RowTemplate.Height = 40;
@@ -360,15 +360,6 @@ namespace GUI
             this.StudentList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.StudentList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userList_CellClick);
             this.StudentList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.userList_CellFormatting);
-            // 
-            // siticonePanel3
-            // 
-            this.siticonePanel3.Controls.Add(this.StudentList);
-            this.siticonePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.siticonePanel3.Location = new System.Drawing.Point(0, 62);
-            this.siticonePanel3.Name = "siticonePanel3";
-            this.siticonePanel3.Size = new System.Drawing.Size(975, 474);
-            this.siticonePanel3.TabIndex = 2;
             // 
             // StudentID
             // 
@@ -426,6 +417,15 @@ namespace GUI
             this.Actions.ReadOnly = true;
             this.Actions.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Actions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // siticonePanel3
+            // 
+            this.siticonePanel3.Controls.Add(this.StudentList);
+            this.siticonePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.siticonePanel3.Location = new System.Drawing.Point(0, 62);
+            this.siticonePanel3.Name = "siticonePanel3";
+            this.siticonePanel3.Size = new System.Drawing.Size(975, 474);
+            this.siticonePanel3.TabIndex = 2;
             // 
             // StudentMG
             // 
