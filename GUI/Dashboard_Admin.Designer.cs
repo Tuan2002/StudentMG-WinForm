@@ -320,7 +320,7 @@ namespace GUI
             // 
             this.siticoneCirclePictureBox1.Image = global::GUI.Properties.Resources.worker;
             this.siticoneCirclePictureBox1.ImageRotate = 0F;
-            this.siticoneCirclePictureBox1.Location = new System.Drawing.Point(505, 185);
+            this.siticoneCirclePictureBox1.Location = new System.Drawing.Point(522, 185);
             this.siticoneCirclePictureBox1.Name = "siticoneCirclePictureBox1";
             this.siticoneCirclePictureBox1.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
             this.siticoneCirclePictureBox1.Size = new System.Drawing.Size(101, 93);
@@ -336,7 +336,7 @@ namespace GUI
             this.siticoneHtmlLabel2.ForeColor = System.Drawing.Color.DarkSlateBlue;
             this.siticoneHtmlLabel2.Location = new System.Drawing.Point(1, 346);
             this.siticoneHtmlLabel2.Name = "siticoneHtmlLabel2";
-            this.siticoneHtmlLabel2.Size = new System.Drawing.Size(1102, 40);
+            this.siticoneHtmlLabel2.Size = new System.Drawing.Size(1136, 40);
             this.siticoneHtmlLabel2.TabIndex = 1;
             this.siticoneHtmlLabel2.Text = "QUẢN LÝ SINH VIÊN";
             this.siticoneHtmlLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -349,7 +349,7 @@ namespace GUI
             this.siticoneHtmlLabel1.ForeColor = System.Drawing.Color.DarkSlateBlue;
             this.siticoneHtmlLabel1.Location = new System.Drawing.Point(3, 294);
             this.siticoneHtmlLabel1.Name = "siticoneHtmlLabel1";
-            this.siticoneHtmlLabel1.Size = new System.Drawing.Size(1100, 40);
+            this.siticoneHtmlLabel1.Size = new System.Drawing.Size(1134, 40);
             this.siticoneHtmlLabel1.TabIndex = 0;
             this.siticoneHtmlLabel1.Text = "CHÀO MỪNG BẠN ĐẾN VỚI HỆ THỐNG";
             this.siticoneHtmlLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;

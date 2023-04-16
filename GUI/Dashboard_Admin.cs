@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Management;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 
@@ -42,6 +35,11 @@ namespace GUI
             this.permissionType = permissionType;
             this.userAvatar = userAvatar;
             this.isLogout = false;
+            if (permissionType == "Teacher")
+            {
+                userMangerBtn.Visible = false;
+                maijorManagerBtn.Visible = false;
+            }
         }
         public LoginForm LoginFormInstance { get; set; }
 
@@ -133,11 +131,7 @@ namespace GUI
             userNameLabel.Text = userFullName;
             userPermisstionLabel.Text = permissionType;
             avatarBox.Image = userAvatar;
-            if (permissionType == "Teacher")
-            {
-                userMangerBtn.Visible = false;
-                maijorManagerBtn.Visible = false;
-            }
+           
         }
 
         private void Dashboard_Admin_FormClosing(object sender, FormClosingEventArgs e)

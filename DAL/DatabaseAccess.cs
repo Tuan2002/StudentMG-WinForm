@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 using System.Data;
-using System.Security.AccessControl;
 using System.Collections.Specialized;
-using System.ComponentModel;
 
 // DATA ACCESS LAYER
 namespace DAL

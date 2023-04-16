@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using DAL;
 using BLL;
-using System.Threading;
-
 namespace GUI
 {
     public partial class LoginForm : Form
@@ -67,21 +60,9 @@ namespace GUI
                 MemoryStream memoryStream = new MemoryStream(imageBytes);
                 Image avatar = Image.FromStream(memoryStream);
                 this.Hide();
-                switch (res.permissionType)
-                {
-                    case "Admin":
-                        Dashboard_Admin adminDashboard = new Dashboard_Admin(res.userFullName, res.permissionType, avatar);
-                        adminDashboard.LoginFormInstance = this;
-                        adminDashboard.Show();
-                        break;
-                    case "Teacher":
-                        Dashboard_Teacher teacherDashboard = new Dashboard_Teacher(res.userFullName, res.permissionType, avatar);
-                        teacherDashboard.LoginFormInstance = this;
-                        teacherDashboard.Show();
-                        break;
-                    default:
-                        break;
-                }
+                Dashboard_Admin adminDashboard = new Dashboard_Admin(res.userFullName, res.permissionType, avatar);
+                adminDashboard.LoginFormInstance = this;
+                adminDashboard.Show();
             }
             else if (res.code != "success")
             {

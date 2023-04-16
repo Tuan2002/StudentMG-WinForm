@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
-using BLL;
 
 namespace GUI
 {
