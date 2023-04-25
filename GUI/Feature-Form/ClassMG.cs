@@ -70,7 +70,12 @@ namespace GUI
             Response res = access.getListClass(majorID);
             return res;
         }
-
+        public Response getSearchData(string keyword)
+        {
+            ClassAccess access = new ClassAccess();
+            Response res = access.getSearchClassData(keyword);
+            return res;
+        }
         // Load danh sách ngành và danh sách lớp học lên DataGridView ClassList khi Form được load
         private void ClassMG_Load(object sender, EventArgs e)
         {
@@ -126,7 +131,23 @@ namespace GUI
                 searchBox.Text = string.Empty;
                 loadData(() => getData(currentMajorID));
         }
+        // Sự kiện TextChanged của ô tìm kiếm
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            // Chờ một chút trước khi thực hiện tìm kiếm để tránh quá tải server
+            SearchInputEvent.Stop();
+            SearchInputEvent.Start();
+        }
 
+        // Sự kiện kết thúc của SearchInputEvent
+        private void SearchInputEventEnd(object sender, EventArgs e)
+        {
+            SearchInputEvent.Stop();
+            if (searchBox.Text == string.Empty)
+                loadData(() => getData(currentMajorID));
+            else
+                loadData(() => getSearchData(searchBox.Text));
+        }
         // Xử lý sự kiện chọn cho ComboBox ngành học để lọc danh sách lớp học
         private void MajorOptions_SelectedIndexChanged(object sender, EventArgs e)
         {

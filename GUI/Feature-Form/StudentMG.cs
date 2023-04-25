@@ -170,7 +170,7 @@ namespace GUI
                 var result = RJMessageBox.Show(message, "Chú ý!", MessageBoxButtons.YesNo);
                 if (result.ToString() == "Yes")
                 {
-                    // Gọi phương thức xoá lớp học từ lớp truy cập CSDL
+                    // Gọi phương thức xoá sinh viên từ lớp truy cập CSDL
                     StudentAccess deleteAccess = new StudentAccess();
                     Response res = new Response();
                     Request deleteUserRq = new Request();

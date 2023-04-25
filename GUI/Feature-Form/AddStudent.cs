@@ -200,11 +200,11 @@ namespace GUI
         {
             clearValidate();
             loadMajorOptions();
-            this.ProvideList.Items.Add("- Chọm Tinh Thành -");
+            this.ProvideList.Items.Add("- Chọn Tinh Thành -");
             this.ProvideList.SelectedIndex = 0;
-            this.DistrictList.Items.Add("- Chọm Quận Huyện -");
+            this.DistrictList.Items.Add("- Chọn Quận Huyện -");
             this.DistrictList.SelectedIndex = 0;
-            this.WardList.Items.Add("- Chọm Phường Xã -");
+            this.WardList.Items.Add("- Chọn Phường Xã -");
             this.WardList.SelectedIndex = 0;
             this.provideName = string.Empty;
             this.districtName = string.Empty;
