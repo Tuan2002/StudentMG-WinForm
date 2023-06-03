@@ -14,17 +14,9 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getStudentList", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@majorid", majorID);
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
+                var students = db.getStudentList(majorID);
+                res.data = Helper.ConvertSingleResultToDataTable(students);
                 res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
             }
             catch
             {
@@ -38,29 +30,15 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("addStudentToDB", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@personid", req.GetData("PersonID"));
-                command.Parameters.AddWithValue("@studentname", req.GetData("StudentName"));
-                command.Parameters.AddWithValue("@birthday", req.GetData("Birthday"));
-                command.Parameters.AddWithValue("@gender", req.GetData("Gender"));
-                command.Parameters.AddWithValue("@address", req.GetData("Address"));
-                command.Parameters.AddWithValue("@majorid", req.GetData("MajorID"));
-                command.Parameters.AddWithValue("@classid", req.GetData("ClassID"));
-                command.Connection = section;
-                //command.ExecuteNonQuery();
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
+                var result = db.addStudentToDB(req.GetData("PersonID"), req.GetData("StudentName"), req.GetData("Birthday"), req.GetData("Gender"), req.GetData("Address"), req.GetData("MajorID"), req.GetData("ClassID"));
+                DataTable data = Helper.ConvertSingleResultToDataTable(result);
+                if (data.Rows.Count > 0)
                 {
-                    res.data.Load(reader);
+                    res.data = data;
                     res.code = "success";
                 }
                 else
                     res.code = "student_exist";
-                reader.Close();
-                section.Close();
             }
             catch
             {
@@ -75,20 +53,9 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getStudentData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@studentid",Int32.Parse(studentID));
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    res.code = "success";
-                    res.data.Load(reader);
-                }
-                reader.Close();
-                section.Close();
+                var studentData = db.getStudentData(Int32.Parse(studentID));
+                res.data = Helper.ConvertSingleResultToDataTable(studentData);
+                res.code = "success";
             }
             catch
             {
@@ -103,32 +70,14 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("UpdateStudentData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@studentid", Int32.Parse(req.GetData("StudentID")));
-                command.Parameters.AddWithValue("@personid", req.GetData("PersonID"));
-                command.Parameters.AddWithValue("@studentname", req.GetData("StudentName"));
-                command.Parameters.AddWithValue("@birthday", req.GetData("Birthday"));
-                command.Parameters.AddWithValue("@gender", req.GetData("Gender"));
-                command.Parameters.AddWithValue("@address", req.GetData("Address"));
-                command.Parameters.AddWithValue("@majorid", req.GetData("MajorID"));
-                command.Parameters.AddWithValue("@classid", req.GetData("ClassID"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
+                var result = db.UpdateStudentData(Int32.Parse(req.GetData("StudentID")), req.GetData("PersonID"), req.GetData("StudentName"), req.GetData("Birthday"), req.GetData("Gender"), req.GetData("Address"), req.GetData("MajorID"), req.GetData("ClassID"));
                 if (result == 0)
                     res.code = "student_exist";
                 else
                     res.code = "update_successfully";
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message.ToString());
                 res.code = "server_error";
             }
             return res;
@@ -140,17 +89,7 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("DeleteStudent", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@studentid", Int32.Parse(req.GetData("StudentID")));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
+                var result = db.DeleteStudent(Int32.Parse(req.GetData("StudentID")));
                 if (result == 0)
                     res.code = "student_not_exist";
                 else

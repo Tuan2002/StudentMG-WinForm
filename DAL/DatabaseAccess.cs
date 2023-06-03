@@ -2,7 +2,7 @@
 using System.Data;
 using System.Collections.Specialized;
 using System.Configuration;
-
+using System.Linq;
 // DATA ACCESS LAYER
 namespace DAL
 {
@@ -10,11 +10,7 @@ namespace DAL
     public class Response
     {
         public string code;
-        public string permissionType;
-        public string userFullName;
-        public string userImage;
         public DataTable data = new DataTable();
-
     }
     // Create request object
     public class Request
@@ -43,12 +39,7 @@ namespace DAL
     // Handle data access
     public class DatabaseAccess
     {
-        // Create connection string
-        private string connectString = ConfigurationManager.ConnectionStrings["DataServer"].ConnectionString;
-        public SqlConnection Connection() {
-            SqlConnection connection = new SqlConnection(connectString);
-            return connection;
-        }
+        protected StudentMGDataContext db = new StudentMGDataContext();
         // Xử lý đăng nhập vào hệ thống
         public Response hanndleLogin(Request loginReq)
         {
@@ -56,25 +47,10 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("handleLoginProduce", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@username", loginReq.GetData("userName"));
-                command.Parameters.AddWithValue("@password", loginReq.GetData("password"));
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows) {
-                    while (reader.Read())
-                    {
-                        res.code = "success";
-                        res.userFullName = reader.GetString(0);
-                        res.permissionType = reader.GetString(1);
-                        res.userImage = reader.GetString(2);
-                    }
-                    reader.Close();
-                    section.Close();
-                }
+                var author = db.handleLoginProduce(loginReq.GetData("userName"), loginReq.GetData("password"));
+                res.data = Helper.ConvertSingleResultToDataTable(author);
+                if (res.data.Rows.Count > 0)
+                    res.code = "success";
                 else
                     res.code = "user_not_exsist";
             }    
@@ -84,6 +60,5 @@ namespace DAL
             }
             return res;
         }
-
     }
 }

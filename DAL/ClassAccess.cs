@@ -12,17 +12,9 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getListClass", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@majorid", majorID);
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
+                var classes = db.getListClass(majorID);
+                res.data = Helper.ConvertSingleResultToDataTable(classes);   
                 res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
             }
             catch
             {
@@ -37,29 +29,12 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("addClassToDB", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@classid", req.GetData("ClassID"));
-                command.Parameters.AddWithValue("@classname", req.GetData("ClassName"));
-                command.Parameters.AddWithValue("@majorid", req.GetData("MajorID"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
+                var result = db.addClassToDB(req.GetData("ClassID"), req.GetData("ClassName"), req.GetData("MajorID"));
                 if (result == 0)
-                {
                     res.code = "class_exist";
-                }
                 else
-                {
                     res.code = "success";
-                }
             }
-
             catch
             {
                 res.code = "server_error";
@@ -73,17 +48,9 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getClassData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@classid", classID);
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
+                var classData = db.getClassData(classID);
+                res.data = Helper.ConvertSingleResultToDataTable(classData);
                 res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
             }
             catch
             {
@@ -98,20 +65,7 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("UpdateClassData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@currentclassid", req.GetData("CurrentClassID"));
-                command.Parameters.AddWithValue("@newclassid", req.GetData("NewClassID"));
-                command.Parameters.AddWithValue("@classname", req.GetData("ClassName"));
-                command.Parameters.AddWithValue("@majorid", req.GetData("MajorID"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
+                var result = db.UpdateClassData(req.GetData("CurrentClassID"), req.GetData("NewClassID"), req.GetData("ClassName"), req.GetData("MajorID"));
                 if (result == 0)
                     res.code = "class_exist";
                 else
@@ -129,17 +83,7 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("DeleteClass", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@classid", request.GetData("ClassID"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
+                var result = db.DeleteClass(request.GetData("ClassID"));
                 if (result == 0)
                     res.code = "class_not_exist";
                 else
@@ -157,17 +101,9 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("LoadSearchClassData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@keyword", keyword);
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
+                var result = db.LoadSearchClassData(keyword);
+                res.data = Helper.ConvertSingleResultToDataTable(result);
                 res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
             }
             catch
             {

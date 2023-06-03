@@ -54,13 +54,16 @@ namespace GUI
             // Kiểm tra kết quả đăng nhập
             if (res.code == "success" && !isLogin)
             {
+                string userFullName = res.data.Rows[0]["userFullName"].ToString();
+                string userAvatar = res.data.Rows[0]["userAvatar"].ToString();
+                string permissionType = res.data.Rows[0]["permissionType"].ToString();
                 isLogin = true;
                 // Chuyển đến form dashboard
-                byte[] imageBytes = Convert.FromBase64String(res.userImage);
+                byte[] imageBytes = Convert.FromBase64String(userAvatar);
                 MemoryStream memoryStream = new MemoryStream(imageBytes);
                 Image avatar = Image.FromStream(memoryStream);
                 this.Hide();
-                Dashboard_Admin adminDashboard = new Dashboard_Admin(res.userFullName, res.permissionType, avatar);
+                Dashboard_Admin adminDashboard = new Dashboard_Admin(userFullName, permissionType, avatar);
                 adminDashboard.LoginFormInstance = this;
                 adminDashboard.Show();
             }

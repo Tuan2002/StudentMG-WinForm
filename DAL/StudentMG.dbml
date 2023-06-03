@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="StudentMG" Class="StudentMGDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=157.245.57.133;Initial Catalog=StudentMG;Persist Security Info=True;User ID=sa" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="StudentMGConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Classes" Member="Classes">
+    <Type Name="Class">
+      <Column Name="ClassID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ClassName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="MajorID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Class_Student" Member="Students" ThisKey="ClassID" OtherKey="ClassID" Type="Student" />
+      <Association Name="Major_Class" Member="Major" ThisKey="MajorID" OtherKey="MajorID" Type="Major" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.userPermission" Member="userPermissions">
+    <Type Name="userPermission">
+      <Column Name="permissionId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="permissionType" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="userPermission_userAccount" Member="userAccounts" ThisKey="permissionId" OtherKey="permissionId" Type="userAccount" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Majors" Member="Majors">
+    <Type Name="Major">
+      <Column Name="MajorID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MajorName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Major_Class" Member="Classes" ThisKey="MajorID" OtherKey="MajorID" Type="Class" />
+      <Association Name="Major_Student" Member="Students" ThisKey="MajorID" OtherKey="MajorID" Type="Student" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Students" Member="Students">
+    <Type Name="Student">
+      <Column Name="StudentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PersonID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Fullname" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MajorID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ClassID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Class_Student" Member="Class" ThisKey="ClassID" OtherKey="ClassID" Type="Class" IsForeignKey="true" />
+      <Association Name="Major_Student" Member="Major" ThisKey="MajorID" OtherKey="MajorID" Type="Major" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.userAccounts" Member="userAccounts">
+    <Type Name="userAccount">
+      <Column Name="userName" Type="System.String" DbType="VarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="userPassword" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="userEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="userFullName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="permissionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="userAvatar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="userPermission_userAccount" Member="userPermission" ThisKey="permissionId" OtherKey="permissionId" Type="userPermission" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.addClassToDB" Method="addClassToDB">
+    <Parameter Name="classid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="classname" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="majorid" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ViewStudents" Method="ViewStudents">
+    <ElementType Name="ViewStudentsResult">
+      <Column Name="StudentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PersonID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Fullname" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MajorID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ClassID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.addMajorToDB" Method="addMajorToDB">
+    <Parameter Name="majorid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="majorname" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.addStudentToDB" Method="addStudentToDB">
+    <Parameter Name="personid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="studentname" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="birthday" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="gender" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="address" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="majorid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="classid" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="addStudentToDBResult">
+      <Column Name="StudentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.addUserToDB" Method="addUserToDB">
+    <Parameter Name="username" Type="System.String" DbType="VarChar(16)" />
+    <Parameter Name="password" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="fullname" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="email" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="permissiontype" Type="System.Int32" DbType="Int" />
+    <Parameter Name="avatar" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteClass" Method="DeleteClass">
+    <Parameter Name="classid" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteMajor" Method="DeleteMajor">
+    <Parameter Name="majorid" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteStudent" Method="DeleteStudent">
+    <Parameter Name="studentid" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteUser" Method="DeleteUser">
+    <Parameter Name="username" Type="System.String" DbType="VarChar(16)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getClassData" Method="getClassData">
+    <Parameter Name="classid" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="getClassDataResult">
+      <Column Name="ClassID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ClassName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="MajorID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getListClass" Method="getListClass">
+    <Parameter Name="majorid" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="getListClassResult">
+      <Column Name="ClassID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ClassName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="MajorName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getListMajor" Method="getListMajor">
+    <ElementType Name="getListMajorResult">
+      <Column Name="majorid" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="majorname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getListUser" Method="getListUser">
+    <ElementType Name="getListUserResult">
+      <Column Name="userName" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="userPassword" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="userEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getPermissionList" Method="getPermissionList">
+    <ElementType Name="getPermissionListResult">
+      <Column Name="permissionType" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getStudentData" Method="getStudentData">
+    <Parameter Name="studentid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="getStudentDataResult">
+      <Column Name="PersonID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Fullname" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MajorID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ClassID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getStudentList" Method="getStudentList">
+    <Parameter Name="majorid" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="getStudentListResult">
+      <Column Name="StudentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fullname" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ClassID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MajorName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getUserData" Method="getUserData">
+    <Parameter Name="username" Type="System.String" DbType="VarChar(16)" />
+    <ElementType Name="getUserDataResult">
+      <Column Name="userName" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="userPassword" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="userEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="userFullName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="permissionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="userAvatar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.handleLoginProduce" Method="handleLoginProduce">
+    <Parameter Name="username" Type="System.String" DbType="VarChar(16)" />
+    <Parameter Name="password" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="handleLoginProduceResult">
+      <Column Name="userFullName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="permissionType" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="userAvatar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LoadSearchClassData" Method="LoadSearchClassData">
+    <Parameter Name="keyword" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="LoadSearchClassDataResult">
+      <Column Name="ClassID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ClassName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="MajorName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LoadSearchMajorData" Method="LoadSearchMajorData">
+    <Parameter Name="keyword" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="LoadSearchMajorDataResult">
+      <Column Name="MajorID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MajorName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LoadSearchUserData" Method="LoadSearchUserData">
+    <Parameter Name="keyword" Type="System.String" DbType="NVarChar(20)" />
+    <ElementType Name="LoadSearchUserDataResult">
+      <Column Name="userName" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="userPassword" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="userEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.udmajor" Method="udmajor">
+    <Parameter Name="newmajorid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="majorname" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UpdateMajorData" Method="UpdateMajorData">
+    <Parameter Name="currentmajorid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="newmajorid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="majorname" Type="System.String" DbType="NVarChar(50)" />
+  </Function>
+  <Function Name="dbo.UpdateStudentData" Method="UpdateStudentData">
+    <Parameter Name="studentid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="personid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="studentname" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="birthday" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="gender" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="address" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="majorid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="classid" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UpdateUserData" Method="UpdateUserData">
+    <Parameter Name="currentusername" Type="System.String" DbType="VarChar(16)" />
+    <Parameter Name="newusername" Type="System.String" DbType="VarChar(16)" />
+    <Parameter Name="password" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="fullname" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="email" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="permissiontype" Type="System.Int32" DbType="Int" />
+    <Parameter Name="avatar" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UpdateClassData" Method="UpdateClassData">
+    <Parameter Name="currentclassid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="newclassid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="classname" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="majorid" Type="System.String" DbType="VarChar(10)" />
+  </Function>
+  <Function Name="dbo.UpdateMajorData" Method="UpdateMajorData1">
+    <Parameter Name="currentmajorid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="newmajorid" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="majorname" Type="System.String" DbType="NVarChar(50)" />
+  </Function>
+</Database>

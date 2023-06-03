@@ -13,16 +13,9 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getListMajor", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
+                var majors = db.getListMajor();
+                res.data = Helper.ConvertSingleResultToDataTable(majors);
                 res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
             }
             catch
             {
@@ -37,18 +30,7 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("addMajorToDB", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@majorid", req.GetData("MajorID"));
-                command.Parameters.AddWithValue("@majorname", req.GetData("MajorName"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
+                var result = db.addMajorToDB(req.GetData("MajorID"), req.GetData("MajorName"));
                 if (result == 0)
                     res.code = "major_exist";
                 else
@@ -68,19 +50,7 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("UpdateMajorData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@currentmajorid", req.GetData("CurrentMajorID"));
-                command.Parameters.AddWithValue("@newmajorid", req.GetData("NewMajorID"));
-                command.Parameters.AddWithValue("@majorname", req.GetData("MajorName"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
+                var result = db.UpdateMajorData(req.GetData("CurrentMajorID"), req.GetData("NewMajorID"), req.GetData("MajorName"));
                 if (result == 0)
                     res.code = "major_already_exist";
                 else
@@ -99,17 +69,7 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("DeleteMajor", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@majorid", req.GetData("MajorID"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
+                var result = db.DeleteMajor(req.GetData("MajorID"));
                 if (result == 0)
                     res.code = "major_not_exist";
                 else
@@ -128,17 +88,8 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("LoadSearchMajorData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@keyword", keyword);
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
+                var result = db.LoadSearchMajorData(keyword);
                 res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
             }
             catch
             {

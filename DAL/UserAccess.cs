@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Data;
+using System.Linq;
+
 namespace DAL
 {
     public class UserAccess : DatabaseAccess
@@ -13,16 +15,9 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getListUser", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
+                var users = db.getListUser();
+                res.data = Helper.ConvertSingleResultToDataTable(users);
                 res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
             }
             catch
             {
@@ -37,16 +32,9 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getPermissionList", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
+                var permissions = db.userPermissions.Select(permission => permission);
+                res.data = permissions.ToDataTable();
                 res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
             }
             catch
             {
@@ -61,24 +49,8 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("addUserToDB", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@username", req.GetData("userName"));
-                command.Parameters.AddWithValue("@password", req.GetData("password"));
-                command.Parameters.AddWithValue("@fullname", req.GetData("fullName"));
-                command.Parameters.AddWithValue("@email", req.GetData("email"));
-                command.Parameters.AddWithValue("@permissiontype", Int32.Parse(req.GetData("permissionType")));
-                command.Parameters.AddWithValue("@avatar", req.GetData("avatar"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
+                var result = db.addUserToDB(req.GetData("userName"), req.GetData("password"), req.GetData("fullName"), req.GetData("email"), Int32.Parse(req.GetData("permissionType")), req.GetData("avatar"));
                 if (result == 0)
-
                     res.code = "user_exist";
                 else
                     res.code = "success";
@@ -96,18 +68,9 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("getUserData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@username", userName);
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
+                var userInfo = db.userAccounts.Where(user => user.userName == userName);
+                res.data = userInfo.ToDataTable();
                 res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
-
             }
             catch 
             {
@@ -122,23 +85,7 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("UpdateUserData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@currentusername", req.GetData("currentUserName"));
-                command.Parameters.AddWithValue("@newusername", req.GetData("newUserName"));
-                command.Parameters.AddWithValue("@password", req.GetData("password"));
-                command.Parameters.AddWithValue("@fullname", req.GetData("fullName"));
-                command.Parameters.AddWithValue("@email", req.GetData("email"));
-                command.Parameters.AddWithValue("@permissiontype", Int32.Parse(req.GetData("permissionType")));
-                command.Parameters.AddWithValue("@avatar", req.GetData("avatar"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
+                var result = db.UpdateUserData(req.GetData("currentUserName"), req.GetData("newUserName"), req.GetData("password"), req.GetData("fullName"), req.GetData("email"), Int32.Parse(req.GetData("permissionType")), req.GetData("avatar"));
                 if (result == 0)
                     res.code = "user_already_exist";
                 else
@@ -157,17 +104,7 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                SqlCommand command = new SqlCommand("DeleteUser", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@username", req.GetData("userName"));
-                var returnValue = command.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                command.Connection = section;
-                section.Open();
-                command.ExecuteNonQuery();
-                section.Close();
-                int result = (int)returnValue.Value;
+                var result = db.DeleteUser(req.GetData("userName"));
                 if (result == 0)
                     res.code = "user_not_exist";
                 else
@@ -186,17 +123,9 @@ namespace DAL
             Response res = new Response();
             try
             {
-                SqlConnection section = Connection();
-                section.Open();
-                SqlCommand command = new SqlCommand("LoadSearchUserData", section);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@keyword", keyword);
-                command.Connection = section;
-                SqlDataReader reader = command.ExecuteReader();
+                var result = db.LoadSearchUserData(keyword);
+                res.data = Helper.ConvertSingleResultToDataTable(result);
                 res.code = "success";
-                res.data.Load(reader);
-                reader.Close();
-                section.Close();
             }
             catch 
             {
