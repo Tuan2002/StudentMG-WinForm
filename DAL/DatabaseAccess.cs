@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Specialized;
+using System.Configuration;
 
 // DATA ACCESS LAYER
 namespace DAL
@@ -43,8 +44,8 @@ namespace DAL
     public class DatabaseAccess
     {
         // Create connection string
-        public static SqlConnection Connection() {
-            string connectString = @"Data Source=188.166.205.125;Database=StudentMG;Integrated Security=false;User ID=sa;Password=Tuandev2002@;TrustServerCertificate=true;Connection Timeout=10";
+        private string connectString = ConfigurationManager.ConnectionStrings["DataServer"].ConnectionString;
+        public SqlConnection Connection() {
             SqlConnection connection = new SqlConnection(connectString);
             return connection;
         }
