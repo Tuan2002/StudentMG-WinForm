@@ -7,9 +7,6 @@ namespace DAL
 {
     public class UserAccess : DatabaseAccess
     {
-        // Kế thừa từ class DatabaseAccess
-        // User MG Logic
-        // Lấy danh sách người dùng
         public Response getListUser()
         {
             Response res = new Response();
@@ -25,8 +22,6 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc lấy danh sách người dùng
-        // Lấy danh sách quyền
         public Response getPermissionList()
         {
             Response res = new Response();
@@ -42,8 +37,6 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc lấy danh sách quyền
-        // Thêm người dùng mới vào CSDL
         public Response addUserToDB(Request req)
         {
             Response res = new Response();
@@ -61,8 +54,6 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc thêm người dùng mới vào CSDL
-        // Lấy thông tin người dùng
         public Response getUserData(string userName)
         {
             Response res = new Response();
@@ -72,14 +63,12 @@ namespace DAL
                 res.data = userInfo.ToDataTable();
                 res.code = "success";
             }
-            catch 
+            catch
             {
                 res.code = "server_error";
             }
             return res;
         }
-        // Kết thúc lấy thông tin người dùng
-        // Cập nhật thông tin người dùng
         public Response UpdateUserData(Request req)
         {
             Response res = new Response();
@@ -97,8 +86,6 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc cập nhật thông tin người dùng
-        // Xóa người dùng
         public Response DeleteUser(Request req)
         {
             Response res = new Response();
@@ -116,8 +103,6 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc xóa người dùng
-        // Tìm kiếm người dùng
         public Response getSearchUserData(string keyword)
         {
             Response res = new Response();
@@ -127,12 +112,11 @@ namespace DAL
                 res.data = Helper.ConvertSingleResultToDataTable(result);
                 res.code = "success";
             }
-            catch 
+            catch
             {
                 res.code = "server_error";
             }
             return res;
         }
-        // Kết thúc tìm kiếm người dùng
     }
 }

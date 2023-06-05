@@ -11,7 +11,6 @@ namespace GUI
 {
     public partial class AddStudent : Form
     {
-        // Khai báo các thuộc tính
         private string provideCode;
         private string districtCode;
         private string wardCode;
@@ -32,7 +31,7 @@ namespace GUI
         {
             formMessage.Text = string.Empty;
             studentNameError.Text = string.Empty;
-            majorError.Text = string.Empty; 
+            majorError.Text = string.Empty;
             genderError.Text = string.Empty;
             addressError.Text = string.Empty;
             birthdayError.Text = string.Empty;
@@ -40,9 +39,8 @@ namespace GUI
             PersonID.BorderColor = Color.Plum;
             studentNameBox.BorderColor = Color.Plum;
             formMessage.ForeColor = Color.ForestGreen;
-            
+
         }
-        // Phương thức lấy danh sách các ngành
         private void loadMajorOptions()
         {
             MajorAccess access = new MajorAccess();
@@ -54,7 +52,6 @@ namespace GUI
                 MajorOptions.SelectedIndex = 0;
             }
         }
-        // Phương thức lấy danh sách các lớp theo mã ngành
         public void LoadClassOptions(string majorID)
         {
             ClassAccess access = new ClassAccess();
@@ -63,32 +60,24 @@ namespace GUI
             ClassOptions.DisplayMember = "ClassName";
             ClassOptions.ValueMember = "ClassID";
         }
-        // Phương thức lấy danh sách tỉnh thành qua API
         private async void loadProvideList()
         {
-            // Gọi API để lấy danh sách tỉnh thành
             HttpClient httpClient = new HttpClient();
-            HttpResponseMessage response = await httpClient.GetAsync("https://provinces.open-api.vn/api/p/");
             string json = await response.Content.ReadAsStringAsync();
-            // Chuyển đổi json thành DataTable
             DataTable dataTable = JsonConvert.DeserializeObject<DataTable>(json);
             ProvideList.DataSource = null;
             ProvideList.DisplayMember = "name";
             ProvideList.ValueMember = "code";
             ProvideList.DataSource = dataTable;
         }
-        // Phương thức lấy danh sách quận huyện theo mã tỉnh thành
         private async void loadDistrictList(string provideCode)
         {
-            // Gọi API để lấy danh sách quận huyện
             HttpClient httpClient = new HttpClient();
-            HttpResponseMessage response = await httpClient.GetAsync("https://provinces.open-api.vn/api/p/" + provideCode + "?depth=2");
             string json = await response.Content.ReadAsStringAsync();
             dynamic jsonObject = JsonConvert.DeserializeObject(json);
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("Name", typeof(string));
             dataTable.Columns.Add("Code", typeof(int));
-            // Lấy danh sách quận huyện
             foreach (var district in jsonObject.districts)
             {
                 string name = district.name;
@@ -103,18 +92,14 @@ namespace GUI
             DistrictList.ValueMember = "Code";
             DistrictList.DataSource = dataTable;
         }
-        // Phương thức lấy danh sách phường xã theo mã quận huyện
         private async void loadWardList(string districtCode)
         {
-            // Gọi API để lấy danh sách phường xã
             HttpClient httpClient = new HttpClient();
-            HttpResponseMessage response = await httpClient.GetAsync("https://provinces.open-api.vn/api/d/" + districtCode + "?depth=2");
             string json = await response.Content.ReadAsStringAsync();
             dynamic jsonObject = JsonConvert.DeserializeObject(json);
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("Name", typeof(string));
             dataTable.Columns.Add("Code", typeof(int));
-            // Lấy danh sách phường xã
             foreach (var ward in jsonObject.wards)
             {
                 string name = ward.name;
@@ -129,7 +114,6 @@ namespace GUI
             WardList.ValueMember = "Code";
             WardList.DataSource = dataTable;
         }
-        // Xử lý sự kiện thay đổi tỉnh thành
         private void ProvideList_SelectedIndexChanged(object sender, EventArgs e)
         {
             clearValidate();
@@ -142,7 +126,6 @@ namespace GUI
                 DistrictList.Enabled = true;
             }
         }
-        // Xử lý sự kiện thay đổi quận huyện
         private void DistrictList_SelectedIndexChanged(object sender, EventArgs e)
         {
             clearValidate();
@@ -155,7 +138,6 @@ namespace GUI
                 WardList.Enabled = true;
             }
         }
-        // Xử lý sự kiện thay đổi phường xã
         private void WardList_SelectedIndexChanged(object sender, EventArgs e)
         {
             clearValidate();
@@ -167,15 +149,12 @@ namespace GUI
             }
 
         }
-        // Xử lý sự kiện khi click vào drop down của tỉnh thành
         private void ProvideList_DropDown(object sender, EventArgs e)
         {
             loadProvideList();
         }
-        // Phương thức lấy ngày tháng năm
         private void LoadDateTime()
         {
-            // Thêm tháng
             for (int i = 1; i <= 12; i++)
             {
                 if (i < 10)
@@ -183,18 +162,15 @@ namespace GUI
                 else
                     SelectMonth.Items.Add(i.ToString());
             }
-            // Thêm năm
             int currentYear = DateTime.Now.Year;
             for (int i = currentYear - 50; i <= currentYear; i++)
             {
                 SelectYear.Items.Add(i.ToString());
             }
 
-            // Chọn ngày tháng năm mặc định                   
             SelectMonth.SelectedIndex = 0;
             SelectYear.SelectedIndex = 0;
         }
-        // Sự kiện form load
         private void AddStudent_Load(object sender, EventArgs e)
         {
             clearValidate();
@@ -212,14 +188,12 @@ namespace GUI
             this.currentClassID = string.Empty;
             LoadDateTime();
         }
-        // Phương thức xử lý sự kiện thay đổi tháng
         private void SelectMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
             int daysInMonth;
-            // Kiểm tra năm nhuận để lấy số ngày của tháng
             if (SelectYear.SelectedItem != null)
                 daysInMonth = DateTime.DaysInMonth(Int32.Parse(SelectYear.SelectedItem.ToString()), SelectMonth.SelectedIndex + 1);
-            else    
+            else
                 daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, SelectMonth.SelectedIndex + 1);
             SelectDate.Items.Clear();
             for (int i = 1; i <= daysInMonth; i++)
@@ -238,34 +212,32 @@ namespace GUI
             int optionIndex = MajorOptions.SelectedIndex;
             if (optionIndex <= 0)
             {
-                currentMajorID = string.Empty; // Nếu không chọn ngành học thì không có mã ngành học
+                currentMajorID = string.Empty;
                 ClassOptions.DataSource = null;
                 ClassOptions.Enabled = false;
             }
             else
             {
-                DataRow row = majorList.Rows[optionIndex - 1]; // Lấy thông tin ngành học tại vị trí được chọn
-                currentMajorID = row["MajorID"].ToString(); // Lưu lại mã ngành học được chọn
-                currentMajorName = row["MajorName"].ToString(); // Lưu lại tên ngành học được chọn
+                DataRow row = majorList.Rows[optionIndex - 1];
+                currentMajorID = row["MajorID"].ToString();
+                currentMajorName = row["MajorName"].ToString();
                 LoadClassOptions(currentMajorID);
                 if (ClassOptions.SelectedIndex == -1)
                 {
                     currentClassID = string.Empty;
                     ClassOptions.Enabled = false;
-                }    
+                }
                 else
                     ClassOptions.Enabled = true;
 
             }
         }
-        // Sự kiện chọn lớp học
         private void ClassOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataRowView selectedRow = ClassOptions.SelectedItem as DataRowView;
             if (selectedRow != null)
                 currentClassID = selectedRow["ClassID"].ToString();
         }
-        // Phương thức ghép ngày sinh thành chuỗi
         private string getBirthday()
         {
             string selectedDate = SelectDate.SelectedItem.ToString();
@@ -276,13 +248,12 @@ namespace GUI
                 string birthday = $"{selectedDate}/{selectedMonth}/{selectedYear}";
                 return birthday;
             }
-            else 
+            else
                 return string.Empty;
         }
-        // Phương thức ghép địa chỉ
         private string getAddress()
         {
-            if (provideName == string.Empty  || districtName == string.Empty  || wardName == string.Empty)
+            if (provideName == string.Empty || districtName == string.Empty || wardName == string.Empty)
                 return string.Empty;
             else
             {
@@ -290,7 +261,6 @@ namespace GUI
                 return adress;
             }
         }
-        // Phương thức chuẩn hoá chuỗi họ tên
         private string ToProper(string str)
         {
             if (string.IsNullOrEmpty(str))
@@ -304,7 +274,6 @@ namespace GUI
             }
             return new string(charArr);
         }
-        // Xử lý các radio button chọn giới tính
         private void femaleGender_CheckedChanged(object sender, EventArgs e)
         {
             clearValidate();
@@ -321,7 +290,6 @@ namespace GUI
             clearValidate();
             gender = otherGender.Text;
         }
-        // 
         private void AddBtn_Click(object sender, EventArgs e)
         {
             Request addStudent = new Request();
@@ -331,7 +299,6 @@ namespace GUI
             string birhday = getBirthday();
             string address = getAddress();
             string personID = PersonID.Text;
-            // Thêm các dữ liệu vào request
             addStudent.AddData("StudentName", studentName);
             addStudent.AddData("Birthday", birhday);
             addStudent.AddData("PersonID", personID);
@@ -345,7 +312,7 @@ namespace GUI
                 string studentID = res.data.Rows[0]["StudentID"].ToString();
                 parentInstance.UpdateStudentList(studentID, studentName, birhday, gender, currentClassID, currentMajorName);
                 formMessage.Text = "Thêm sinh viên thành công!";
-            }    
+            }
             else
                 switch (res.code)
                 {
@@ -390,10 +357,8 @@ namespace GUI
 
         private void PersonID_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Kiểm tra ký tự nhập vào có phải là số không
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-                e.Handled = true; // Đánh dấu sự kiện đã xử lý để không cho phép nhập ký tự đó
                 PersonIDError.Text = "Vui lòng chỉ nhập số";
             }
             else
@@ -402,10 +367,8 @@ namespace GUI
 
         private void studentNameBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Kiểm tra ký tự nhập vào có phải là chữ không
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
-                e.Handled = true; // Đánh dấu sự kiện đã xử lý để không cho phép nhập ký tự đó
                 studentNameError.Text = "Tên không được chứa số và kí tự đặt biệt";
             }
             else

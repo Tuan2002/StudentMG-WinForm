@@ -20,13 +20,11 @@ namespace GUI
         private string imageData = string.Empty;
         private int permissionId = 0;
         private int rowindex;
-        // Khai báo biến để truy cập vào form UserMG
         public UserMG parentInstance { get; set; }
         public EditForm()
         {
             InitializeComponent();
         }
-        // Hàm khởi tạo form với thông tin người dùng cần sửa
         public EditForm(int rowindex, string userName)
         {
             InitializeComponent();
@@ -34,7 +32,6 @@ namespace GUI
             this.rowindex = rowindex;
         }
 
-        // Hàm xóa thông báo lỗi trong form sửa thông tin người dùng
         public void clearValidateForm()
         {
             userNameBox.BorderColor = System.Drawing.Color.Plum;
@@ -54,7 +51,6 @@ namespace GUI
 
         }
 
-        // Hàm xóa dữ liệu trong form sửa thông tin người dùng
         public void clearForm()
         {
             this.clearValidateForm();
@@ -66,7 +62,6 @@ namespace GUI
             permissionSelect.SelectedIndex = 0;
         }
 
-        // Hàm tải danh sách quyền hạn từ CSDL và hiển thị lên combobox
         private void loadPermissionOptions()
         {
             UserAccess access = new UserAccess();
@@ -77,7 +72,6 @@ namespace GUI
             }
         }
 
-        // Hàm chuyển đổi ảnh sang mảng byte
         private byte[] imagetobytearray(Image image)
         {
             using (MemoryStream ms = new MemoryStream())
@@ -87,7 +81,6 @@ namespace GUI
             }
         }
 
-        // Hàm chuyển đổi chuỗi base64 sang ảnh
         private Image stringToImage(string base64String)
         {
             byte[] imageBytes = Convert.FromBase64String(base64String);
@@ -97,13 +90,10 @@ namespace GUI
         }
         public void getUserData()
         {
-            // Tạo một đối tượng MiddleWare để gửi yêu cầu lấy thông tin người dùng từ server
             MiddleWare handleGetData = new MiddleWare();
             Request req = new Request();
             req.AddData("userName", this.currentUserName);
-            // Nhận phản hồi từ server
             Response res = handleGetData.handleGetUserData(req);
-            // Nếu phản hồi trả về mã code "success", hiển thị thông tin người dùng lên giao diện
             if (res.code == "success")
             {
                 userNameBox.Text = res.data.Rows[0]["userName"].ToString();
@@ -113,41 +103,32 @@ namespace GUI
                 permissionId = (int)res.data.Rows[0]["permissionId"];
                 avatarPreview.Image = stringToImage(res.data.Rows[0]["userAvatar"].ToString());
             }
-            // Thiết lập giá trị mặc định cho combobox permissionSelect
             permissionSelect.SelectedIndex = permissionId;
         }
         private void selectImageBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp) | *.jpg; *.jpeg; *.png; *.bmp";
-            if (openFileDialog.ShowDialog() == DialogResult.OK) // Nếu người dùng đã chọn ảnh
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                avatarPreview.Image = Image.FromFile(openFileDialog.FileName); // Hiển thị ảnh đại diện
-                byte[] imageBytes = System.IO.File.ReadAllBytes(openFileDialog.FileName); // Chuyển ảnh đại diện sang dạng byte[]
-                imageData = Convert.ToBase64String(imageBytes); // Chuyển dạng byte[] sang dạng string để lưu trữ ở cơ sở dữ liệu
-                //Console.WriteLine(imageData);
+                avatarPreview.Image = Image.FromFile(openFileDialog.FileName);
+                byte[] imageBytes = System.IO.File.ReadAllBytes(openFileDialog.FileName);
+                imageData = Convert.ToBase64String(imageBytes);
             }
         }
 
         private void permissionSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Thiết lập giá trị permissionId bằng chỉ số được chọn trong combobox permissionSelect
             permissionId = permissionSelect.SelectedIndex;
-            // Đặt màu khung viền cho combobox permissionSelect thành màu hồng nhạt
             permissionSelect.BorderColor = System.Drawing.Color.Plum;
-            // Xóa nội dung lỗi hiển thị trên giao diện
             permisstionEmpty.Text = string.Empty;
         }
         private void EditUserBtn_Click(object sender, EventArgs e)
         {
-            // Tạo một đối tượng MiddleWare để thực hiện xử lý sửa thông tin người dùng
             MiddleWare handleEditUser = new MiddleWare();
-            // Tạo một đối tượng Request để chứa thông tin người dùng mới
             Request editUser = new Request();
-            // Tạo một đối tượng Response để lưu trữ kết quả trả về từ xử lý sửa thông tin người dùng
             Response res = new Response();
 
-            // Thêm các thông tin người dùng mới vào đối tượng editUser
             editUser.AddData("currentUserName", currentUserName);
             editUser.AddData("newUserName", userNameBox.Text.Trim());
             editUser.AddData("fullName", userFullNameBox.Text.Trim());
@@ -156,16 +137,13 @@ namespace GUI
             editUser.AddData("confirmPassword", userPasswordConfirm.Text.Trim());
             editUser.AddData("permissionType", permissionId.ToString());
 
-            // Kiểm tra xem người dùng đã chọn ảnh hay chưa
             if (imageData == string.Empty && useDefaultImage.Checked == false)
             {
-                // Nếu chưa chọn ảnh và không sử dụng ảnh mặc định thì hiển thị thông báo yêu cầu chọn ảnh và không thực hiện các thao tác khác
                 imageRequied.Text = "Vui lòng chọn ảnh";
                 return;
             }
             else if (imageData == string.Empty && useDefaultImage.Checked == true)
             {
-                // Nếu chưa chọn ảnh nhưng sử dụng ảnh mặc định thì chuyển đổi ảnh mặc định sang định dạng base64 và thêm vào đối tượng editUser
                 byte[] imageBytes = imagetobytearray(avatarPreview.Image);
                 imageData = Convert.ToBase64String(imageBytes);
                 editUser.AddData("avatar", imageData);
@@ -173,14 +151,11 @@ namespace GUI
             }
             else
             {
-                // Nếu đã chọn ảnh thì thêm ảnh vào đối tượng editUser
                 editUser.AddData("avatar", imageData);
                 imageData = string.Empty;
             }
 
-            // Thực hiện kiểm tra tính hợp lệ của thông tin người dùng mới
             res = handleEditUser.validateEditUserForm(editUser);
-            // Xử lý các kết quả trả về
             switch (res.code)
             {
                 case "update_successfully":

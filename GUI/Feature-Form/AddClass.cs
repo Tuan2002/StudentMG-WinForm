@@ -13,15 +13,13 @@ namespace GUI
         private string currentMajorID;
         private string currentMajorName;
 
-        // Khai báo biến truy cập vào ClassMG form để cập nhật danh sách lớp học
-        public ClassMG parentInstance {get; set;}
+        public ClassMG parentInstance { get; set; }
 
         public AddClass()
         {
             InitializeComponent();
         }
 
-        // Hàm xóa thông báo lỗi
         public void clearValidate()
         {
             classIDError.Text = string.Empty;
@@ -34,7 +32,6 @@ namespace GUI
             MajorOptions.BorderColor = Color.Plum;
         }
 
-        // Hàm xóa form nhập liệu
         public void clearForm()
         {
             clearValidate();
@@ -43,7 +40,6 @@ namespace GUI
             MajorOptions.SelectedIndex = 0;
         }
 
-        // Hàm tải danh sách các ngành học vào combobox
         private void loadMajorOptions()
         {
             MajorAccess access = new MajorAccess();
@@ -56,7 +52,6 @@ namespace GUI
             }
         }
 
-        // Sự kiện khi form được load
         private void AddClass_Load(object sender, EventArgs e)
         {
             loadMajorOptions();
@@ -65,31 +60,31 @@ namespace GUI
         }
         private void MajorOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clearValidate(); // Xóa bỏ các thông báo lỗi hiển thị trên form
+            clearValidate();
             int optionIndex = MajorOptions.SelectedIndex;
             if (optionIndex <= 0)
             {
-                currentMajorID = string.Empty; // Nếu không chọn ngành học thì không có mã ngành học
+                currentMajorID = string.Empty;
             }
             else
             {
-                DataRow row = majorList.Rows[optionIndex - 1]; // Lấy thông tin ngành học tại vị trí được chọn
-                currentMajorID = row["MajorID"].ToString(); // Lưu lại mã ngành học được chọn
-                currentMajorName = row["MajorName"].ToString(); // Lưu lại tên ngành học được chọn
+                DataRow row = majorList.Rows[optionIndex - 1];
+                currentMajorID = row["MajorID"].ToString();
+                currentMajorName = row["MajorName"].ToString();
             }
         }
 
         private void classIDBox_TextChanged(object sender, EventArgs e)
         {
-            // Sao chép nội dung của classIDBox sang classNameBox và chuyển thành chữ hoa
-            classNameBox.Text = classIDBox.Text.Trim().ToUpper(); 
+
+            classNameBox.Text = classIDBox.Text.Trim().ToUpper();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        // Sự kiện khi nhấn nút thêm lớp học
+
         private void AddBtn_Click(object sender, EventArgs e)
         {
             MiddleWare addClass = new MiddleWare();

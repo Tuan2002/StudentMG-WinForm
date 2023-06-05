@@ -10,7 +10,6 @@ namespace GUI
     public partial class LoginForm : Form
     {
         public bool isLogin = false;
-        // Xóa thông báo lỗi trước khi đăng nhập
         public void clearValidate()
         {
             useNameError.Text = string.Empty;
@@ -27,7 +26,6 @@ namespace GUI
             Application.Exit();
         }
 
-        // Xử lý đăng nhập khi click nút đăng nhập
         public Response loginHandle()
         {
             Request loginReq = new Request();
@@ -40,18 +38,14 @@ namespace GUI
 
         private async void loginBtn_Click(object sender, EventArgs e)
         {
-            // Hiện progress bar khi đang đăng nhập
             waitProgess.Visible = true;
             loginBtn.Text = string.Empty;
 
-            // Thực hiện đăng nhập
             Response res = await Task.Run(() => loginHandle());
 
-            // Ẩn progress bar sau khi đăng nhập xong
             waitProgess.Visible = false;
             loginBtn.Text = "Đăng nhập";
 
-            // Kiểm tra kết quả đăng nhập
             if (res.code == "success" && !isLogin)
             {
                 string userFullName = res.data.Rows[0]["userFullName"].ToString();
@@ -61,7 +55,6 @@ namespace GUI
                 byte[] imageBytes = Convert.FromBase64String(userAvatar);
                 MemoryStream memoryStream = new MemoryStream(imageBytes);
                 Image avatar = Image.FromStream(memoryStream);
-                // Chuyển đến form dashboard
                 this.Hide();
                 Dashboard_Admin adminDashboard = new Dashboard_Admin(userFullName, permissionType, avatar);
                 adminDashboard.LoginFormInstance = this;
@@ -69,7 +62,6 @@ namespace GUI
             }
             else if (res.code != "success")
             {
-                // Hiển thị thông báo lỗi
                 switch (res.code)
                 {
                     case "username_null":
@@ -92,9 +84,7 @@ namespace GUI
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            // Xóa thông báo lỗi
             clearValidate();
-            // Đặt focus vào textbox tên đăng nhập
             this.ActiveControl = txtUserName;
         }
     }

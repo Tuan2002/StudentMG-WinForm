@@ -37,14 +37,12 @@ namespace DAL
         {
             DataTable dataTable = new DataTable();
 
-            // Add columns to the DataTable based on the properties of the entity type
             var properties = typeof(T).GetProperties();
             foreach (var property in properties)
             {
                 dataTable.Columns.Add(property.Name, Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType);
             }
 
-            // Populate the DataTable with the results from the SingleResult<T>
             foreach (var item in singleResult)
             {
                 var row = dataTable.NewRow();

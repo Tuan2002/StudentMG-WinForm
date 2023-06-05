@@ -9,7 +9,6 @@ namespace GUI
 {
     public partial class EditClass : Form
     {
-        // Khai báo thuộc tính cần thiết
         private DataTable majorList;
         private string currentMajorID;
         private string currentMajorName;
@@ -22,14 +21,13 @@ namespace GUI
             InitializeComponent();
         }
 
-        public EditClass (int rowIndex ,string classID)
+        public EditClass(int rowIndex, string classID)
         {
             InitializeComponent();
             this.currentClassID = classID;
             this.rowIndex = rowIndex;
         }
 
-        // Hàm xóa thông báo lỗi
         public void clearValidate()
         {
             classIDError.Text = string.Empty;
@@ -42,7 +40,6 @@ namespace GUI
             MajorOptions.BorderColor = Color.Plum;
         }
 
-        // Hàm xóa form nhập liệu
         public void clearForm()
         {
             clearValidate();
@@ -50,7 +47,6 @@ namespace GUI
             classNameBox.Text = string.Empty;
         }
 
-        // Hàm tải danh sách các ngành học vào combobox
         private void loadMajorOptions()
         {
             MajorAccess access = new MajorAccess();
@@ -69,7 +65,6 @@ namespace GUI
                 }
             }
         }
-        // Lấy thông tin lớp học
         private void loadClassData()
         {
             ClassAccess access = new ClassAccess();
@@ -83,7 +78,6 @@ namespace GUI
             }
         }
 
-        // Sự kiện khi form được load
         private void AddClass_Load(object sender, EventArgs e)
         {
             clearForm();
@@ -93,7 +87,7 @@ namespace GUI
         }
         private void MajorOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clearValidate(); // Xóa bỏ các thông báo lỗi hiển thị trên form
+            clearValidate();
             DataRowView selectedMajor = MajorOptions.SelectedItem as DataRowView;
             if (selectedMajor != null && MajorOptions.SelectedValue.ToString() != "System.Data.DataRowView")
             {
@@ -103,15 +97,13 @@ namespace GUI
         }
         private void classIDBox_TextChanged(object sender, EventArgs e)
         {
-            // Sao chép nội dung của classIDBox sang classNameBox và chuyển thành chữ hoa
-            classNameBox.Text = classIDBox.Text.Trim().ToUpper(); 
+            classNameBox.Text = classIDBox.Text.Trim().ToUpper();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        // Sự kiện khi nhấn nút chỉnh sửa
         private void EditBtn_Click(object sender, EventArgs e)
         {
             Request editReq = new Request();

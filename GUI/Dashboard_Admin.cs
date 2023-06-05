@@ -14,7 +14,6 @@ namespace GUI
         private Image userAvatar;
         private Form currentChildForm;
         private bool isLogout;
-        // Structs
         private struct RGBColors
         {
             public static Color color1 = Color.FromArgb(172, 126, 241);
@@ -43,7 +42,7 @@ namespace GUI
         }
         public LoginForm LoginFormInstance { get; set; }
 
-        private void ActivateButton (object senderBtn, Color color)
+        private void ActivateButton(object senderBtn, Color color)
         {
             if (senderBtn != null)
             {
@@ -71,7 +70,7 @@ namespace GUI
                 currentBtn.TextAlign = ContentAlignment.MiddleCenter;
                 currentBtn.IconColor = Color.WhiteSmoke;
                 currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
-                currentBtn.ImageAlign= ContentAlignment.MiddleLeft;
+                currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             }
         }
         private void openChildForm(Form ChildForm)
@@ -87,7 +86,7 @@ namespace GUI
             panelDesktop.Controls.Add(ChildForm);
             panelDesktop.Tag = ChildForm;
             ChildForm.BringToFront();
-            ChildForm.Show();   
+            ChildForm.Show();
         }
 
         private void userMangerBtn_Click(object sender, EventArgs e)
@@ -131,7 +130,7 @@ namespace GUI
             userNameLabel.Text = userFullName;
             userPermisstionLabel.Text = permissionType;
             avatarBox.Image = userAvatar;
-           
+
         }
 
         private void Dashboard_Admin_FormClosing(object sender, FormClosingEventArgs e)
@@ -140,7 +139,7 @@ namespace GUI
             {
                 LoginFormInstance.Show();
                 LoginFormInstance.isLogin = false;
-            }    
+            }
             else
                 Application.Exit();
         }

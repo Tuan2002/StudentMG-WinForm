@@ -22,7 +22,6 @@ namespace GUI
         public delegate void UpdateUserListView(string userName, string userPassword, string userEmail);
         public event UpdateUserListView UpdateUserListEvent;
 
-
         public void clearValidateForm()
         {
             userNameBox.BorderColor = System.Drawing.Color.Plum;
@@ -44,22 +43,23 @@ namespace GUI
         public void clearForm()
         {
             this.clearValidateForm();
-            userNameBox.Text= string.Empty;
-            userFullNameBox.Text= string.Empty;
-            userEmailBox.Text= string.Empty;
-            userPassword.Text= string.Empty;
-            userPasswordConfirm.Text= string.Empty;
+            userNameBox.Text = string.Empty;
+            userFullNameBox.Text = string.Empty;
+            userEmailBox.Text = string.Empty;
+            userPassword.Text = string.Empty;
+            userPasswordConfirm.Text = string.Empty;
             permissionSelect.SelectedIndex = 0;
         }
-     
+
         public AddUser()
         {
             InitializeComponent();
             clearValidateForm();
             useDefaultImage.Checked = true;
         }
-        private void loadPermissionOptions() {
-            DatabaseAccess access= new DatabaseAccess();
+        private void loadPermissionOptions()
+        {
+            DatabaseAccess access = new DatabaseAccess();
             Response res = access.getPermissionList();
             foreach (DataRow row in res.data.Rows)
             {
@@ -121,10 +121,11 @@ namespace GUI
             addUser.AddData("password", userPassword.Text.Trim());
             addUser.AddData("confirmPassword", userPasswordConfirm.Text.Trim());
             addUser.AddData("permissionType", permissionId.ToString());
-            if (imageData == string.Empty && useDefaultImage.Checked == false) {
+            if (imageData == string.Empty && useDefaultImage.Checked == false)
+            {
                 imageRequied.Text = "Vui lòng chọn ảnh";
                 return;
-             
+
             }
             else if (imageData == string.Empty && useDefaultImage.Checked == true)
             {
@@ -139,10 +140,10 @@ namespace GUI
                 imageData = string.Empty;
             }
             res = handleAddUser.validateAddUserForm(addUser);
- 
+
             switch (res.code)
             {
-                case "success": 
+                case "success":
                     UpdateUserListEvent(userNameBox.Text, userPassword.Text, userEmailBox.Text);
                     clearForm();
                     break;
@@ -163,7 +164,7 @@ namespace GUI
                     emailEmpty.Text = "Email không được để trống";
                     break;
                 case "password_null":
-                    userPassword.BorderColor= Color.Red;
+                    userPassword.BorderColor = Color.Red;
                     passwordEmpty.Text = "Mật khẩu không được để trống";
                     break;
                 case "confirmPassword_notMatch":
@@ -175,10 +176,6 @@ namespace GUI
                     permisstionEmpty.Text = "Vui lòng chọn quyền hạn";
                     break;
             }
-
-
         }
-
-   
     }
 }
