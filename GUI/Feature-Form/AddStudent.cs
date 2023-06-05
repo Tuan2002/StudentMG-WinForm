@@ -63,6 +63,7 @@ namespace GUI
         private async void loadProvideList()
         {
             HttpClient httpClient = new HttpClient();
+            HttpResponseMessage response = await httpClient.GetAsync("https://provinces.open-api.vn/api/p/");
             string json = await response.Content.ReadAsStringAsync();
             DataTable dataTable = JsonConvert.DeserializeObject<DataTable>(json);
             ProvideList.DataSource = null;
@@ -73,6 +74,7 @@ namespace GUI
         private async void loadDistrictList(string provideCode)
         {
             HttpClient httpClient = new HttpClient();
+            HttpResponseMessage response = await httpClient.GetAsync("https://provinces.open-api.vn/api/p/" + provideCode + "?depth=2");
             string json = await response.Content.ReadAsStringAsync();
             dynamic jsonObject = JsonConvert.DeserializeObject(json);
             DataTable dataTable = new DataTable();
@@ -95,6 +97,7 @@ namespace GUI
         private async void loadWardList(string districtCode)
         {
             HttpClient httpClient = new HttpClient();
+            HttpResponseMessage response = await httpClient.GetAsync("https://provinces.open-api.vn/api/d/" + districtCode + "?depth=2");
             string json = await response.Content.ReadAsStringAsync();
             dynamic jsonObject = JsonConvert.DeserializeObject(json);
             DataTable dataTable = new DataTable();
