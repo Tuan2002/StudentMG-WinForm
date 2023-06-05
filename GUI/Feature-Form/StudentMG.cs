@@ -33,7 +33,7 @@ namespace GUI
             }
         }
 
-        // Load dữ liệu danh sách lớp học
+        // Load dữ liệu danh sách sinh viên
         public async void loadData(Func<Response> res)
         {
             // Hiển thị loading khi đang load dữ liệu
@@ -72,7 +72,7 @@ namespace GUI
         }
 
         // Load danh sách ngành và danh sách lớp học lên DataGridView ClassList khi Form được load
-        private void ClassMG_Load(object sender, EventArgs e)
+        private void StudentMG_Load(object sender, EventArgs e)
         {
             loadMajorOptions();
             loadData(() => getData(currentMajorID));
@@ -187,6 +187,31 @@ namespace GUI
 
                 }
             }
+        }
+
+        // Phương thức tìm kiếm sinh viên dựa trên từ khóa
+        public Response getSearchData(string keyword)
+        {
+            StudentAccess access = new StudentAccess();
+            Response res = access.getSearchStudentData(keyword);
+            return res;
+        }
+        // Sự kiện TextChanged của ô tìm kiếm
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            // Chờ một chút trước khi thực hiện tìm kiếm để tránh quá tải server
+            SearchInputEvent.Stop();
+            SearchInputEvent.Start();
+        }
+
+        // Sự kiện kết thúc của SearchInputEvent
+        private void SearchInputEventEnd(object sender, EventArgs e)
+        {
+            SearchInputEvent.Stop();
+            if (searchBox.Text == string.Empty)
+                loadData(() => getData(currentMajorID));
+            else
+                loadData(() => getSearchData(searchBox.Text));
         }
     }
 }

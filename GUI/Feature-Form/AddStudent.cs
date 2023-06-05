@@ -93,7 +93,6 @@ namespace GUI
             {
                 string name = district.name;
                 int code = district.code;
-
                 DataRow row = dataTable.NewRow();
                 row["Name"] = name;
                 row["Code"] = code;
@@ -186,7 +185,7 @@ namespace GUI
             }
             // Thêm năm
             int currentYear = DateTime.Now.Year;
-            for (int i = currentYear - 100; i <= currentYear; i++)
+            for (int i = currentYear - 50; i <= currentYear; i++)
             {
                 SelectYear.Items.Add(i.ToString());
             }

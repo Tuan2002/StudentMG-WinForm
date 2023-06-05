@@ -214,10 +214,11 @@
     <Parameter Name="majorname" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.UpdateMajorData" Method="UpdateMajorData">
+  <Function Name="dbo.UpdateMajorData" Method="UpdateMajorData" IsComposable="true">
     <Parameter Name="currentmajorid" Type="System.String" DbType="VarChar(10)" />
     <Parameter Name="newmajorid" Type="System.String" DbType="VarChar(10)" />
     <Parameter Name="majorname" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="object" />
   </Function>
   <Function Name="dbo.UpdateStudentData" Method="UpdateStudentData">
     <Parameter Name="studentid" Type="System.Int32" DbType="Int" />
@@ -240,15 +241,28 @@
     <Parameter Name="avatar" Type="System.String" DbType="NVarChar(MAX)" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.UpdateClassData" Method="UpdateClassData">
+  <Function Name="dbo.UpdateClassData" Method="UpdateClassData" IsComposable="true">
     <Parameter Name="currentclassid" Type="System.String" DbType="VarChar(10)" />
     <Parameter Name="newclassid" Type="System.String" DbType="VarChar(10)" />
     <Parameter Name="classname" Type="System.String" DbType="NVarChar(30)" />
     <Parameter Name="majorid" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="object" />
   </Function>
-  <Function Name="dbo.UpdateMajorData" Method="UpdateMajorData1">
+  <Function Name="dbo.UpdateMajorData" Method="UpdateMajorData1" IsComposable="true">
     <Parameter Name="currentmajorid" Type="System.String" DbType="VarChar(10)" />
     <Parameter Name="newmajorid" Type="System.String" DbType="VarChar(10)" />
     <Parameter Name="majorname" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.LoadSearchStudentData" Method="LoadSearchStudentData">
+    <Parameter Name="keyword" Type="System.String" DbType="NVarChar(30)" />
+    <ElementType Name="LoadSearchStudentDataResult">
+      <Column Name="StudentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fullname" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ClassID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MajorName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>

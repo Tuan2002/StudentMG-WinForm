@@ -58,10 +58,10 @@ namespace GUI
                 string userAvatar = res.data.Rows[0]["userAvatar"].ToString();
                 string permissionType = res.data.Rows[0]["permissionType"].ToString();
                 isLogin = true;
-                // Chuyển đến form dashboard
                 byte[] imageBytes = Convert.FromBase64String(userAvatar);
                 MemoryStream memoryStream = new MemoryStream(imageBytes);
                 Image avatar = Image.FromStream(memoryStream);
+                // Chuyển đến form dashboard
                 this.Hide();
                 Dashboard_Admin adminDashboard = new Dashboard_Admin(userFullName, permissionType, avatar);
                 adminDashboard.LoginFormInstance = this;

@@ -263,13 +263,12 @@ namespace DAL
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), keyword);
 			return ((ISingleResult<LoadSearchUserDataResult>)(result.ReturnValue));
 		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.udmajor")]
-		public int udmajor([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string newmajorid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string majorname)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateMajorData")]
+		public int UpdateMajorData([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string currentmajorid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string newmajorid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string majorname)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), newmajorid, majorname);
-			return ((int)(result.ReturnValue));
-		}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), currentmajorid, newmajorid, majorname);
+            return ((int)(result.ReturnValue));
+        }
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateStudentData")]
 		public int UpdateStudentData([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> studentid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string personid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string studentname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string birthday, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string gender, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string address, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string majorid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string classid)
@@ -289,16 +288,16 @@ namespace DAL
 		public int UpdateClassData([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string currentclassid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string newclassid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string classname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string majorid)
 		{
             IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), currentclassid, newclassid, classname, majorid);
-			return((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateMajorData")]
-		public int UpdateMajorData([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string currentmajorid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string newmajorid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string majorname)
-		{
-            IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), currentmajorid, newmajorid, majorname);
             return ((int)(result.ReturnValue));
         }
-    }
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LoadSearchStudentData")]
+		public ISingleResult<LoadSearchStudentDataResult> LoadSearchStudentData([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string keyword)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), keyword);
+			return ((ISingleResult<LoadSearchStudentDataResult>)(result.ReturnValue));
+		}
+	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Classes")]
 	public partial class Class : INotifyPropertyChanging, INotifyPropertyChanged
@@ -2295,6 +2294,122 @@ namespace DAL
 				if ((this._userEmail != value))
 				{
 					this._userEmail = value;
+				}
+			}
+		}
+	}
+	
+	public partial class LoadSearchStudentDataResult
+	{
+		
+		private int _StudentID;
+		
+		private string _Fullname;
+		
+		private string _Gender;
+		
+		private string _Birthday;
+		
+		private string _ClassID;
+		
+		private string _MajorName;
+		
+		public LoadSearchStudentDataResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentID", DbType="Int NOT NULL")]
+		public int StudentID
+		{
+			get
+			{
+				return this._StudentID;
+			}
+			set
+			{
+				if ((this._StudentID != value))
+				{
+					this._StudentID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fullname", DbType="NVarChar(30)")]
+		public string Fullname
+		{
+			get
+			{
+				return this._Fullname;
+			}
+			set
+			{
+				if ((this._Fullname != value))
+				{
+					this._Fullname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="NVarChar(6)")]
+		public string Gender
+		{
+			get
+			{
+				return this._Gender;
+			}
+			set
+			{
+				if ((this._Gender != value))
+				{
+					this._Gender = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birthday", DbType="VarChar(10)")]
+		public string Birthday
+		{
+			get
+			{
+				return this._Birthday;
+			}
+			set
+			{
+				if ((this._Birthday != value))
+				{
+					this._Birthday = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClassID", DbType="VarChar(10)")]
+		public string ClassID
+		{
+			get
+			{
+				return this._ClassID;
+			}
+			set
+			{
+				if ((this._ClassID != value))
+				{
+					this._ClassID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MajorName", DbType="NVarChar(50)")]
+		public string MajorName
+		{
+			get
+			{
+				return this._MajorName;
+			}
+			set
+			{
+				if ((this._MajorName != value))
+				{
+					this._MajorName = value;
 				}
 			}
 		}

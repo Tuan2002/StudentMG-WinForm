@@ -36,7 +36,6 @@ namespace DAL
                 else
                     res.code = "success";
             }
-
             catch
             {
                 res.code = "server_error";
@@ -89,6 +88,7 @@ namespace DAL
             try
             {
                 var result = db.LoadSearchMajorData(keyword);
+                res.data = Helper.ConvertSingleResultToDataTable(result);
                 res.code = "success";
             }
             catch

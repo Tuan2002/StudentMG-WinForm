@@ -13,7 +13,6 @@ namespace BLL
                 res.code = "password_null";
             else
                 res = loginAccess.hanndleLogin(account);
-            /*          res.code = "null";*/
             return res;
 
         }

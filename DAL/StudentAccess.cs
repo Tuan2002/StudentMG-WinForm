@@ -102,6 +102,21 @@ namespace DAL
             return res;
         }
         // Kết thúc xoá sinh viên
-        
+        public Response getSearchStudentData(string keyword)
+        {
+            Response res = new Response();
+            try
+            {
+                var result = db.LoadSearchStudentData(keyword);
+                res.data = Helper.ConvertSingleResultToDataTable(result);
+                res.code = "success";
+            }
+            catch
+            {
+                res.code = "server_error";
+            }
+            return res;
+        }
+
     }
 }
