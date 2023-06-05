@@ -5,9 +5,6 @@ namespace DAL
 {
     public class MajorAccess : DatabaseAccess
     {
-        // Kế thừa từ class DatabaseAccess
-        // Major MG Logic
-        // Lấy danh sách ngành học
         public Response getListMajor()
         {
             Response res = new Response();
@@ -30,8 +27,6 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc lấy danh sách ngành học
-        // Thêm ngành học vào CSDL
         public Response addMajorToDB(Request req)
         {
             Response res = new Response();
@@ -61,8 +56,6 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc thêm ngành học vào CSDL
-        // Cập nhật thông tin ngành học
         public Response UpdateMajorData(Request req)
         {
             Response res = new Response();
@@ -92,8 +85,6 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc cập nhật thông tin ngành học
-        // Xóa ngành học
         public Response DeleteMajor(Request req)
         {
             Response res = new Response();
@@ -121,8 +112,6 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc xóa ngành học
-        // Tìm kiếm ngành học
         public Response getSearchMajorData(string keyword)
         {
             Response res = new Response();
@@ -146,6 +135,5 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc tìm kiếm ngành học
     }
 }

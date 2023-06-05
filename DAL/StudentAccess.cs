@@ -6,9 +6,6 @@ namespace DAL
 {
     public class StudentAccess : DatabaseAccess
     {
-        // Kế thừa từ class DatabaseAccess
-        // Student MG Logic
-        // Lấy danh sách Sinh viên theo ngành
         public Response getStudentList(string majorID)
         {
             Response res = new Response();
@@ -32,9 +29,8 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc lấy danh sách sinh viên
-        // Thêm sinh viên mới vào CSDL
-        public Response addStudentToDB (Request req) {
+        public Response addStudentToDB(Request req)
+        {
             Response res = new Response();
             try
             {
@@ -68,8 +64,6 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc thêm sinh viên
-        // Lấy thông tin sinh viên theo ID
         public Response getStudentData(string studentID)
         {
             Response res = new Response();
@@ -79,7 +73,7 @@ namespace DAL
                 section.Open();
                 SqlCommand command = new SqlCommand("getStudentData", section);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@studentid",Int32.Parse(studentID));
+                command.Parameters.AddWithValue("@studentid", Int32.Parse(studentID));
                 command.Connection = section;
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
@@ -96,8 +90,6 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc lấy thông tin sinh viên
-        // Cập nhật thông tin sinh viên
         public Response UpdateStudentData(Request req)
         {
             Response res = new Response();
@@ -133,8 +125,6 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc cập nhật thông tin sinh viên
-        // Xoá sinh viên khỏi CSDL
         public Response DeleteStudent(Request req)
         {
             Response res = new Response();
@@ -162,7 +152,29 @@ namespace DAL
             }
             return res;
         }
-        // Kết thúc xoá sinh viên
-        
+        public Response getSearchStudentData(string keyword)
+        {
+            Response res = new Response();
+            try
+            {
+                SqlConnection section = Connection();
+                section.Open();
+                SqlCommand command = new SqlCommand("LoadSearchStudentData", section);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@keyword", keyword);
+                command.Connection = section;
+                SqlDataReader reader = command.ExecuteReader();
+                res.code = "success";
+                res.data.Load(reader);
+                reader.Close();
+                section.Close();
+            }
+            catch
+            {
+                res.code = "server_error";
+            }
+            return res;
+        }
+
     }
 }

@@ -3,10 +3,8 @@ using System.Data;
 using System.Collections.Specialized;
 using System.Configuration;
 
-// DATA ACCESS LAYER
 namespace DAL
 {
-    // Create response object
     public class Response
     {
         public string code;
@@ -16,23 +14,17 @@ namespace DAL
         public DataTable data = new DataTable();
 
     }
-    // Create request object
     public class Request
     {
-        // Tạo một dictionary để lưu trữ dữ liệu
         ListDictionary data = new ListDictionary();
-        // Tạo các phương thức để thêm, xóa, lấy dữ liệu
-        // Thêm dữ liệu vào dictionary với key và value
         public void AddData(string key, string value)
         {
             data.Add(key, value);
         }
-        // Xóa dữ liệu trong dictionary
         public void ClearData()
         {
             data.Clear();
         }
-        // Lấy dữ liệu từ dictionary qua key
         public string GetData(string key)
         {
             string value = (string)data[key];
@@ -40,19 +32,16 @@ namespace DAL
         }
 
     }
-    // Handle data access
     public class DatabaseAccess
     {
-        // Create connection string
         private string connectString = ConfigurationManager.ConnectionStrings["DataServer"].ConnectionString;
-        public SqlConnection Connection() {
+        public SqlConnection Connection()
+        {
             SqlConnection connection = new SqlConnection(connectString);
             return connection;
         }
-        // Xử lý đăng nhập vào hệ thống
         public Response hanndleLogin(Request loginReq)
         {
-        // Connect to database
             Response res = new Response();
             try
             {
@@ -64,7 +53,8 @@ namespace DAL
                 command.Parameters.AddWithValue("@password", loginReq.GetData("password"));
                 command.Connection = section;
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows) {
+                if (reader.HasRows)
+                {
                     while (reader.Read())
                     {
                         res.code = "success";
@@ -77,7 +67,7 @@ namespace DAL
                 }
                 else
                     res.code = "user_not_exsist";
-            }    
+            }
             catch
             {
                 res.code = "server_error";

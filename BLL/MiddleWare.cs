@@ -13,11 +13,9 @@ namespace BLL
                 res.code = "password_null";
             else
                 res = loginAccess.hanndleLogin(account);
-            /*          res.code = "null";*/
             return res;
 
         }
-        // Add new user
         public Response validateAddUserForm(Request form)
         {
             Response res = new Response();
@@ -38,14 +36,13 @@ namespace BLL
                 res = HandleAddUser.addUserToDB(form);
             return res;
         }
-        // Get user data
-        public Response handleGetUserData(Request currentUser) {
+        public Response handleGetUserData(Request currentUser)
+        {
             Response res = new Response();
             UserAccess HandleGetUserData = new UserAccess();
             res = HandleGetUserData.getUserData(currentUser.GetData("userName"));
             return res;
         }
-        // Update user data
         public Response validateEditUserForm(Request form)
         {
             Response res = new Response();
@@ -66,7 +63,6 @@ namespace BLL
                 res = HandleUpdate.UpdateUserData(form);
             return res;
         }
-        // Add new major
         public Response validateAddMajor(Request form)
         {
             Response res = new Response();
@@ -79,7 +75,6 @@ namespace BLL
                 res = HandleAddMajor.addMajorToDB(form);
             return res;
         }
-        // Edit major data
         public Response validateEditMajor(Request form)
         {
             Response res = new Response();
@@ -92,7 +87,6 @@ namespace BLL
                 res = HandleEditMajor.UpdateMajorData(form);
             return res;
         }
-        // Add new class
         public Response validateAddClass(Request form)
         {
             Response res = new Response();
@@ -107,7 +101,6 @@ namespace BLL
                 res = HandleAddClass.addClassToDB(form);
             return res;
         }
-        // Edit class data
         public Response validateEditClass(Request form)
         {
             Response res = new Response();
@@ -122,8 +115,7 @@ namespace BLL
                 res = HandleEditClass.UpdateClassData(form);
             return res;
         }
-        // Add new student
-        public Response validateAddStudent (Request form)
+        public Response validateAddStudent(Request form)
         {
             Response res = new Response();
             StudentAccess HandleAddStudent = new StudentAccess();
@@ -145,7 +137,6 @@ namespace BLL
                 res = HandleAddStudent.addStudentToDB(form);
             return res;
         }
-        // Edit student data
         public Response validateEditStudent(Request form)
         {
             Response res = new Response();
